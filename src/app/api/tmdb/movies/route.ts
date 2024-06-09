@@ -14,7 +14,7 @@ export async function GET(request: Request) {
       `${process.env.TMDB_BASE_URL}/movie/popular`,
     );
     clientParams.forEach((key, val) => {
-      tmdbPopularMoviesUrl.searchParams.append(key, val);
+      tmdbPopularMoviesUrl.searchParams.append(val, key);
     });
     const results = await fetch(tmdbPopularMoviesUrl.href, options);
     const data = await results.json();

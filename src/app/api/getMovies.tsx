@@ -1,4 +1,4 @@
-async function getData() {
+async function getData(searchParams: URLSearchParams) {
   const options = {
     method: 'GET',
     headers: {
@@ -7,10 +7,8 @@ async function getData() {
   };
 
   try {
-    const results = await fetch(
-      '/api/tmdb/movies?language=en-US&page=1',
-      options,
-    );
+    const apiPathWithSearchParams = `/api/tmdb/movies?${searchParams.toString()}`;
+    const results = await fetch(apiPathWithSearchParams, options);
 
     return await results.json();
   } catch (error) {
@@ -18,6 +16,6 @@ async function getData() {
   }
 }
 
-export default async function getMovies() {
-  return await getData();
+export default async function getMovies(searchParams: URLSearchParams) {
+  return await getData(searchParams);
 }

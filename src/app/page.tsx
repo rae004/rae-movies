@@ -4,11 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 import getMovies from '@/app/api/getMovies';
 import Card from '@/components/Card';
 import Loading from '@/components/Loading';
+import { useSearchParams } from 'next/navigation';
 
 export default function Home() {
+  const searchParams = useSearchParams();
   const { data, isLoading, isError } = useQuery({
-    queryFn: async () => await getMovies(),
-    queryKey: ['movies'], //Array according to Documentation
+    queryFn: async () => await getMovies(searchParams),
+    queryKey: ['popular/movies'], //Array according to Documentation
   });
 
   if (isLoading) return <Loading />;
