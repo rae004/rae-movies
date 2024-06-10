@@ -1,16 +1,16 @@
 'use client';
 
+import { useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
 import getMovies from '@/app/api/getMovies';
 import Card from '@/components/Card';
 import Loading from '@/components/Loading';
-import { useSearchParams } from 'next/navigation';
 
 export default function Home() {
   const searchParams = useSearchParams();
   const { data, isLoading, isError } = useQuery({
     queryFn: async () => await getMovies(searchParams),
-    queryKey: ['movies/popular'], //Array according to Documentation
+    queryKey: ['movies/popular'],
   });
 
   if (isLoading) return <Loading />;
@@ -29,6 +29,7 @@ export default function Home() {
                 key={'movie' + movie.id}
                 title={movie.title}
                 image={movie.poster_path}
+                href={`/movie/${movie.id}`}
               ></Card>
             );
           },
