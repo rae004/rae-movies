@@ -8,7 +8,6 @@ async function getData(movieId: number) {
 
   try {
     const apiPathWithSearchParams = `/api/tmdb/movie?id=${movieId}`;
-    console.log('our path: ', apiPathWithSearchParams);
     const results = await fetch(apiPathWithSearchParams, options);
 
     return await results.json();
