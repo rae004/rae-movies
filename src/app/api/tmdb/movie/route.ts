@@ -19,5 +19,6 @@ export async function GET(request: Request) {
     return Response.json(data);
   } catch (error) {
     console.error(error);
+    Response.error();
   }
 }
