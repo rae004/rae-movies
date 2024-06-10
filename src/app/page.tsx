@@ -10,7 +10,7 @@ export default function Home() {
   const searchParams = useSearchParams();
   const { data, isLoading, isError } = useQuery({
     queryFn: async () => await getMovies(searchParams),
-    queryKey: ['popular/movies'], //Array according to Documentation
+    queryKey: ['movies/popular'], //Array according to Documentation
   });
 
   if (isLoading) return <Loading />;
