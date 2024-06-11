@@ -28,11 +28,89 @@ export default function Page({ params }: { params: { slug: string } }) {
         <span>
           <b>Overview</b>: {data.overview}
         </span>
+        <span>
+          <b>Release Date</b>:{' '}
+          {new Date(data.release_date).toLocaleDateString('en-us', {
+            timeZone: 'UTC',
+            weekday: 'long',
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+          })}
+        </span>
         {data.belongs_to_collection && (
           <span>
             <b>Collection</b>: {data.belongs_to_collection.name}
           </span>
         )}
+        <figure>
+          <figcaption>
+            <b>Spoken Languages</b>:
+          </figcaption>
+          {data.spoken_languages && (
+            <ul className={'flex flex-row gap-4'}>
+              {data.spoken_languages.map(
+                (
+                  language: {
+                    iso_639_1: string;
+                    name: string;
+                    english_name: string;
+                  },
+                  key: number,
+                ) => (
+                  <li key={key}>{language.english_name}</li>
+                ),
+              )}
+            </ul>
+          )}
+        </figure>
+        <figure>
+          <figcaption>
+            <b>Genres</b>:
+          </figcaption>
+          {data.genres && (
+            <ul className={'flex flex-row gap-4'}>
+              {data.genres.map(
+                (genre: { id: number; name: string }, key: number) => (
+                  <li key={key}>{genre.name}</li>
+                ),
+              )}
+            </ul>
+          )}
+        </figure>
+        <figure>
+          <figcaption>
+            <b>Production Companies</b>:
+          </figcaption>
+          {data.production_companies && (
+            <ul className={'flex flex-row gap-4 py-2'}>
+              {data.production_companies.map(
+                (
+                  company: {
+                    id: number;
+                    name: string;
+                    logo_path: string;
+                    origin_country: string;
+                  },
+                  key: number,
+                ) => (
+                  <li key={key} className={'flex flex-col gap-2'}>
+                    {company.logo_path ? (
+                      <Image
+                        src={tmdbImageUrl + company.logo_path}
+                        alt={`${company.name} Logo`}
+                        height={120}
+                        width={120}
+                      />
+                    ) : (
+                      <span>{company.name}</span>
+                    )}
+                  </li>
+                ),
+              )}
+            </ul>
+          )}
+        </figure>
       </div>
       <Image
         src={tmdbImageUrl + data.poster_path}
