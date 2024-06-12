@@ -14,13 +14,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ReactQueryProvider>
+    <html lang="en" className={'flex flex-col items-center overflow-x-hidden'}>
+      <ReactQueryProvider>
+        <body className={`${inter.className} max-w-screen-xl`}>
           <Header />
           <main>{children}</main>
-        </ReactQueryProvider>
-      </body>
+        </body>
+      </ReactQueryProvider>
     </html>
   );
 }

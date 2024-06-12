@@ -16,8 +16,8 @@ const Card = ({
 }) => {
   return (
     <span className="p-5">
-      <Link href={href} className={'flex flex-col h-[350px] justify-between'}>
-        <h2 className="line-clamp-2">{title}</h2>
+      <Link href={href} className={'flex flex-col h-[450px] justify-between'}>
+        <h2 className=" text-xl line-clamp-2">{title}</h2>
         <Image
           src={imgUrl + image}
           alt={`${title} Poster`}
