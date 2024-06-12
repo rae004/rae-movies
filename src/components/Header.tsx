@@ -1,26 +1,22 @@
 import Search from '@/components/Search';
+import ThemePicker from '@/components/ThemePicker';
 
 export default function Header() {
   return (
-    <header className={'sticky top-0 bg-white shadow-md h-12'}>
-      <nav className={'flex flex-col h-full justify-center'}>
-        <ul className={'flex flex-row gap-4 justify-between px-4'}>
-          <li>
-            <Search />
-          </li>
-          <ul className={'flex flex-row gap-4 justify-end px-4'}>
-            <li className={'hover:bg-lime-400 px-1 h-full'}>
-              <a href="/">Home</a>
-            </li>
-            <li className={'hover:bg-lime-400 px-1'}>
-              <a href="/about">About</a>
-            </li>
-            <li className={'hover:bg-lime-400 px-1'}>
-              <a href="/contact">Contact</a>
-            </li>
-          </ul>
-        </ul>
-      </nav>
+    <header className="navbar bg-base-100">
+      <div className="flex-1">
+        <a className="btn btn-ghost text-xl">RAE Movies</a>
+      </div>
+      <div className="flex-none gap-2">
+        <div className="form-control">
+          <input
+            type="text"
+            placeholder="Search"
+            className="input input-bordered w-24 md:w-auto"
+          />
+        </div>
+        <ThemePicker />
+      </div>
     </header>
   );
 }

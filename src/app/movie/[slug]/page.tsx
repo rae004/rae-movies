@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import getMovie from '@/app/api/getMovie';
 import Loading from '@/components/Loading';
+import Companies from '@/components/Companies';
 
 const tmdbImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
@@ -78,39 +79,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             </ul>
           )}
         </figure>
-        <figure>
-          <figcaption>
-            <b>Production Companies</b>:
-          </figcaption>
-          {data.production_companies && (
-            <ul className={'flex flex-row gap-4 py-2'}>
-              {data.production_companies.map(
-                (
-                  company: {
-                    id: number;
-                    name: string;
-                    logo_path: string;
-                    origin_country: string;
-                  },
-                  key: number,
-                ) => (
-                  <li key={key} className={'flex flex-col gap-2'}>
-                    {company.logo_path ? (
-                      <Image
-                        src={tmdbImageUrl + company.logo_path}
-                        alt={`${company.name} Logo`}
-                        height={120}
-                        width={120}
-                      />
-                    ) : (
-                      <span>{company.name}</span>
-                    )}
-                  </li>
-                ),
-              )}
-            </ul>
-          )}
-        </figure>
+        <Companies production_companies={data.production_companies} />
       </div>
       <Image
         src={tmdbImageUrl + data.poster_path}
