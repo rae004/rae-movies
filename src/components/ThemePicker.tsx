@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 export default function ThemePicker() {
   const [theme, setTheme] = useState('');
-  console.log('our selected theme: ', theme);
 
   return (
     <div className="dropdown">
