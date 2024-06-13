@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={'flex flex-col items-center overflow-x-hidden'}>
       <ReactQueryProvider>
-        <body className={`${inter.className} max-w-screen-xl`}>
+        <body className={`${inter.className} max-w-screen-2xl`}>
           <Header />
           <main>{children}</main>
         </body>

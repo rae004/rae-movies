@@ -38,7 +38,7 @@ export default function Companies({ production_companies }: CompaniesProps) {
                   width={120}
                 />
               ) : (
-                <span>{company.name}</span>
+                <span className={'text-accent-content'}>{company.name}</span>
               )}
             </li>
           ))}

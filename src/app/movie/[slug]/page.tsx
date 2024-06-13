@@ -4,13 +4,13 @@ import Image from 'next/image';
 import { useQuery } from '@tanstack/react-query';
 import getMovie from '@/app/api/getMovie';
 import Loading from '@/components/Loading';
-import Companies from '@/components/Companies';
-import Genres from '@/components/Genres';
-import Languages from '@/components/Languages';
-import Collection from '@/components/Collection';
-import ReleaseDate from '@/components/ReleaseDate';
-import Overview from '@/components/Overview';
-import Title from '@/components/Title';
+import Companies from '@/components/moviePage/Companies';
+import Genres from '@/components/moviePage/Genres';
+import Languages from '@/components/moviePage/Languages';
+import Collection from '@/components/moviePage/Collection';
+import ReleaseDate from '@/components/moviePage/ReleaseDate';
+import Overview from '@/components/moviePage/Overview';
+import Title from '@/components/moviePage/Title';
 
 const tmdbImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
@@ -42,8 +42,9 @@ export default function Page({ params }: { params: { slug: string } }) {
       <Image
         src={tmdbImageUrl + data.poster_path}
         alt={`${data.title} Poster`}
-        width={500}
-        height={750}
+        width={650}
+        height={650}
+        quality={100}
       />
     </div>
   );

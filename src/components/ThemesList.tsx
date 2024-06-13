@@ -23,7 +23,7 @@ export default function ThemesList({
   return (
     <ul
       tabIndex={0}
-      className="dropdown-content z-[1] p-2 shadow-2xl bg-base-300 rounded-box w-fit"
+      className="dropdown-content z-[1] right-0 p-2 shadow-2xl bg-base-300 rounded-box w-fit"
     >
       {themes.map((theme, key) => (
         <li key={key}>
