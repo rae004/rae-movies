@@ -4,6 +4,8 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import Header from '@/components/Header';
+import NextQueryParamsProvider from '@/providers/NextQueryParams';
+import ThemeProvider from '@/providers/ThemeProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -14,13 +16,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={'flex flex-col items-center overflow-x-hidden'}>
-      <ReactQueryProvider>
-        <body className={`${inter.className} max-w-screen-2xl`}>
-          <Header />
-          <main>{children}</main>
-        </body>
-      </ReactQueryProvider>
-    </html>
+    <ThemeProvider>
+      <NextQueryParamsProvider>
+        <ReactQueryProvider>
+          <body className={`${inter.className} max-w-screen-xl`}>
+            <Header />
+            <main>{children}</main>
+          </body>
+        </ReactQueryProvider>
+      </NextQueryParamsProvider>
+    </ThemeProvider>
   );
 }

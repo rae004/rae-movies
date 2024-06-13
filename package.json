@@ -11,8 +11,10 @@
   "dependencies": {
     "@tanstack/react-query": "^5.40.1",
     "next": "14.2.3",
+    "next-query-params": "^5.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "use-query-params": "^2.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",

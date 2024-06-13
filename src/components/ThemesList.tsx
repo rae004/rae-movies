@@ -15,11 +15,7 @@ const themes = [
   'sunset',
 ];
 
-export default function ThemesList({
-  setTheme,
-}: {
-  setTheme: Dispatch<SetStateAction<string>>;
-}) {
+export default function ThemesList({ setTheme }: { setTheme: any }) {
   return (
     <ul
       tabIndex={0}

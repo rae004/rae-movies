@@ -1,10 +1,21 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import ThemesList from '@/components/ThemesList';
-import { useState } from 'react';
 
 export default function ThemePicker() {
   const [theme, setTheme] = useState('');
+
+  if (typeof window !== 'undefined' && theme.length > 0) {
+    localStorage.setItem('theme', theme);
+  }
+
+  useEffect(() => {
+    const theme = localStorage.getItem('theme');
+    if (theme) {
+      setTheme(theme);
+    }
+  }, [setTheme]);
 
   return (
     <div className="dropdown">

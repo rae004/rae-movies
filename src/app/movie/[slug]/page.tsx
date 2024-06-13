@@ -27,8 +27,8 @@ export default function Page({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className={'flex flex-row justify-between h-full p-5'}>
-      <div className={'flex flex-col w-1/2 justify-start gap-4'}>
+    <div className={'flex flex-row justify-between h-full p-5 gap-2'}>
+      <div className={'flex flex-col w-2/5 justify-start gap-4'}>
         <Title title={data.title} />
         <Overview overview={data.overview} />
         <ReleaseDate release_date={data.release_date} />
