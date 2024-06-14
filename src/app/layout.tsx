@@ -3,7 +3,6 @@ import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
-import Header from '@/components/Header';
 import NextQueryParamsProvider from '@/providers/NextQueryParams';
 import ThemeProvider from '@/providers/ThemeProvider';
 
@@ -20,7 +19,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <NextQueryParamsProvider>
         <ReactQueryProvider>
           <body className={`${inter.className} max-w-screen-xl`}>
-            <Header />
             <main>{children}</main>
           </body>
         </ReactQueryProvider>

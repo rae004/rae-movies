@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useState } from 'react';
 
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
-  const [selectedTheme, setSelectedTheme] = useState('light');
+  const [selectedTheme, setSelectedTheme] = useState('default');
 
   useEffect(() => {
     const theme = localStorage.getItem('theme');
