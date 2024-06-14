@@ -64,7 +64,7 @@ export default function Pagination({
       <button
         type={'button'}
         className="join-item btn"
-        onClick={(e) => setPage(page - 1)}
+        onClick={(e) => setPage(page !== 1 ? page - 1 : 1)}
       >
         {svgArrowLeft}
       </button>
