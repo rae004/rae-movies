@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import ThemesList from '@/components/ThemesList';
+import ThemesList from '@/components/header/ThemesList';
 
 export default function ThemePicker() {
   const [theme, setTheme] = useState('');

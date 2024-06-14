@@ -1,6 +1,5 @@
-import Card from '@/components/Card';
-import { useSearchParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
+import Card from '@/components/moviesPage/Card';
 import getMovies from '@/app/api/getMovies';
 import Loading from '@/components/Loading';
 

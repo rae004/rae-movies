@@ -2,8 +2,8 @@
 
 import { useSearchParams } from 'next/navigation';
 import { NumberParam, useQueryParam, withDefault } from 'use-query-params';
-import Header from '@/components/Header';
-import Movies from '@/components/Movies';
+import Header from '@/components/header/Header';
+import Movies from '@/components/moviesPage/Movies';
 
 export default function Home() {
   const searchParams = useSearchParams();
