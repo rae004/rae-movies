@@ -1,4 +1,3 @@
-import Search from '@/components/header/Search';
 import ThemePicker from '@/components/header/ThemePicker';
 import Link from 'next/link';
 import Pagination from '@/components/header/Pagination';
