@@ -17,7 +17,7 @@ const Card = ({
   return (
     <Link
       href={href}
-      className="card bg-base-100 p-1 pb-4 group hover:bg-accent duration-500"
+      className="card bg-base-100 p-1 pb-4 group hover:bg-accent focus:bg-accent duration-500"
     >
       <div className="card-body px-4 pb-4">
         <h2 className="text-xl line-clamp-2 group-hover:text-accent-content">

@@ -9,7 +9,7 @@ type Movie = {
   poster_path: string;
 };
 
-export default function Movies({ page }: { page: number }) {
+export default function Movies({ page }: { page: string }) {
   const urlPageParam = new URLSearchParams('page=' + page);
   const { data, isLoading, isError } = useQuery({
     queryFn: async () => await getMovies(urlPageParam),

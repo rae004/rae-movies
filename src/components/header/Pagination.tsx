@@ -1,4 +1,5 @@
 import { usePathname, useSearchParams } from 'next/navigation';
+import { useEffect, useState } from 'react';
 
 const svgArrowRight = (
   <svg
@@ -34,15 +35,27 @@ const svgArrowLeft = (
   </svg>
 );
 
+const validatePageNumber = (page: string) => {
+  const pageInt = parseInt(page);
+  if (pageInt < 1) return '1';
+  if (pageInt > 500 || page.length > 3) return '500';
+  return page;
+};
+
 /** max pages allowed by API is 500  todo update pagination accordingly */
 export default function Pagination({
   setPage,
   page,
 }: {
-  setPage: (page: number) => void;
-  page: number;
+  setPage: (page: string) => void;
+  page: string;
 }) {
   const pathname = usePathname();
+  const [userPage, setUserPage] = useState('1');
+
+  useEffect(() => {
+    setUserPage(page);
+  }, [page]);
 
   if (pathname !== '/') return;
 
@@ -51,29 +64,50 @@ export default function Pagination({
       <button
         type={'button'}
         className="join-item btn"
-        onClick={(e) => setPage(1)}
+        onClick={(e) => setPage('1')}
       >
         1
       </button>
       <button
         type={'button'}
         className="join-item btn"
-        onClick={(e) => setPage(page !== 1 ? page - 1 : 1)}
+        onClick={(e) =>
+          setPage(page !== '1' ? (parseInt(page) - 1).toString() : '1')
+        }
       >
         {svgArrowLeft}
       </button>
-      <button className="join-item btn btn-disabled">{page}</button>
+      <input
+        type="text"
+        placeholder="Type here"
+        className="input max-w-[4rem] focus:z-50"
+        value={userPage}
+        onChange={(elm) => {
+          setUserPage(validatePageNumber(elm.target.value));
+        }}
+        onKeyDown={(e) => {
+          const page = validatePageNumber(userPage);
+          if (e.key === 'Enter') {
+            setPage(page);
+            setUserPage(page);
+          }
+        }}
+      />
       <button
         type={'button'}
         className="join-item btn"
-        onClick={(e) => setPage(page + 1)}
+        onClick={() => {
+          const pageInt = parseInt(page) + 1;
+          const pageStr = validatePageNumber(pageInt.toString());
+          setPage(pageStr);
+        }}
       >
         {svgArrowRight}
       </button>
       <button
         type={'button'}
         className="join-item btn"
-        onClick={(e) => setPage(500)}
+        onClick={(e) => setPage('500')}
       >
         500
       </button>

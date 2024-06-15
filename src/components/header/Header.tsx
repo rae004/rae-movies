@@ -7,8 +7,8 @@ export default function Header({
   setPage,
   page,
 }: {
-  setPage: (page: number) => void;
-  page: number;
+  setPage: (page: string) => void;
+  page: string;
 }) {
   return (
     <header className="navbar sticky top-0 bg-base-100 z-50 px-0">
