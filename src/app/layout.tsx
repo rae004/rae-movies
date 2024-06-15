@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import NextQueryParamsProvider from '@/providers/NextQueryParams';
 import ThemeProvider from '@/providers/ThemeProvider';
+import { Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,9 +19,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <ThemeProvider>
       <NextQueryParamsProvider>
         <ReactQueryProvider>
-          <body className={`${inter.className} max-w-screen-xl`}>
-            <main>{children}</main>
-          </body>
+          <Suspense>
+            <body className={`${inter.className} max-w-screen-xl`}>
+              <main>{children}</main>
+            </body>
+          </Suspense>
         </ReactQueryProvider>
       </NextQueryParamsProvider>
     </ThemeProvider>

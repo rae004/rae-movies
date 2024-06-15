@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['localhost', 'image.tmdb.org'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'image.tmdb.org',
+                pathname: '**',
+            }
+        ]
+    },
+    // todo refactor suspense for production deployment
+    experimental: {
+        missingSuspenseWithCSRBailout: false,
     },
 };
 

@@ -30,6 +30,8 @@ const Card = ({
           alt={`${title} Poster`}
           width={250}
           height={350}
+          className={'w-auto h-auto'}
+          priority
         />
       </figure>
     </Link>

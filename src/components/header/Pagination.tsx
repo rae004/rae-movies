@@ -1,10 +1,6 @@
 'use client';
 
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
-import getMovie from '@/app/api/getMovie';
-import getMovies from '@/app/api/getMovies';
-import Loading from '@/components/Loading';
 
 const svgArrowRight = (
   <svg

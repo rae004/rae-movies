@@ -22,3 +22,4 @@ export async function GET(request: Request) {
     Response.error();
   }
 }
+export const dynamic = 'force-dynamic';

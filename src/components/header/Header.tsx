@@ -1,6 +1,7 @@
 import ThemePicker from '@/components/header/ThemePicker';
 import Link from 'next/link';
 import Pagination from '@/components/header/Pagination';
+import { Suspense } from 'react';
 
 export default function Header({
   setPage,
@@ -26,7 +27,9 @@ export default function Header({
         </div>
       </div>
       <div className="flex-none gap-2">
-        <Pagination setPage={setPage} page={page} />
+        <Suspense>
+          <Pagination setPage={setPage} page={page} />
+        </Suspense>
         <ThemePicker />
       </div>
     </header>

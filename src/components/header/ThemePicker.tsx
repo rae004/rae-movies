@@ -6,16 +6,30 @@ import ThemesList from '@/components/header/ThemesList';
 export default function ThemePicker() {
   const [theme, setTheme] = useState('');
 
+  const updateTheme = (theme: string, dataTheme: string) => {
+    if (theme !== dataTheme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      setTheme(theme);
+    }
+  };
+
+  let dataTheme = null;
   if (typeof window !== 'undefined' && theme.length > 0) {
     localStorage.setItem('theme', theme);
+    dataTheme = document.documentElement.getAttribute('data-theme');
   }
 
   useEffect(() => {
     const theme = localStorage.getItem('theme');
+
     if (theme) {
+      if (theme !== dataTheme) {
+        document.documentElement.setAttribute('data-theme', theme);
+      }
+
       setTheme(theme);
     }
-  }, [setTheme]);
+  }, [setTheme, dataTheme]);
 
   return (
     <div className="dropdown">
@@ -33,7 +47,7 @@ export default function ThemePicker() {
           <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
         </svg>
       </div>
-      <ThemesList setTheme={setTheme} />
+      <ThemesList setTheme={updateTheme} dataTheme={dataTheme || 'default'} />
     </div>
   );
 }
