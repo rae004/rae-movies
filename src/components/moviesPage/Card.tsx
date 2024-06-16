@@ -2,8 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-
-const imgUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
+import * as path from 'path';
 
 const Card = ({
   title,
@@ -14,6 +13,12 @@ const Card = ({
   image: string;
   href: string;
 }) => {
+  const imagePath = path.join(
+    process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL || '',
+    'w342',
+    image || '',
+  );
+
   return (
     <Link
       href={href}
@@ -26,7 +31,7 @@ const Card = ({
       </div>
       <figure>
         <Image
-          src={imgUrl + image}
+          src={imagePath}
           alt={`${title} Poster`}
           width={250}
           height={350}

@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import * as path from 'path';
 import { useQuery } from '@tanstack/react-query';
 import getMovie from '@/app/api/getMovie';
 import Loading from '@/components/Loading';
@@ -27,13 +28,13 @@ export default function Page({ params }: { params: { slug: string } }) {
     return <div>Sorry, No Movie Found for ID: {params.slug}</div>;
   }
   // todo replace fake setPage
-  const setPage = (number: number) => console.log('setPage', number);
+  const setPage = (str: string) => console.log('setPage', str);
 
   return (
     <>
-      <Header page={1} setPage={setPage} />
+      <Header page={'1'} setPage={setPage} />
       <div className={'flex flex-row justify-between h-full py-5 gap-2'}>
-        <div className={'flex flex-col w-[45%] justify-start gap-4'}>
+        <div className={'flex flex-col w-[30.625rem] justify-start gap-4'}>
           <Title title={data.title} />
           <Overview overview={data.overview} />
           <ReleaseDate release_date={data.release_date} />
@@ -45,11 +46,12 @@ export default function Page({ params }: { params: { slug: string } }) {
           <Companies production_companies={data.production_companies} />
         </div>
         <Image
-          src={tmdbImageUrl + data.poster_path}
+          src={path.join(tmdbImageUrl || '', 'w780', data.poster_path || '')}
           alt={`${data.title} Poster`}
-          width={650}
-          height={650}
+          width={780}
+          height={780}
           quality={100}
+          priority
         />
       </div>
     </>

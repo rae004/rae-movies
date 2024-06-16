@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import * as path from 'path';
 
 type Company = {
   id: number;
@@ -13,11 +14,9 @@ type CompaniesProps = {
 
 const tmdbImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
-const isLastOddElement = (index: number, length: number) => {
-  return (index === length - 1 && length % 2 === 1) || length === 1;
-};
-
 export default function Companies({ production_companies }: CompaniesProps) {
+  if (!production_companies || production_companies.length === 0) return null;
+
   return (
     <div
       tabIndex={0}
@@ -29,24 +28,18 @@ export default function Companies({ production_companies }: CompaniesProps) {
       <div className="collapse-content">
         <ul
           className={
-            'flex flex-row flex-wrap gap-4 p-2 bg-accent rounded-xl justify-between items-center content-center'
+            'flex flex-row flex-wrap gap-4 p-2 bg-accent rounded-xl justify-center items-center'
           }
         >
           {production_companies.map((company: Company, key: number) => (
-            <li
-              key={key}
-              className={
-                isLastOddElement(key, production_companies.length)
-                  ? 'block mx-auto px-4'
-                  : 'flex flex-col px-4'
-              }
-            >
+            <li key={key} className={'flex flex-col px-4'}>
               {company.logo_path ? (
                 <Image
-                  src={tmdbImageUrl + company.logo_path}
+                  src={path.join(tmdbImageUrl || '', 'w92', company.logo_path)}
                   alt={`${company.name} Logo`}
-                  height={120}
-                  width={120}
+                  title={`${company.name}`}
+                  height={92}
+                  width={92}
                 />
               ) : (
                 <span className={'text-accent-content'}>{company.name}</span>

@@ -71,7 +71,7 @@ export default function Pagination({
       <button
         type={'button'}
         className="join-item btn"
-        onClick={(e) =>
+        onClick={() =>
           setPage(page !== '1' ? (parseInt(page) - 1).toString() : '1')
         }
       >
