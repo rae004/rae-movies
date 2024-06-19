@@ -1,11 +1,17 @@
-import Card from '@/components/moviesGrid/Card';
+import { useMoviesQuery, useSearchMoviesQuery } from '@/lib/queries';
 import Loading from '@/components/Loading';
-import { useMoviesQuery } from '@/lib/queries';
 import MoviesGrid from '@/components/moviesGrid/MoviesGrid';
+import Card from '@/components/moviesGrid/Card';
 import { Movie } from '@/lib/types';
 
-export default function Movies({ page }: { page: string }) {
-  const { data, isLoading, isError } = useMoviesQuery(page);
+export default function Search({
+  page,
+  searchTerm,
+}: {
+  page: string;
+  searchTerm: string;
+}) {
+  const { data, isLoading, isError } = useSearchMoviesQuery(searchTerm, page);
 
   if (isLoading) return <Loading />;
   if (isError) return <div>Sorry There was an Error</div>;

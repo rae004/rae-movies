@@ -11,7 +11,7 @@ export async function GET(request: Request) {
     const clientUrl = new URL(request.url);
     const movieId = clientUrl.searchParams.get('id');
     const tmdbPopularMoviesUrl = new URL(
-      `${process.env.TMDB_BASE_URL}/movie/${movieId}?language=en-US`,
+      `${process.env.TMDB_BASE_URL}/movie/${movieId}?language=en-US&append_to_response=watch_providers,videos,credits,external_ids,images,keywords`,
     );
     const results = await fetch(tmdbPopularMoviesUrl.href, options);
     const data = await results.json();

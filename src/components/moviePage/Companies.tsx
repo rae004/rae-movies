@@ -36,6 +36,7 @@ export default function Companies({ production_companies }: CompaniesProps) {
               {company.logo_path ? (
                 <Image
                   src={path.join(tmdbImageUrl || '', 'w92', company.logo_path)}
+                  className={'w-auto h-auto'}
                   alt={`${company.name} Logo`}
                   title={`${company.name}`}
                   height={92}

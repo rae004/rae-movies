@@ -3,17 +3,17 @@
 import { useSearchParams } from 'next/navigation';
 import { StringParam, useQueryParam, withDefault } from 'use-query-params';
 import Header from '@/components/header/Header';
-import Movies from '@/components/moviesPage/Movies';
+import Search from '@/components/searchPage/Search';
 
-export default function Home() {
+export default function SearchPage() {
   const searchParams = useSearchParams();
   const [page, setPage] = useQueryParam(
     'page',
-    withDefault(StringParam, searchParams.get('page')),
+    withDefault(StringParam, searchParams.get('page') || ''),
   );
   const [searchString, setSearchString] = useQueryParam(
     'searchString',
-    withDefault(StringParam, searchParams.get('searchString')),
+    withDefault(StringParam, searchParams.get('searchString') || ''),
   );
 
   const headerProps = {
@@ -26,7 +26,7 @@ export default function Home() {
   return (
     <>
       <Header {...headerProps} />
-      <Movies page={page || '1'} />
+      <Search page={page || '1'} searchTerm={searchString} />
     </>
   );
 }

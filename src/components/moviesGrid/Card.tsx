@@ -33,6 +33,7 @@ const Card = ({
         <Image
           src={imagePath}
           alt={`${title} Poster`}
+          title={title}
           width={250}
           height={350}
           className={'w-auto h-auto'}

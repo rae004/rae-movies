@@ -1,4 +1,3 @@
-import { usePathname, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const svgArrowRight = (
@@ -45,19 +44,16 @@ const validatePageNumber = (page: string) => {
 /** max pages allowed by API is 500  todo update pagination accordingly */
 export default function Pagination({
   setPage,
-  page,
+  page = '1',
 }: {
   setPage: (page: string) => void;
   page: string;
 }) {
-  const pathname = usePathname();
   const [userPage, setUserPage] = useState('1');
 
   useEffect(() => {
     setUserPage(page);
   }, [page]);
-
-  if (pathname !== '/') return;
 
   return (
     <div className="join flex-1">
