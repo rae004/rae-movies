@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import * as path from 'path';
-import Loading from '@/components/Loading';
 import Companies from '@/components/moviePage/Companies';
 import Genres from '@/components/moviePage/Genres';
 import Languages from '@/components/moviePage/Languages';
@@ -12,13 +11,16 @@ import Overview from '@/components/moviePage/Overview';
 import Title from '@/components/moviePage/Title';
 import Header from '@/components/header/Header';
 import { useMovieQuery } from '@/lib/queries';
+import { useState } from 'react';
+import MovieLoading, { PosterLoading } from '@/components/MovieLoading';
 
 const tmdbImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
 export default function Page({ params }: { params: { slug: string } }) {
   const { data, isLoading, isError } = useMovieQuery(params.slug);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <MovieLoading />;
   if (isError) return <div>Sorry There was an Error</div>;
   if ('success' in data && !data.success) {
     return <div>Sorry, No Movie Found for ID: {params.slug}</div>;
@@ -46,8 +48,11 @@ export default function Page({ params }: { params: { slug: string } }) {
           width={780}
           height={780}
           quality={100}
+          className={`${!imageLoaded ? 'opacity-0' : 'opacity-100'}}`}
+          onLoadingComplete={() => setImageLoaded(true)}
           priority
         />
+        {!imageLoaded && <PosterLoading />}
       </div>
     </>
   );

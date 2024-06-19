@@ -1,5 +1,5 @@
 import Card from '@/components/moviesGrid/Card';
-import Loading from '@/components/Loading';
+import MoviesLoading from '@/components/MoviesLoading';
 import { useMoviesQuery } from '@/lib/queries';
 import MoviesGrid from '@/components/moviesGrid/MoviesGrid';
 import { Movie } from '@/lib/types';
@@ -7,7 +7,7 @@ import { Movie } from '@/lib/types';
 export default function Movies({ page }: { page: string }) {
   const { data, isLoading, isError } = useMoviesQuery(page);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <MoviesLoading />;
   if (isError) return <div>Sorry There was an Error</div>;
 
   return (

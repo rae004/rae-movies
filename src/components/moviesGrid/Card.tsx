@@ -3,6 +3,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import * as path from 'path';
+import { Suspense, useState } from 'react';
+
+const LoadingImage = () => (
+  <figure>
+    <div className="skeleton h-[400px] w-full"></div>
+  </figure>
+);
 
 const Card = ({
   title,
@@ -19,6 +26,8 @@ const Card = ({
     image || '',
   );
 
+  const [loaded, setLoaded] = useState(false);
+
   return (
     <Link
       href={href}
@@ -30,15 +39,19 @@ const Card = ({
         </h2>
       </div>
       <figure>
-        <Image
-          src={imagePath}
-          alt={`${title} Poster`}
-          title={title}
-          width={250}
-          height={350}
-          className={'w-auto h-auto'}
-          priority
-        />
+        <Suspense fallback={<LoadingImage />}>
+          <Image
+            src={imagePath}
+            alt={`${title} Poster`}
+            title={title}
+            width={250}
+            height={350}
+            className={`w-auto h-auto ${!loaded ? 'opacity-0' : 'opacity-100'}}`}
+            onLoadingComplete={() => setLoaded(true)}
+            priority
+          />
+          {!loaded && <div className="skeleton w-[256px] h-[384px]"></div>}
+        </Suspense>
       </figure>
     </Link>
   );

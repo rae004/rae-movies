@@ -1,5 +1,5 @@
 import { useMoviesQuery, useSearchMoviesQuery } from '@/lib/queries';
-import Loading from '@/components/Loading';
+import MoviesLoading from '@/components/MoviesLoading';
 import MoviesGrid from '@/components/moviesGrid/MoviesGrid';
 import Card from '@/components/moviesGrid/Card';
 import { Movie } from '@/lib/types';
@@ -13,7 +13,7 @@ export default function Search({
 }) {
   const { data, isLoading, isError } = useSearchMoviesQuery(searchTerm, page);
 
-  if (isLoading) return <Loading />;
+  if (isLoading) return <MoviesLoading />;
   if (isError) return <div>Sorry There was an Error</div>;
 
   return (
