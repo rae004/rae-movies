@@ -12,7 +12,8 @@ import Title from '@/components/moviePage/Title';
 import Header from '@/components/header/Header';
 import { useMovieQuery } from '@/lib/queries';
 import { useState } from 'react';
-import MovieLoading, { PosterLoading } from '@/components/MovieLoading';
+import MovieLoading from '@/components/loading/MovieLoading';
+import PosterLoading from '@/components/loading/PosterLoading';
 
 const tmdbImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 

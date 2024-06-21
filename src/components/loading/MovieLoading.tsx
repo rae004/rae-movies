@@ -1,8 +1,4 @@
-'use client';
-
-export const PosterLoading = () => (
-  <div className="skeleton w-[780px] h-[1080px]"></div>
-);
+import ImageLoading from '@/components/loading/ImageLoading';
 
 const MovieLoading = ({}) => {
   return (
@@ -10,7 +6,7 @@ const MovieLoading = ({}) => {
       <div
         className={'skeleton flex flex-col w-[30.625rem] justify-start gap-4'}
       ></div>
-      <PosterLoading />
+      <ImageLoading />
     </div>
   );
 };

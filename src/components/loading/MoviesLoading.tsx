@@ -1,6 +1,5 @@
-'use client';
-
 import MoviesGrid from '@/components/moviesGrid/MoviesGrid';
+import ImageLoading from '@/components/loading/ImageLoading';
 
 const MoviesLoading = ({}) => {
   return (
@@ -15,7 +14,7 @@ const MoviesLoading = ({}) => {
             <div className="skeleton h-4 w-[196px]"></div>
           </div>
           <figure>
-            <div className="skeleton h-[400px] w-full"></div>
+            <ImageLoading />
           </figure>
         </div>
       ))}

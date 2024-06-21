@@ -1,5 +1,5 @@
 import Card from '@/components/moviesGrid/Card';
-import MoviesLoading from '@/components/MoviesLoading';
+import MoviesLoading from '@/components/loading/MoviesLoading';
 import { useMoviesQuery } from '@/lib/queries';
 import MoviesGrid from '@/components/moviesGrid/MoviesGrid';
 import { Movie } from '@/lib/types';
