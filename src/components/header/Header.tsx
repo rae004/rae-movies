@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useState } from 'react';
 import Pagination from '@/components/header/Pagination';
 import ThemePicker from '@/components/header/ThemePicker';
 import { useRouter, useSearchParams } from 'next/navigation';
