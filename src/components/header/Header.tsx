@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { Suspense, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Pagination from '@/components/header/Pagination';
 import ThemePicker from '@/components/header/ThemePicker';
-import { useRouter, useSearchParams } from 'next/navigation';
-import IsNsfwFilter from '@/components/header/filters/isNsfwFilter';
+import Filters from '@/components/header/filters';
 
 const SearchField = ({
   searchString,
@@ -83,10 +83,7 @@ export default function Header({
         )}
         <ThemePicker />
       </div>
-      <div className={'flex justify-around w-full p-4'}>
-        <IsNsfwFilter isNsfw={isNsfw} setIsNsfw={setIsNsfw} />
-        <div>Filter Two</div>
-      </div>
+      <Filters isNsfw={isNsfw} setIsNsfw={setIsNsfw} />
     </header>
   );
 }

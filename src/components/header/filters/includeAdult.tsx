@@ -1,4 +1,4 @@
-export default function IsNsfwFilter({
+export default function IncludeAdult({
   isNsfw,
   setIsNsfw,
 }: {
@@ -8,15 +8,14 @@ export default function IsNsfwFilter({
   return (
     <div className="form-control">
       <label className="label cursor-pointer gap-2">
-        <span className="label-text">NSFW</span>
+        <span className="label-text">Include Adult </span>
         <input
           type="checkbox"
           className="toggle"
           defaultChecked={isNsfw === 'true'}
-          onClick={(prev) => {
-            console.log('prev: ', prev.currentTarget.checked);
-            setIsNsfw(prev.currentTarget.checked ? 'true' : 'false');
-          }}
+          onClick={(prev) =>
+            setIsNsfw(prev.currentTarget.checked ? 'true' : 'false')
+          }
         />
       </label>
     </div>
