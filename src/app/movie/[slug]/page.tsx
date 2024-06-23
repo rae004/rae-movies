@@ -10,7 +10,7 @@ import ReleaseDate from '@/components/moviePage/ReleaseDate';
 import Overview from '@/components/moviePage/Overview';
 import Title from '@/components/moviePage/Title';
 import Header from '@/components/header/Header';
-import { useMovieQuery } from '@/lib/queries';
+import { useMoviesQueryNew } from '@/lib/queries';
 import { useState } from 'react';
 import MovieLoading from '@/components/loading/MovieLoading';
 import ImageLoading from '@/components/loading/ImageLoading';
@@ -18,7 +18,10 @@ import ImageLoading from '@/components/loading/ImageLoading';
 const tmdbImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
 export default function Page({ params }: { params: { slug: string } }) {
-  const { data, isLoading, isError } = useMovieQuery(params.slug);
+  const { data, isLoading, isError } = useMoviesQueryNew({
+    pageNumber: '1',
+    movieId: params.slug,
+  });
   const [imageLoaded, setImageLoaded] = useState(false);
   const [error, setError] = useState(false);
 

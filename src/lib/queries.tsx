@@ -14,6 +14,11 @@ const getQueryKey = ({ ...props }: MoviesQueryProps) => {
   if (props.searchString) {
     return `movies/search/${props.searchString}`;
   }
+
+  if (props.movieId) {
+    return `movie/${props.movieId}`;
+  }
+
   return 'movies/popular';
 };
 

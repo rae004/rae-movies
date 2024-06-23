@@ -22,6 +22,12 @@ export async function GET(request: Request) {
 
     if (clientParams.has('searchString')) {
       tmdbPopularMoviesUrl = path.join(tmdbPopularMoviesUrl, 'search', 'movie');
+    } else if (clientParams.has('movieId')) {
+      tmdbPopularMoviesUrl = path.join(
+        tmdbPopularMoviesUrl,
+        'movie',
+        clientParams.get('movieId') || '',
+      );
     } else {
       tmdbPopularMoviesUrl = tmdbPopularMoviesUrl + '/movie/popular';
     }
