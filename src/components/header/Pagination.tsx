@@ -41,7 +41,6 @@ const validatePageNumber = (page: string) => {
   return page;
 };
 
-/** max pages allowed by API is 500  todo update pagination accordingly */
 export default function Pagination({
   setPage,
   page = '1',
