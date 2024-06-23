@@ -53,6 +53,11 @@ export async function GET(request: Request) {
       fetchUrl.searchParams.append('append_to_response', 'credits');
     }
 
+    if (clientParams.has('includeVideo')) {
+      const includeVideo = clientParams.get('includeVideo');
+      fetchUrl.searchParams.append('include_video', includeVideo || 'false');
+    }
+
     console.log('our final url:', fetchUrl.href);
 
     const results = await fetch(fetchUrl.href, options);

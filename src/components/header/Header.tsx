@@ -8,14 +8,28 @@ import Filters from '@/components/header/filters';
 const SearchField = ({
   searchString,
   nextRouter,
-  pageNumber,
   setSearchString,
+  searchParams,
 }: {
   searchString: string;
   setSearchString: (str: string) => void;
   nextRouter: any;
-  pageNumber: string;
+  searchParams: URLSearchParams;
 }) => {
+  const includeAdult = searchParams.get('isNsfw');
+  const includeVideo = searchParams.get('includeVideo');
+  const pageNumber = searchParams.get('page');
+  const pushParams = new URLSearchParams();
+  if (pageNumber) {
+    pushParams.append('page', pageNumber);
+  }
+  if (includeAdult) {
+    pushParams.append('isNsfw', includeAdult);
+  }
+  if (includeVideo) {
+    pushParams.append('includeVideo', includeVideo);
+  }
+
   return (
     <div className="form-control">
       <input
@@ -28,9 +42,9 @@ const SearchField = ({
           if (e.key === 'Enter') {
             const search = e.currentTarget.value;
             if (search) {
-              nextRouter.push(`/?page=${pageNumber}&searchString=${search}`);
+              nextRouter.push(`/?${pushParams}&searchString=${search}`);
             } else {
-              nextRouter.push(`/?page=${pageNumber}`);
+              nextRouter.push(`/?${pushParams}`);
             }
           }
         }}
@@ -46,6 +60,8 @@ export default function Header({
   totalPages,
   isNsfw,
   setIsNsfw,
+  includeVideo,
+  setIncludeVideo,
 }: {
   totalPages: number;
   setPage?: (page: string) => void;
@@ -53,6 +69,8 @@ export default function Header({
   searchString?: string;
   isNsfw: string;
   setIsNsfw: (prev: string) => void;
+  includeVideo: string;
+  setIncludeVideo: (prev: string) => void;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -74,7 +92,7 @@ export default function Header({
           searchString={searchStr}
           setSearchString={setSearchStr}
           nextRouter={router}
-          pageNumber={page || '1'}
+          searchParams={searchParams}
         />
         {page && setPage && (
           <Suspense>
@@ -83,7 +101,12 @@ export default function Header({
         )}
         <ThemePicker />
       </div>
-      <Filters isNsfw={isNsfw} setIsNsfw={setIsNsfw} />
+      <Filters
+        isNsfw={isNsfw}
+        setIsNsfw={setIsNsfw}
+        includeVideo={includeVideo}
+        setIncludeVideo={setIncludeVideo}
+      />
     </header>
   );
 }

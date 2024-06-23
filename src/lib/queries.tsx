@@ -4,7 +4,17 @@ import { MoviesQueryProps } from '@/lib/types';
 
 const getQueryKey = ({ ...props }: MoviesQueryProps) => {
   const constructKey = (str: string) => {
-    return props.isNsfw === 'true' ? `isNsfw/${str}` : str;
+    let key = '';
+
+    if (props.isNsfw === 'true') {
+      key = 'isNsfw/';
+    }
+
+    if (props.includeVideo === 'true') {
+      key += 'includeVideo/';
+    }
+
+    return key + str;
   };
   if (props.searchString) {
     return constructKey(`movies/search/${props.searchString}`);
@@ -23,6 +33,7 @@ export function useMoviesQueryNew({ ...props }: MoviesQueryProps) {
   props.isNsfw && searchParams.append('isNsfw', props.isNsfw);
   props.searchString && searchParams.append('searchString', props.searchString);
   props.movieId && searchParams.append('movieId', props.movieId);
+  props.includeVideo && searchParams.append('includeVideo', props.includeVideo);
 
   const queryKeyString = getQueryKey(props);
   return useQuery({

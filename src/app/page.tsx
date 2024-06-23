@@ -20,11 +20,16 @@ export default function Home() {
     'isNsfw',
     withDefault(StringParam, 'false'),
   );
+  const [includeVideo, setIncludeVideo] = useQueryParam(
+    'includeVideo',
+    withDefault(StringParam, 'false'),
+  );
 
   const { data, isLoading, isError } = useMoviesQueryNew({
     searchString: searchString || '',
     pageNumber: page || '1',
     isNsfw,
+    includeVideo,
   });
 
   const moviesProps = {
@@ -41,6 +46,8 @@ export default function Home() {
     totalPages: data?.total_pages || 500,
     isNsfw,
     setIsNsfw,
+    includeVideo,
+    setIncludeVideo,
   };
 
   return (
