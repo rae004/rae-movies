@@ -52,7 +52,7 @@ export default function Page({ params }: { params: { slug: string } }) {
             height={780}
             quality={100}
             className={`${!imageLoaded ? 'hidden' : ''}`}
-            onLoadingComplete={() => setImageLoaded(true)}
+            onLoad={() => setImageLoaded(true)}
             onError={() => setError(true)}
             priority
           />

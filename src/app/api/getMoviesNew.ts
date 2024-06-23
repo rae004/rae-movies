@@ -1,4 +1,4 @@
-export default async function getMovies(searchParams: URLSearchParams) {
+export default async function getMoviesNew(searchParams: URLSearchParams) {
   const options = {
     method: 'GET',
     headers: {
@@ -7,7 +7,7 @@ export default async function getMovies(searchParams: URLSearchParams) {
   };
 
   try {
-    const apiPathWithSearchParams = `/api/tmdb/movies?${searchParams.toString()}`;
+    const apiPathWithSearchParams = `/api/tmdb/moviesNew?${searchParams.toString()}`;
     const results = await fetch(apiPathWithSearchParams, options);
 
     return await results.json();

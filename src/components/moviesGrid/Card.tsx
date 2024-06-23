@@ -42,7 +42,7 @@ const Card = ({
               width={250}
               height={350}
               className={`w-auto h-auto ${!loaded ? 'hidden' : ''}`}
-              onLoadingComplete={() => setLoaded(true)}
+              onLoad={() => setLoaded(true)}
               onError={() => setError(true)}
               priority
             />

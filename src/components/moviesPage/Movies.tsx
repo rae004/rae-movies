@@ -1,11 +1,11 @@
 import Card from '@/components/moviesGrid/Card';
 import MoviesLoading from '@/components/loading/MoviesLoading';
-import { useMoviesQuery } from '@/lib/queries';
+import { useMoviesQueryNew } from '@/lib/queries';
 import MoviesGrid from '@/components/moviesGrid/MoviesGrid';
 import { Movie } from '@/lib/types';
 
 export default function Movies({ page }: { page: string }) {
-  const { data, isLoading, isError } = useMoviesQuery(page);
+  const { data, isLoading, isError } = useMoviesQueryNew({ pageNumber: page });
 
   if (isLoading) return <MoviesLoading />;
   if (isError) return <div>Sorry There was an Error</div>;
