@@ -16,10 +16,15 @@ export default function Home() {
     'searchString',
     withDefault(StringParam, searchParams.get('searchString')),
   );
+  const [isNsfw, setIsNsfw] = useQueryParam(
+    'isNsfw',
+    withDefault(StringParam, 'false'),
+  );
 
   const { data, isLoading, isError } = useMoviesQueryNew({
     searchString: searchString || '',
     pageNumber: page || '1',
+    isNsfw,
   });
 
   const moviesProps = {
@@ -34,6 +39,8 @@ export default function Home() {
     page: page || '1',
     searchString: searchString || '',
     totalPages: data?.total_pages || 500,
+    isNsfw,
+    setIsNsfw,
   };
 
   return (

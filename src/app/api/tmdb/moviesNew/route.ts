@@ -29,7 +29,7 @@ export async function GET(request: Request) {
         clientParams.get('movieId') || '',
       );
     } else {
-      tmdbPopularMoviesUrl = tmdbPopularMoviesUrl + '/movie/popular';
+      tmdbPopularMoviesUrl = tmdbPopularMoviesUrl + '/discover/movie';
     }
 
     const fetchUrl = new URL(tmdbPopularMoviesUrl);
@@ -42,6 +42,15 @@ export async function GET(request: Request) {
     if (clientParams.has('searchString')) {
       const searchString = clientParams.get('searchString');
       fetchUrl.searchParams.append('query', searchString || '');
+    }
+
+    if (clientParams.has('isNsfw')) {
+      const isNsfw = clientParams.get('isNsfw');
+      fetchUrl.searchParams.append('include_adult', isNsfw || '0');
+    }
+
+    if (clientParams.has('movieId')) {
+      fetchUrl.searchParams.append('append_to_response', 'credits');
     }
 
     console.log('our final url:', fetchUrl.href);

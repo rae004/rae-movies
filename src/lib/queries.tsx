@@ -3,20 +3,24 @@ import getMoviesNew from '@/app/api/getMoviesNew';
 import { MoviesQueryProps } from '@/lib/types';
 
 const getQueryKey = ({ ...props }: MoviesQueryProps) => {
+  const constructKey = (str: string) => {
+    return props.isNsfw === 'true' ? `isNsfw/${str}` : str;
+  };
   if (props.searchString) {
-    return `movies/search/${props.searchString}`;
+    return constructKey(`movies/search/${props.searchString}`);
   }
 
   if (props.movieId) {
-    return `movie/${props.movieId}`;
+    return constructKey(`movie/${props.movieId}`);
   }
 
-  return 'movies/popular';
+  return constructKey('movies/popular');
 };
 
 export function useMoviesQueryNew({ ...props }: MoviesQueryProps) {
   const searchParams = new URLSearchParams();
   searchParams.append('page', props.pageNumber);
+  props.isNsfw && searchParams.append('isNsfw', props.isNsfw);
   props.searchString && searchParams.append('searchString', props.searchString);
   props.movieId && searchParams.append('movieId', props.movieId);
 

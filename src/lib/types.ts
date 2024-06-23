@@ -5,6 +5,7 @@ export type Movie = {
 };
 
 export type MoviesQueryProps = {
+  isNsfw: string;
   pageNumber: string;
   searchString?: string;
   movieId?: string;

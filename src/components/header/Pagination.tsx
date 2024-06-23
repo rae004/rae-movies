@@ -58,7 +58,7 @@ export default function Pagination({
   }, [page]);
 
   return (
-    <div className="join flex-1">
+    <div className="join">
       <button
         type={'button'}
         className="join-item btn"
