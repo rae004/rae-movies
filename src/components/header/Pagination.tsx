@@ -45,14 +45,17 @@ const validatePageNumber = (page: string) => {
 export default function Pagination({
   setPage,
   page = '1',
+  totalPages,
 }: {
   setPage: (page: string) => void;
   page: string;
+  totalPages: number;
 }) {
-  const [userPage, setUserPage] = useState('1');
+  const [localPageNumber, setLocalPageNumber] = useState('1');
+  const lastPage = totalPages < 500 ? totalPages.toString() : '500';
 
   useEffect(() => {
-    setUserPage(page);
+    setLocalPageNumber(page);
   }, [page]);
 
   return (
@@ -77,15 +80,15 @@ export default function Pagination({
         type="text"
         placeholder="Type here"
         className="input max-w-[4rem] focus:z-50"
-        value={userPage}
+        value={localPageNumber}
         onChange={(elm) => {
-          setUserPage(validatePageNumber(elm.target.value));
+          setLocalPageNumber(validatePageNumber(elm.target.value));
         }}
         onKeyDown={(e) => {
-          const page = validatePageNumber(userPage);
+          const page = validatePageNumber(localPageNumber);
           if (e.key === 'Enter') {
             setPage(page);
-            setUserPage(page);
+            setLocalPageNumber(page);
           }
         }}
       />
@@ -103,9 +106,9 @@ export default function Pagination({
       <button
         type={'button'}
         className="join-item btn"
-        onClick={(e) => setPage('500')}
+        onClick={() => setPage(lastPage)}
       >
-        500
+        {lastPage}
       </button>
     </div>
   );

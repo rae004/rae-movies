@@ -42,7 +42,9 @@ export default function Header({
   setPage,
   page,
   searchString,
+  totalPages,
 }: {
+  totalPages: number;
   setPage?: (page: string) => void;
   page?: string;
   searchString?: string;
@@ -75,7 +77,7 @@ export default function Header({
       <div className="flex-none gap-2">
         {page && setPage && (
           <Suspense>
-            <Pagination setPage={setPage} page={page} />
+            <Pagination setPage={setPage} page={page} totalPages={totalPages} />
           </Suspense>
         )}
         <ThemePicker />
