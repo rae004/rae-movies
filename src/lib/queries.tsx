@@ -23,14 +23,17 @@ const getQueryKey = ({ ...props }: MoviesQueryProps) => {
 };
 
 export function useMoviesQueryNew({ ...props }: MoviesQueryProps) {
+  console.log('props:', props);
   const searchParams = new URLSearchParams();
   searchParams.append('page', props.pageNumber);
   props.searchString && searchParams.append('searchString', props.searchString);
   props.movieId && searchParams.append('movieId', props.movieId);
 
+  const queryString = getQueryKey(props);
+  console.log('queryString:', queryString);
   return useQuery({
     queryFn: async () => await getMoviesNew(searchParams),
-    queryKey: [getQueryKey(props), props.pageNumber],
+    queryKey: [queryString, props.pageNumber],
   });
 }
 

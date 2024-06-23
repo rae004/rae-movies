@@ -1,40 +1,35 @@
 import Link from 'next/link';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import Pagination from '@/components/header/Pagination';
 import ThemePicker from '@/components/header/ThemePicker';
-import { useRouter } from 'next/navigation';
-import { usePathname } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const SearchField = ({
   searchString,
-  setSearchString,
   nextRouter,
-  pathname,
+  pageNumber,
+  setSearchString,
 }: {
   searchString: string;
-  setSearchString: ((searchString: string) => void) | undefined;
+  setSearchString: (str: string) => void;
   nextRouter: any;
-  pathname: string;
+  pageNumber: string;
 }) => {
-  return pathname === '/search' ? (
-    <Link href={'/?page=1'} className="btn btn-outline btn-primary">
-      New Search
-    </Link>
-  ) : (
+  return (
     <div className="form-control">
       <input
         type="text"
         placeholder="Search Movie Title"
         className="input input-bordered w-24 md:w-auto"
         value={searchString}
-        onChange={(e) =>
-          setSearchString && setSearchString(e.currentTarget.value)
-        }
+        onChange={(e) => setSearchString(e.currentTarget.value)}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
             const search = e.currentTarget.value;
             if (search) {
-              nextRouter.push(`/search?searchString=${search}&page=1`);
+              nextRouter.push(`/?page=${pageNumber}&searchString=${search}`);
+            } else {
+              nextRouter.push(`/?page=${pageNumber}`);
             }
           }
         }}
@@ -47,29 +42,34 @@ export default function Header({
   setPage,
   page,
   searchString,
-  setSearchString,
 }: {
   setPage?: (page: string) => void;
   page?: string;
   searchString?: string;
-  setSearchString?: (searchString: string) => void;
 }) {
   const router = useRouter();
-  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const defaultSearchString =
+    searchString || searchParams.get('searchString') || '';
+  const [searchStr, setSearchStr] = useState<string>(defaultSearchString);
 
   return (
     <header className="navbar sticky top-0 bg-base-100 z-50 px-0">
       <div className="flex-1">
-        <Link className="btn btn-ghost text-xl " href={'/?page=1'}>
+        <Link
+          className="btn btn-ghost text-xl "
+          href={'/?page=1'}
+          onClick={() => setSearchStr('')}
+        >
           RAE Movies
         </Link>
       </div>
       <div className="flex-1">
         <SearchField
-          searchString={searchString || ''}
-          setSearchString={setSearchString}
+          searchString={searchStr}
+          setSearchString={setSearchStr}
           nextRouter={router}
-          pathname={pathname}
+          pageNumber={page || '1'}
         />
       </div>
       <div className="flex-none gap-2">

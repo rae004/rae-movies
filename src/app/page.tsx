@@ -11,7 +11,7 @@ export default function Home() {
     'page',
     withDefault(StringParam, searchParams.get('page')),
   );
-  const [searchString, setSearchString] = useQueryParam(
+  const [searchString, _] = useQueryParam(
     'searchString',
     withDefault(StringParam, searchParams.get('searchString')),
   );
@@ -20,13 +20,12 @@ export default function Home() {
     setPage,
     page: page || '1',
     searchString: searchString || '',
-    setSearchString,
   };
 
   return (
     <>
       <Header {...headerProps} />
-      <Movies page={page || '1'} />
+      <Movies page={page || '1'} searchString={headerProps.searchString} />
     </>
   );
 }

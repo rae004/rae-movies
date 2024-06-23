@@ -4,8 +4,17 @@ import { useMoviesQueryNew } from '@/lib/queries';
 import MoviesGrid from '@/components/moviesGrid/MoviesGrid';
 import { Movie } from '@/lib/types';
 
-export default function Movies({ page }: { page: string }) {
-  const { data, isLoading, isError } = useMoviesQueryNew({ pageNumber: page });
+export default function Movies({
+  page,
+  searchString,
+}: {
+  page: string;
+  searchString: string;
+}) {
+  const { data, isLoading, isError } = useMoviesQueryNew({
+    pageNumber: page,
+    searchString,
+  });
 
   if (isLoading) return <MoviesLoading />;
   if (isError) return <div>Sorry There was an Error</div>;
