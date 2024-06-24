@@ -12,6 +12,7 @@ import ImageLoading from '@/components/loading/ImageLoading';
 import { MovieProps } from '@/lib/types';
 import MovieLoading from '@/components/loading/MovieLoading';
 import Finances from '@/components/moviePage/Finances';
+import Credits from '@/components/moviePage/Credits';
 
 const tmdbImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
@@ -24,6 +25,7 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
   if (data && 'success' in data && !data.success) {
     return <div>Sorry, No Movie Found for ID: {slug}</div>;
   }
+  console.log('our data', data);
 
   return (
     <div className={'flex flex-row justify-between h-full py-5 gap-2'}>
@@ -38,22 +40,25 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
         <Genres genres={data.genres} />
         <Companies production_companies={data.production_companies} />
         <Finances revenue={data.revenue} budget={data.budget} />
+        <Credits cast={data.credits.cast} crew={data.credits.crew} />
       </div>
-      {!error && (
-        <Image
-          src={path.join(tmdbImageUrl || '', 'w780', data.poster_path || '')}
-          alt={`${data.title} Poster`}
-          title={data.title}
-          width={780}
-          height={780}
-          quality={100}
-          className={`${!imageLoaded ? 'hidden' : ''}`}
-          onLoad={() => setImageLoaded(true)}
-          onError={() => setError(true)}
-          priority
-        />
-      )}
-      {!imageLoaded && <ImageLoading size={'largePoster'} />}
+      <div>
+        {!error && (
+          <Image
+            src={path.join(tmdbImageUrl || '', 'w780', data.poster_path || '')}
+            alt={`${data.title} Poster`}
+            title={data.title}
+            width={780}
+            height={1280}
+            quality={100}
+            className={`${!imageLoaded ? 'hidden' : ''}`}
+            onLoad={() => setImageLoaded(true)}
+            onError={() => setError(true)}
+            priority
+          />
+        )}
+        {!imageLoaded && <ImageLoading size={'largePoster'} />}
+      </div>
     </div>
   );
 }
