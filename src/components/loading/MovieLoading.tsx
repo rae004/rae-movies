@@ -6,7 +6,7 @@ const MovieLoading = ({}) => {
       <div
         className={'skeleton flex flex-col w-[488px] justify-start gap-4'}
       ></div>
-      <ImageLoading widthPx={780} heightPx={1170} />
+      <ImageLoading widthPx={'780px'} heightPx={'1170px'} />
     </div>
   );
 };

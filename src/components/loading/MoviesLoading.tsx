@@ -9,12 +9,12 @@ const MoviesLoading = ({}) => {
           key={key}
           className="card bg-base-100 p-1 pb-4 group hover:bg-accent focus:bg-accent duration-500"
         >
-          <div className="card-body px-4 pb-4">
+          <div className="card-body px-4 pb-8">
             <div className="skeleton h-4 w-[248px]"></div>
             <div className="skeleton h-4 w-[196px]"></div>
           </div>
           <figure>
-            <ImageLoading widthPx={256} heightPx={384} />
+            <ImageLoading widthPx={'256px'} heightPx={'384px'} />
           </figure>
         </div>
       ))}

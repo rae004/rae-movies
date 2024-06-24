@@ -33,7 +33,9 @@ const Card = ({
         </h2>
       </div>
       <figure>
-        <Suspense fallback={<ImageLoading widthPx={256} heightPx={384} />}>
+        <Suspense
+          fallback={<ImageLoading widthPx={'256px'} heightPx={'384px'} />}
+        >
           {!error && (
             <Image
               src={imagePath}
@@ -47,7 +49,7 @@ const Card = ({
               priority
             />
           )}
-          {!loaded && <ImageLoading widthPx={256} heightPx={384} />}
+          {!loaded && <ImageLoading widthPx={'256px'} heightPx={'384px'} />}
         </Suspense>
       </figure>
     </Link>
