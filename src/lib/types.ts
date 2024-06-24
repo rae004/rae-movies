@@ -10,4 +10,8 @@ export type MoviesQueryProps = {
   pageNumber: string;
   searchString?: string;
   movieId?: string;
+  sortBy: string;
+  setSortBy: (sort: string) => void;
+  sortOrder: string;
+  setSortOrder: (order: string) => void;
 };

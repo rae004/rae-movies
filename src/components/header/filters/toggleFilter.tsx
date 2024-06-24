@@ -7,6 +7,10 @@ export default function ToggleFilter({
   state: string;
   setState: (prev: string) => void;
 }) {
+  const handleStateChange = (prev: boolean) => {
+    setState(prev ? 'true' : 'false');
+  };
+
   return (
     <div className="form-control">
       <label className="label cursor-pointer gap-2">
@@ -14,10 +18,9 @@ export default function ToggleFilter({
         <input
           type="checkbox"
           className="toggle"
-          defaultChecked={state === 'true'}
-          onClick={(prev) =>
-            setState(prev.currentTarget.checked ? 'true' : 'false')
-          }
+          checked={state === 'true'}
+          onChange={(prev) => handleStateChange(prev.currentTarget.checked)}
+          onClick={(prev) => handleStateChange(prev.currentTarget.checked)}
         />
       </label>
     </div>

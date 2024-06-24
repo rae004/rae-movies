@@ -14,6 +14,10 @@ const getQueryKey = ({ ...props }: MoviesQueryProps) => {
       key += 'includeVideo/';
     }
 
+    if (props.sortBy && props.sortOrder) {
+      key += `sortBy/${props.sortBy}.${props.sortOrder}/`;
+    }
+
     return key + str;
   };
   if (props.searchString) {
@@ -27,6 +31,13 @@ const getQueryKey = ({ ...props }: MoviesQueryProps) => {
   return constructKey('movies/popular');
 };
 
+const getSortByKey = (sortBy: string, sortOrder: string) => {
+  if (sortBy && sortOrder) {
+    return `${sortBy}.${sortOrder}`;
+  }
+  return '';
+};
+
 export function useMoviesQueryNew({ ...props }: MoviesQueryProps) {
   const searchParams = new URLSearchParams();
   searchParams.append('page', props.pageNumber);
@@ -34,6 +45,9 @@ export function useMoviesQueryNew({ ...props }: MoviesQueryProps) {
   props.searchString && searchParams.append('searchString', props.searchString);
   props.movieId && searchParams.append('movieId', props.movieId);
   props.includeVideo && searchParams.append('includeVideo', props.includeVideo);
+  props.sortBy &&
+    props.sortOrder &&
+    searchParams.append('sortBy', getSortByKey(props.sortBy, props.sortOrder));
 
   const queryKeyString = getQueryKey(props);
   return useQuery({

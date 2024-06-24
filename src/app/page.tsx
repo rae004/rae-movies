@@ -24,12 +24,24 @@ export default function Home() {
     'includeVideo',
     withDefault(StringParam, 'false'),
   );
+  const [sortBy, setSortBy] = useQueryParam(
+    'sortBy',
+    withDefault(StringParam, ''),
+  );
+  const [sortOrder, setSortOrder] = useQueryParam(
+    'sortOrder',
+    withDefault(StringParam, ''),
+  );
 
   const { data, isLoading, isError } = useMoviesQueryNew({
     searchString: searchString || '',
     pageNumber: page || '1',
     isNsfw,
     includeVideo,
+    sortBy,
+    sortOrder,
+    setSortOrder,
+    setSortBy,
   });
 
   const moviesProps = {
@@ -48,6 +60,10 @@ export default function Home() {
     setIsNsfw,
     includeVideo,
     setIncludeVideo,
+    sortBy,
+    setSortBy,
+    sortOrder,
+    setSortOrder,
   };
 
   return (

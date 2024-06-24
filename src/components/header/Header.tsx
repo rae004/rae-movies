@@ -62,6 +62,10 @@ export default function Header({
   setIsNsfw,
   includeVideo,
   setIncludeVideo,
+  sortBy,
+  setSortBy,
+  sortOrder,
+  setSortOrder,
 }: {
   totalPages: number;
   setPage?: (page: string) => void;
@@ -71,6 +75,10 @@ export default function Header({
   setIsNsfw: (prev: string) => void;
   includeVideo: string;
   setIncludeVideo: (prev: string) => void;
+  sortBy: string;
+  setSortBy: (sort: string) => void;
+  sortOrder: string;
+  setSortOrder: (order: string) => void;
 }) {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -106,6 +114,10 @@ export default function Header({
         setIsNsfw={setIsNsfw}
         includeVideo={includeVideo}
         setIncludeVideo={setIncludeVideo}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
       />
     </header>
   );

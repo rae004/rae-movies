@@ -1,10 +1,15 @@
 import ToggleFilter from './toggleFilter';
+import SortByFilter from '@/components/header/filters/SortByFilter';
 
 export type FiltersProps = {
   isNsfw: string;
   setIsNsfw: (prev: string) => void;
   includeVideo: string;
   setIncludeVideo: (prev: string) => void;
+  sortBy: string;
+  setSortBy: (sort: string) => void;
+  sortOrder: string;
+  setSortOrder: (order: string) => void;
 };
 
 export default function Filters({
@@ -12,6 +17,10 @@ export default function Filters({
   setIsNsfw,
   includeVideo,
   setIncludeVideo,
+  sortBy,
+  setSortBy,
+  sortOrder,
+  setSortOrder,
 }: FiltersProps) {
   return (
     <div className={'flex justify-around w-full p-4'}>
@@ -26,6 +35,12 @@ export default function Filters({
         state={includeVideo}
         setState={setIncludeVideo}
         title={'Include Video'}
+      />
+      <SortByFilter
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        sortOrder={sortOrder}
+        setSortOrder={setSortOrder}
       />
     </div>
   );

@@ -57,6 +57,15 @@ export async function GET(request: Request) {
       const includeVideo = clientParams.get('includeVideo');
       fetchUrl.searchParams.append('include_video', includeVideo || 'false');
     }
+    if (clientParams.has('sortBy')) {
+      const sortBy = clientParams.get('sortBy');
+      if (sortBy) {
+        fetchUrl.searchParams.append(
+          'sort_by',
+          `${sortBy.split(' ').join('_').toLowerCase()}`,
+        );
+      }
+    }
 
     console.log('our final url:', fetchUrl.href);
 
