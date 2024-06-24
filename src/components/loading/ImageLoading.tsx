@@ -5,9 +5,7 @@ export default function ImageLoading({
   widthPx: number;
   heightPx: number;
 }) {
-  return (
-    <div
-      className={`skeleton w-[${widthPx.toString()}px] h-[${heightPx.toString()}px]`}
-    ></div>
-  );
+  const width = widthPx.toString() + 'px';
+  const height = heightPx.toString() + 'px';
+  return <div className={`skeleton w-[${width}] h-[${height}]`}></div>;
 }

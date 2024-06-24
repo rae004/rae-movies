@@ -1,0 +1,377 @@
+[
+  {
+    "iso_3166_1": "US",
+    "english_name": "United States of America",
+    "native_name": "United States"
+  },
+  {
+    "iso_3166_1": "AF",
+    "english_name": "Afghanistan",
+    "native_name": "Afghanistan"
+  },
+  {
+    "iso_3166_1": "AR",
+    "english_name": "Argentina",
+    "native_name": "Argentina"
+  },
+  {
+    "iso_3166_1": "AS",
+    "english_name": "American Samoa",
+    "native_name": "American Samoa"
+  },
+  {
+    "iso_3166_1": "AT",
+    "english_name": "Austria",
+    "native_name": "Austria"
+  },
+  {
+    "iso_3166_1": "AU",
+    "english_name": "Australia",
+    "native_name": "Australia"
+  },
+  {
+    "iso_3166_1": "BE",
+    "english_name": "Belgium",
+    "native_name": "Belgium"
+  },
+  {
+    "iso_3166_1": "BH",
+    "english_name": "Bahrain",
+    "native_name": "Bahrain"
+  },
+  {
+    "iso_3166_1": "BR",
+    "english_name": "Brazil",
+    "native_name": "Brazil"
+  },
+  {
+    "iso_3166_1": "BW",
+    "english_name": "Botswana",
+    "native_name": "Botswana"
+  },
+  {
+    "iso_3166_1": "BZ",
+    "english_name": "Belize",
+    "native_name": "Belize"
+  },
+  {
+    "iso_3166_1": "CA",
+    "english_name": "Canada",
+    "native_name": "Canada"
+  },
+  {
+    "iso_3166_1": "CD",
+    "english_name": "Congo",
+    "native_name": "Democratic Republic of the Congo (Kinshasa)"
+  },
+  {
+    "iso_3166_1": "CF",
+    "english_name": "Central African Republic",
+    "native_name": "Central African Republic"
+  },
+  {
+    "iso_3166_1": "CH",
+    "english_name": "Switzerland",
+    "native_name": "Switzerland"
+  },
+  {
+    "iso_3166_1": "CL",
+    "english_name": "Chile",
+    "native_name": "Chile"
+  },
+  {
+    "iso_3166_1": "CN",
+    "english_name": "China",
+    "native_name": "China"
+  },
+  {
+    "iso_3166_1": "CO",
+    "english_name": "Colombia",
+    "native_name": "Colombia"
+  },
+  {
+    "iso_3166_1": "CR",
+    "english_name": "Costa Rica",
+    "native_name": "Costa Rica"
+  },
+  {
+    "iso_3166_1": "CU",
+    "english_name": "Cuba",
+    "native_name": "Cuba"
+  },
+  {
+    "iso_3166_1": "DE",
+    "english_name": "Germany",
+    "native_name": "Germany"
+  },
+  {
+    "iso_3166_1": "DK",
+    "english_name": "Denmark",
+    "native_name": "Denmark"
+  },
+  {
+    "iso_3166_1": "EC",
+    "english_name": "Ecuador",
+    "native_name": "Ecuador"
+  },
+  {
+    "iso_3166_1": "EG",
+    "english_name": "Egypt",
+    "native_name": "Egypt"
+  },
+  {
+    "iso_3166_1": "ES",
+    "english_name": "Spain",
+    "native_name": "Spain"
+  },
+  {
+    "iso_3166_1": "FI",
+    "english_name": "Finland",
+    "native_name": "Finland"
+  },
+  {
+    "iso_3166_1": "FR",
+    "english_name": "France",
+    "native_name": "France"
+  },
+  {
+    "iso_3166_1": "GB",
+    "english_name": "United Kingdom",
+    "native_name": "United Kingdom"
+  },
+  {
+    "iso_3166_1": "GL",
+    "english_name": "Greenland",
+    "native_name": "Greenland"
+  },
+  {
+    "iso_3166_1": "GR",
+    "english_name": "Greece",
+    "native_name": "Greece"
+  },
+  {
+    "iso_3166_1": "HK",
+    "english_name": "Hong Kong",
+    "native_name": "Hong Kong SAR China"
+  },
+  {
+    "iso_3166_1": "HU",
+    "english_name": "Hungary",
+    "native_name": "Hungary"
+  },
+  {
+    "iso_3166_1": "ID",
+    "english_name": "Indonesia",
+    "native_name": "Indonesia"
+  },
+  {
+    "iso_3166_1": "IE",
+    "english_name": "Ireland",
+    "native_name": "Ireland"
+  },
+  {
+    "iso_3166_1": "IN",
+    "english_name": "India",
+    "native_name": "India"
+  },
+  {
+    "iso_3166_1": "IR",
+    "english_name": "Iran",
+    "native_name": "Iran"
+  },
+  {
+    "iso_3166_1": "IS",
+    "english_name": "Iceland",
+    "native_name": "Iceland"
+  },
+  {
+    "iso_3166_1": "IT",
+    "english_name": "Italy",
+    "native_name": "Italy"
+  },
+  {
+    "iso_3166_1": "JP",
+    "english_name": "Japan",
+    "native_name": "Japan"
+  },
+  {
+    "iso_3166_1": "KR",
+    "english_name": "South Korea",
+    "native_name": "South Korea"
+  },
+  {
+    "iso_3166_1": "MO",
+    "english_name": "Macao",
+    "native_name": "Macau SAR China"
+  },
+  {
+    "iso_3166_1": "MX",
+    "english_name": "Mexico",
+    "native_name": "Mexico"
+  },
+  {
+    "iso_3166_1": "NG",
+    "english_name": "Nigeria",
+    "native_name": "Nigeria"
+  },
+  {
+    "iso_3166_1": "NL",
+    "english_name": "Netherlands",
+    "native_name": "Netherlands"
+  },
+  {
+    "iso_3166_1": "NO",
+    "english_name": "Norway",
+    "native_name": "Norway"
+  },
+  {
+    "iso_3166_1": "NP",
+    "english_name": "Nepal",
+    "native_name": "Nepal"
+  },
+  {
+    "iso_3166_1": "NZ",
+    "english_name": "New Zealand",
+    "native_name": "New Zealand"
+  },
+  {
+    "iso_3166_1": "PH",
+    "english_name": "Philippines",
+    "native_name": "Philippines"
+  },
+  {
+    "iso_3166_1": "PL",
+    "english_name": "Poland",
+    "native_name": "Poland"
+  },
+  {
+    "iso_3166_1": "PR",
+    "english_name": "Puerto Rico",
+    "native_name": "Puerto Rico"
+  },
+  {
+    "iso_3166_1": "PT",
+    "english_name": "Portugal",
+    "native_name": "Portugal"
+  },
+  {
+    "iso_3166_1": "QA",
+    "english_name": "Qatar",
+    "native_name": "Qatar"
+  },
+  {
+    "iso_3166_1": "RO",
+    "english_name": "Romania",
+    "native_name": "Romania"
+  },
+  {
+    "iso_3166_1": "RU",
+    "english_name": "Russia",
+    "native_name": "Russia"
+  },
+  {
+    "iso_3166_1": "SA",
+    "english_name": "Saudi Arabia",
+    "native_name": "Saudi Arabia"
+  },
+  {
+    "iso_3166_1": "SE",
+    "english_name": "Sweden",
+    "native_name": "Sweden"
+  },
+  {
+    "iso_3166_1": "SG",
+    "english_name": "Singapore",
+    "native_name": "Singapore"
+  },
+  {
+    "iso_3166_1": "SU",
+    "english_name": "Soviet Union",
+    "native_name": "Soviet Union"
+  },
+  {
+    "iso_3166_1": "SV",
+    "english_name": "El Salvador",
+    "native_name": "El Salvador"
+  },
+  {
+    "iso_3166_1": "SZ",
+    "english_name": "Swaziland",
+    "native_name": "Eswatini (Swaziland)"
+  },
+  {
+    "iso_3166_1": "TH",
+    "english_name": "Thailand",
+    "native_name": "Thailand"
+  },
+  {
+    "iso_3166_1": "TR",
+    "english_name": "Turkey",
+    "native_name": "Turkey"
+  },
+  {
+    "iso_3166_1": "TW",
+    "english_name": "Taiwan",
+    "native_name": "Taiwan"
+  },
+  {
+    "iso_3166_1": "UA",
+    "english_name": "Ukraine",
+    "native_name": "Ukraine"
+  },
+  {
+    "iso_3166_1": "UM",
+    "english_name": "United States Minor Outlying Islands",
+    "native_name": "U.S. Outlying Islands"
+  },
+  {
+    "iso_3166_1": "VA",
+    "english_name": "Holy See",
+    "native_name": "Vatican City"
+  },
+  {
+    "iso_3166_1": "VE",
+    "english_name": "Venezuela",
+    "native_name": "Venezuela"
+  },
+  {
+    "iso_3166_1": "VG",
+    "english_name": "British Virgin Islands",
+    "native_name": "British Virgin Islands"
+  },
+  {
+    "iso_3166_1": "VI",
+    "english_name": "US Virgin Islands",
+    "native_name": "U.S. Virgin Islands"
+  },
+  {
+    "iso_3166_1": "VN",
+    "english_name": "Vietnam",
+    "native_name": "Vietnam"
+  },
+  {
+    "iso_3166_1": "XG",
+    "english_name": "East Germany",
+    "native_name": "East Germany"
+  },
+  {
+    "iso_3166_1": "XI",
+    "english_name": "Northern Ireland",
+    "native_name": "Northern Ireland"
+  },
+  {
+    "iso_3166_1": "ZA",
+    "english_name": "South Africa",
+    "native_name": "South Africa"
+  },
+  {
+    "iso_3166_1": "ZM",
+    "english_name": "Zambia",
+    "native_name": "Zambia"
+  },
+  {
+    "iso_3166_1": "ZW",
+    "english_name": "Zimbabwe",
+    "native_name": "Zimbabwe"
+  }
+]
