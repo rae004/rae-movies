@@ -23,11 +23,11 @@ export default function usePageQueryParam(slug?: string) {
   );
   const [sortBy, setSortBy] = useQueryParam(
     'sortBy',
-    withDefault(StringParam, ''),
+    withDefault(StringParam, 'Popularity'),
   );
   const [sortOrder, setSortOrder] = useQueryParam(
     'sortOrder',
-    withDefault(StringParam, ''),
+    withDefault(StringParam, 'Desc'),
   );
 
   const { data, isLoading, isError } = useMoviesQueryNew({
