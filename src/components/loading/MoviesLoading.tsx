@@ -14,7 +14,7 @@ const MoviesLoading = ({}) => {
             <div className="skeleton h-4 w-[196px]"></div>
           </div>
           <figure>
-            <ImageLoading widthPx={'256px'} heightPx={'384px'} />
+            <ImageLoading size={'smallPoster'} />
           </figure>
         </div>
       ))}

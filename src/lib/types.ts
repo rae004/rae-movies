@@ -15,3 +15,16 @@ export type MoviesQueryProps = {
   sortOrder: string;
   setSortOrder: (order: string) => void;
 };
+
+export type MovieProps = {
+  data: any;
+  isLoading: boolean;
+  isError: boolean;
+  slug: string;
+};
+
+export type CardProps = {
+  title: string;
+  image: string;
+  href: string;
+};

@@ -3,22 +3,14 @@ import Image from 'next/image';
 import * as path from 'path';
 import { Suspense, useState } from 'react';
 import ImageLoading from '@/components/loading/ImageLoading';
+import { CardProps } from '@/lib/types';
 
-const Card = ({
-  title,
-  image,
-  href,
-}: {
-  title: string;
-  image: string;
-  href: string;
-}) => {
+const Card = ({ title, image, href }: CardProps) => {
   const imagePath = path.join(
     process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL || '',
     'w342',
     image || '',
   );
-
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
@@ -33,9 +25,7 @@ const Card = ({
         </h2>
       </div>
       <figure>
-        <Suspense
-          fallback={<ImageLoading widthPx={'256px'} heightPx={'384px'} />}
-        >
+        <Suspense fallback={<ImageLoading size={'smallPoster'} />}>
           {!error && (
             <Image
               src={imagePath}
@@ -49,7 +39,7 @@ const Card = ({
               priority
             />
           )}
-          {!loaded && <ImageLoading widthPx={'256px'} heightPx={'384px'} />}
+          {!loaded && <ImageLoading size={'smallPoster'} />}
         </Suspense>
       </figure>
     </Link>

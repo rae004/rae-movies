@@ -1,9 +1,11 @@
 export default function ImageLoading({
-  widthPx,
-  heightPx,
+  size,
 }: {
-  widthPx: string;
-  heightPx: string;
+  size: 'smallPoster' | 'largePoster';
 }) {
-  return <div className={`skeleton w-[${widthPx}] h-[${heightPx}]`}></div>;
+  if (size === 'smallPoster') {
+    return <div className={`skeleton w-[256px] h-[384px]`}></div>;
+  }
+
+  return <div className={`skeleton w-[780px] h-[1280px]`}></div>;
 }
