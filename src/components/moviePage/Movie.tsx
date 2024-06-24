@@ -11,6 +11,7 @@ import Companies from '@/components/moviePage/Companies';
 import ImageLoading from '@/components/loading/ImageLoading';
 import { MovieProps } from '@/lib/types';
 import MovieLoading from '@/components/loading/MovieLoading';
+import Finances from '@/components/moviePage/Finances';
 
 const tmdbImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
 
@@ -36,6 +37,7 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
         <Languages spoken_languages={data.spoken_languages} />
         <Genres genres={data.genres} />
         <Companies production_companies={data.production_companies} />
+        <Finances revenue={data.revenue} budget={data.budget} />
       </div>
       {!error && (
         <Image

@@ -3,7 +3,6 @@ import { StringParam, useQueryParam, withDefault } from 'use-query-params';
 import { useMoviesQueryNew } from '@/lib/queries';
 
 export default function usePageQueryParam(slug?: string) {
-  console.log('our slug', slug);
   const searchParams = useSearchParams();
   const [page, setPage] = useQueryParam(
     'page',
