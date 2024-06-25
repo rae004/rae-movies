@@ -28,7 +28,7 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
   console.log('our data', data);
 
   return (
-    <div className={'flex flex-row justify-between h-full py-5 gap-2'}>
+    <div className={'flex flex-row justify-between h-full py-10 gap-2'}>
       <div className={'flex flex-col w-[30.625rem] justify-start gap-4'}>
         <Title title={data.title} />
         <Overview overview={data.overview} />

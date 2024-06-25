@@ -17,13 +17,13 @@ export default function Finances({
           Budget: ${budget.toLocaleString()}
         </span>
       </div>
-      <div className="divider divider-horizontal" />
+      <div className="divider divider-horizontal mx-0.5" />
       <div className="card bg-base-300 rounded-box grid h-20 flex-grow place-items-center">
         <span className={spanPaddingLeft}>
           Revenue: ${revenue.toLocaleString()}
         </span>
       </div>
-      <div className="divider divider-horizontal" />
+      <div className="divider divider-horizontal mx-0.5" />
       <div className="card bg-base-300 rounded-box grid h-20 flex-grow place-items-center">
         <span className={spanPaddingLeft}>
           Profit: ${profit.toLocaleString()}

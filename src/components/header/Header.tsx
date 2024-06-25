@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { Suspense, useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Pagination from '@/components/header/Pagination';
 import ThemePicker from '@/components/header/ThemePicker';
 import Filters from '@/components/header/filters';
@@ -34,8 +34,8 @@ const SearchField = ({
     <div className="form-control">
       <input
         type="text"
-        placeholder="Search Movie Title"
-        className="input input-bordered w-24 md:w-auto"
+        placeholder="Search Movie"
+        className="input input-bordered w-24 md:w-auto text-accent-contentsf placeholder-accent"
         value={searchString}
         onChange={(e) => setSearchString(e.currentTarget.value)}
         onKeyDown={(e) => {
@@ -81,10 +81,12 @@ export default function Header({
   setSortOrder: (order: string) => void;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
   const searchParams = useSearchParams();
   const defaultSearchString =
     searchString || searchParams.get('searchString') || '';
   const [searchStr, setSearchStr] = useState<string>(defaultSearchString);
+  const isMoviePath = pathname.indexOf('/movie/') === 0;
 
   return (
     <header className="navbar flex flex-col sticky top-0 bg-base-100 z-50 px-0">
@@ -102,23 +104,25 @@ export default function Header({
           nextRouter={router}
           searchParams={searchParams}
         />
-        {page && setPage && (
+        {!isMoviePath && page && setPage && (
           <Suspense>
             <Pagination setPage={setPage} page={page} totalPages={totalPages} />
           </Suspense>
         )}
         <ThemePicker />
       </div>
-      <Filters
-        isNsfw={isNsfw}
-        setIsNsfw={setIsNsfw}
-        includeVideo={includeVideo}
-        setIncludeVideo={setIncludeVideo}
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        sortOrder={sortOrder}
-        setSortOrder={setSortOrder}
-      />
+      {!isMoviePath && (
+        <Filters
+          isNsfw={isNsfw}
+          setIsNsfw={setIsNsfw}
+          includeVideo={includeVideo}
+          setIncludeVideo={setIncludeVideo}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          sortOrder={sortOrder}
+          setSortOrder={setSortOrder}
+        />
+      )}
     </header>
   );
 }

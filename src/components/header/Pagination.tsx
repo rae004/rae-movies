@@ -78,7 +78,7 @@ export default function Pagination({
       <input
         type="text"
         placeholder="Type here"
-        className="input max-w-[4rem] focus:z-50"
+        className="input max-w-[4rem] focus:z-50 ms-0"
         value={localPageNumber}
         onChange={(elm) => {
           setLocalPageNumber(validatePageNumber(elm.target.value));

@@ -15,6 +15,20 @@ type CastProps = {
   order: number;
 };
 
+type CrewProps = {
+  adult: boolean;
+  credit_id: string;
+  department: string;
+  gender: number;
+  id: number;
+  job: string;
+  known_for_department: string;
+  name: string;
+  original_name: string;
+  popularity: number;
+  profile_path: string;
+};
+
 const CreditsTable = ({
   children,
   tableHeaders,
@@ -67,22 +81,51 @@ const CastTableRow = ({
   );
 };
 
-export default function Credits({ cast, crew }: { cast: any[]; crew: any[] }) {
+export default function Credits({
+  cast,
+  crew,
+}: {
+  cast: CastProps[];
+  crew: CrewProps[];
+}) {
   const castHeaders = ['Name', 'Character', 'Department'];
+  const crewHeaders = ['Name', 'Job', 'Department'];
 
   return (
-    <div className="overflow-x-auto">
-      <CreditsTable tableHeaders={castHeaders}>
-        {cast.map((person) => (
-          <CastTableRow
-            key={person.id}
-            imgSrc={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
-            name={person.name}
-            character={person.character}
-            department={person.known_for_department}
-          />
-        ))}
-      </CreditsTable>
+    <div className="overflow-x-auto ">
+      <details className="collapse collapse-arrow bg-base-200">
+        <summary className="collapse-title text-xl font-medium">Cast</summary>
+        <div className="collapse-content">
+          <CreditsTable tableHeaders={castHeaders}>
+            {cast.map((person, key) => (
+              <CastTableRow
+                key={key}
+                imgSrc={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
+                name={person.name}
+                character={person.character}
+                department={person.known_for_department}
+              />
+            ))}
+          </CreditsTable>
+        </div>
+      </details>
+      <div className="divider" />
+      <details className="collapse collapse-arrow bg-base-200">
+        <summary className="collapse-title text-xl font-medium">Crew</summary>
+        <div className="collapse-content">
+          <CreditsTable tableHeaders={crewHeaders}>
+            {crew.map((person, key) => (
+              <CastTableRow
+                key={key}
+                imgSrc={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
+                name={person.name}
+                character={person.job}
+                department={person.department}
+              />
+            ))}
+          </CreditsTable>
+        </div>
+      </details>
     </div>
   );
 }

@@ -23,7 +23,7 @@ export default function Filters({
   setSortOrder,
 }: FiltersProps) {
   return (
-    <div className={'flex justify-around w-full p-4'}>
+    <div className={'flex justify-around w-full p-4 pb-0'}>
       <ToggleFilter
         key={1}
         state={isNsfw}
