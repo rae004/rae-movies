@@ -7,7 +7,7 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const theme = localStorage.getItem('theme');
-    console.log('our theme: ', theme);
+
     if (theme) {
       setSelectedTheme(theme);
     }

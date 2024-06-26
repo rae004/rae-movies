@@ -25,7 +25,6 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
   if (data && 'success' in data && !data.success) {
     return <div>Sorry, No Movie Found for ID: {slug}</div>;
   }
-  console.log('our data', data);
 
   return (
     <div className={'flex flex-row justify-between h-full py-10 gap-2'}>

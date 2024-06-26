@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import { ReactNode, useState } from 'react';
+import Image from 'next/image';
 
 type CastProps = {
   adult: boolean;
@@ -50,7 +51,7 @@ const CreditsTable = ({
   );
 };
 
-const CastTableRow = ({
+const TableRow = ({
   imgSrc,
   name,
   character,
@@ -61,13 +62,24 @@ const CastTableRow = ({
   character: string;
   department: string;
 }) => {
+  const [avatarError, setAvatarError] = useState(false);
+
   return (
     <tr>
       <td>
         <div className="flex items-center gap-3">
           <div className="avatar">
-            <div className="mask mask-squircle h-12 w-12">
-              <img src={imgSrc} alt="Avatar Tailwind CSS Component" />
+            <div className="mask mask-circle h-12 w-12">
+              {!avatarError && (
+                <Image
+                  src={imgSrc}
+                  alt={`${name} Avatar`}
+                  height={48}
+                  width={48}
+                  onError={() => setAvatarError(true)}
+                />
+              )}
+              {avatarError && <NoAvatarPlaceHolder name={name} />}
             </div>
           </div>
           <div>
@@ -80,6 +92,21 @@ const CastTableRow = ({
     </tr>
   );
 };
+
+const getNAmeAbbreviation = (name: string) => {
+  const nameArray = name.split(' ');
+  return nameArray[0][0] + nameArray[nameArray.length - 1][0];
+};
+
+const NoAvatarPlaceHolder = ({ name }: { name: string }) => (
+  <div className="avatar placeholder">
+    <div className="bg-neutral text-neutral-content w-12">
+      <span className="text-2xl bg-neutral text-neutral-content">
+        {getNAmeAbbreviation(name)}
+      </span>
+    </div>
+  </div>
+);
 
 export default function Credits({
   cast,
@@ -98,7 +125,7 @@ export default function Credits({
         <div className="collapse-content">
           <CreditsTable tableHeaders={castHeaders}>
             {cast.map((person, key) => (
-              <CastTableRow
+              <TableRow
                 key={key}
                 imgSrc={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
                 name={person.name}
@@ -115,7 +142,7 @@ export default function Credits({
         <div className="collapse-content">
           <CreditsTable tableHeaders={crewHeaders}>
             {crew.map((person, key) => (
-              <CastTableRow
+              <TableRow
                 key={key}
                 imgSrc={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
                 name={person.name}

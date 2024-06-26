@@ -1,3 +1,5 @@
+import { useSearchParams } from 'next/navigation';
+
 export default function SortByFilter({
   sortBy,
   setSortBy,
@@ -9,6 +11,10 @@ export default function SortByFilter({
   sortOrder: string;
   setSortOrder: (order: string) => void;
 }) {
+  if (useSearchParams().has('searchString')) {
+    return null;
+  }
+
   const sortByOptions = ['Popularity', 'Revenue', 'Vote Count', 'Release Date'];
   const sortOrderOptions = ['Asc', 'Desc'];
 
