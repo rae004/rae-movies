@@ -1,6 +1,22 @@
 import { useSearchParams } from 'next/navigation';
-import { StringParam, useQueryParam, withDefault } from 'use-query-params';
+import {
+  ObjectParam,
+  StringParam,
+  useQueryParam,
+  withDefault,
+} from 'use-query-params';
 import { useMoviesQueryNew } from '@/lib/queries';
+import { SortOrderState } from '@/lib/types';
+
+export type Sort = {
+  order: string;
+  by: string;
+};
+
+const defaultSortOrderParams = {
+  order: 'Desc',
+  by: 'Popularity',
+};
 
 export default function usePageQueryParam(slug?: string) {
   const searchParams = useSearchParams();
@@ -20,14 +36,18 @@ export default function usePageQueryParam(slug?: string) {
     'includeVideo',
     withDefault(StringParam, 'false'),
   );
-  const [sortBy, setSortBy] = useQueryParam(
-    'sortBy',
-    withDefault(StringParam, 'Popularity'),
+  const [sort, setSort] = useQueryParam(
+    'sort',
+    withDefault(ObjectParam, defaultSortOrderParams),
   );
-  const [sortOrder, setSortOrder] = useQueryParam(
-    'sortOrder',
-    withDefault(StringParam, 'Desc'),
-  );
+  const resetSortOrderFilter = () => {
+    setSort(defaultSortOrderParams);
+  };
+  const getQuerySortByValues = (sort: SortOrderState) => ({
+    sortOrder: sort.order,
+    sortBy: sort.by,
+  });
+  const { sortBy, sortOrder } = getQuerySortByValues(sort as SortOrderState);
 
   const { data, isLoading, isError } = useMoviesQueryNew({
     searchString: searchString || '',
@@ -36,8 +56,6 @@ export default function usePageQueryParam(slug?: string) {
     includeVideo,
     sortBy,
     sortOrder,
-    setSortOrder,
-    setSortBy,
     movieId: slug,
   });
   const moviesProps = {
@@ -55,9 +73,10 @@ export default function usePageQueryParam(slug?: string) {
     includeVideo,
     setIncludeVideo,
     sortBy,
-    setSortBy,
     sortOrder,
-    setSortOrder,
+    resetSortOrderFilter,
+    sort: sort as Sort,
+    setSort,
   };
 
   return {

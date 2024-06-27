@@ -8,12 +8,10 @@ export type MoviesQueryProps = {
   isNsfw: string;
   includeVideo: string;
   pageNumber: string;
+  sortBy: string;
+  sortOrder: string;
   searchString?: string;
   movieId?: string;
-  sortBy: string;
-  setSortBy: (sort: string) => void;
-  sortOrder: string;
-  setSortOrder: (order: string) => void;
 };
 
 export type MovieProps = {
@@ -28,3 +26,5 @@ export type CardProps = {
   image: string;
   href: string;
 };
+
+export type SortOrderState = { order: string; by: string };

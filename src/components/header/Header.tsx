@@ -4,6 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Pagination from '@/components/header/Pagination';
 import ThemePicker from '@/components/header/ThemePicker';
 import Filters from '@/components/header/filters';
+import { SortOrderState } from '@/lib/types';
 
 const SearchField = ({
   searchString,
@@ -62,10 +63,9 @@ export default function Header({
   setIsNsfw,
   includeVideo,
   setIncludeVideo,
-  sortBy,
-  setSortBy,
-  sortOrder,
-  setSortOrder,
+  resetSortOrderFilter,
+  sort,
+  setSort,
 }: {
   totalPages: number;
   setPage?: (page: string) => void;
@@ -75,10 +75,9 @@ export default function Header({
   setIsNsfw: (prev: string) => void;
   includeVideo: string;
   setIncludeVideo: (prev: string) => void;
-  sortBy: string;
-  setSortBy: (sort: string) => void;
-  sortOrder: string;
-  setSortOrder: (order: string) => void;
+  resetSortOrderFilter: () => void;
+  sort: SortOrderState;
+  setSort: (sort: SortOrderState) => void;
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -117,10 +116,9 @@ export default function Header({
           setIsNsfw={setIsNsfw}
           includeVideo={includeVideo}
           setIncludeVideo={setIncludeVideo}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
+          resetSortOrderFilter={resetSortOrderFilter}
+          sort={sort}
+          setSort={setSort}
         />
       )}
     </header>

@@ -1,15 +1,16 @@
 import ToggleFilter from './toggleFilter';
 import SortByFilter from '@/components/header/filters/SortByFilter';
+import CountryAndCertificationFilter from '@/components/header/filters/CountryAndCertificationFilter';
+import { SortOrderState } from '@/lib/types';
 
 export type FiltersProps = {
   isNsfw: string;
   setIsNsfw: (prev: string) => void;
   includeVideo: string;
   setIncludeVideo: (prev: string) => void;
-  sortBy: string;
-  setSortBy: (sort: string) => void;
-  sortOrder: string;
-  setSortOrder: (order: string) => void;
+  resetSortOrderFilter: () => void;
+  sort: SortOrderState;
+  setSort: (sort: SortOrderState) => void;
 };
 
 export default function Filters({
@@ -17,10 +18,9 @@ export default function Filters({
   setIsNsfw,
   includeVideo,
   setIncludeVideo,
-  sortBy,
-  setSortBy,
-  sortOrder,
-  setSortOrder,
+  resetSortOrderFilter,
+  sort,
+  setSort,
 }: FiltersProps) {
   return (
     <div className={'flex justify-around w-full p-4 pb-0'}>
@@ -36,11 +36,11 @@ export default function Filters({
         setState={setIncludeVideo}
         title={'Include Video'}
       />
+      <CountryAndCertificationFilter />
       <SortByFilter
-        sortBy={sortBy}
-        setSortBy={setSortBy}
-        sortOrder={sortOrder}
-        setSortOrder={setSortOrder}
+        resetSortOrderFilter={resetSortOrderFilter}
+        sort={sort}
+        setSort={setSort}
       />
     </div>
   );

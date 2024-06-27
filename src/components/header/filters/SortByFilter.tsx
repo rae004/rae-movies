@@ -1,15 +1,15 @@
 import { useSearchParams } from 'next/navigation';
+import ReloadIcon from '@/components/icons/ReloadIcon';
+import { SortOrderState } from '@/lib/types';
 
 export default function SortByFilter({
-  sortBy,
-  setSortBy,
-  sortOrder,
-  setSortOrder,
+  resetSortOrderFilter,
+  sort,
+  setSort,
 }: {
-  sortBy: string;
-  setSortBy: (sort: string) => void;
-  sortOrder: string;
-  setSortOrder: (order: string) => void;
+  resetSortOrderFilter: () => void;
+  sort: SortOrderState;
+  setSort: (sort: SortOrderState) => void;
 }) {
   if (useSearchParams().has('searchString')) {
     return null;
@@ -19,25 +19,25 @@ export default function SortByFilter({
   const sortOrderOptions = ['Asc', 'Desc'];
 
   return (
-    <div>
+    <div className={'flex items-center'}>
       <div className="dropdown dropdown-bottom">
-        <div tabIndex={0} role="button" className="btn m-1">
-          {sortBy.length > 0 ? sortBy : 'Sort By'}
+        <div tabIndex={0} role="button" className="btn m-1 min-w-[127.4px]">
+          {sort.by.length > 0 ? sort.by : 'Sort By'}
         </div>
         <ul
           tabIndex={0}
           className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
         >
-          {sortByOptions.map((sort) => (
-            <li key={sort}>
-              <a onClick={() => setSortBy(sort)}>{sort}</a>
+          {sortByOptions.map((by) => (
+            <li key={by}>
+              <a onClick={() => setSort({ ...sort, by })}>{by}</a>
             </li>
           ))}
         </ul>
       </div>
       <div className="dropdown dropdown-bottom">
-        <div tabIndex={0} role="button" className="btn m-1">
-          {sortOrder.length > 0 ? sortOrder : 'Order'}
+        <div tabIndex={0} role="button" className="btn m-1 min-w-[68.22px]">
+          {sort.order.length > 0 ? sort.order : 'Order'}
         </div>
         <ul
           tabIndex={0}
@@ -45,11 +45,14 @@ export default function SortByFilter({
         >
           {sortOrderOptions.map((order) => (
             <li key={order}>
-              <a onClick={() => setSortOrder(order)}>{order}</a>
+              <a onClick={() => setSort({ ...sort, order })}>{order}</a>
             </li>
           ))}
         </ul>
       </div>
+      <button onClick={() => resetSortOrderFilter()} className="btn m-1">
+        <ReloadIcon />
+      </button>
     </div>
   );
 }
