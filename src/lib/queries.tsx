@@ -18,6 +18,15 @@ const getQueryKey = ({ ...props }: MoviesQueryProps) => {
       key += `sortBy/${props.sortBy}.${props.sortOrder}/`;
     }
 
+    if (
+      props.country &&
+      props.country !== 'Country' &&
+      props.rating &&
+      props.rating !== 'Rating'
+    ) {
+      key += `country/${props.country}/rating/${props.rating}/`;
+    }
+
     return key + str;
   };
   if (props.searchString) {
@@ -48,6 +57,8 @@ export function useMoviesQueryNew({ ...props }: MoviesQueryProps) {
   props.sortBy &&
     props.sortOrder &&
     searchParams.append('sortBy', getSortByKey(props.sortBy, props.sortOrder));
+  props.country && searchParams.append('certification_country', props.country);
+  props.rating && searchParams.append('certification', props.rating);
 
   const queryKeyString = getQueryKey(props);
   return useQuery({

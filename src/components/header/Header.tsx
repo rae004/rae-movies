@@ -4,7 +4,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Pagination from '@/components/header/Pagination';
 import ThemePicker from '@/components/header/ThemePicker';
 import Filters from '@/components/header/filters';
-import { SortOrderState } from '@/lib/types';
+import { HeaderProps, SortOrderState } from '@/lib/types';
 
 const SearchField = ({
   searchString,
@@ -66,19 +66,9 @@ export default function Header({
   resetSortOrderFilter,
   sort,
   setSort,
-}: {
-  totalPages: number;
-  setPage?: (page: string) => void;
-  page?: string;
-  searchString?: string;
-  isNsfw: string;
-  setIsNsfw: (prev: string) => void;
-  includeVideo: string;
-  setIncludeVideo: (prev: string) => void;
-  resetSortOrderFilter: () => void;
-  sort: SortOrderState;
-  setSort: (sort: SortOrderState) => void;
-}) {
+  countryAndCertification,
+  setCountryAndCertification,
+}: HeaderProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -119,6 +109,8 @@ export default function Header({
           resetSortOrderFilter={resetSortOrderFilter}
           sort={sort}
           setSort={setSort}
+          countryAndCertification={countryAndCertification}
+          setCountryAndCertification={setCountryAndCertification}
         />
       )}
     </header>

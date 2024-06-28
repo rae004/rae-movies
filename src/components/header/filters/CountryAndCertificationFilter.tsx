@@ -1,17 +1,39 @@
-import { useState } from 'react';
 import ReloadIcon from '@/components/icons/ReloadIcon';
+import { CountryAndRatingFilterProps } from '@/lib/types';
+import { useQuery } from '@tanstack/react-query';
 
-export default function CountryAndCertificationFilter() {
-  const [countryAndCertification, setCountryAndCertification] = useState({
-    country: 'Country',
-    rating: 'Rating',
-  });
+export const defaultCountryAndCertificationProps = {
+  country: 'Country',
+  rating: 'Rating',
+};
 
+const theMovieDbCertificationCountriesUrl =
+  '/api/tmdb/countryAndCertifications';
+
+export default function CountryAndCertificationFilter({
+  countryAndCertification,
+  setCountryAndCertification,
+}: CountryAndRatingFilterProps) {
   const resetFilter = () => {
-    setCountryAndCertification({ country: 'Country', rating: 'Rating' });
+    setCountryAndCertification(defaultCountryAndCertificationProps);
   };
 
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['countryAndCertification'],
+    queryFn: async () => {
+      const results = await fetch(theMovieDbCertificationCountriesUrl, {
+        method: 'GET',
+      });
+      return await results.json();
+    },
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error...</div>;
+
+  const countries = Object.keys(data.certifications);
   const { country, rating } = countryAndCertification;
+  const ratings = data.certifications[country];
 
   return (
     <div className={'flex items-center'}>
@@ -23,42 +45,20 @@ export default function CountryAndCertificationFilter() {
           tabIndex={0}
           className="dropdown-content menu bg-base-100 rounded-box z-[1] w-auto p-2 shadow"
         >
-          <li>
-            <a
-              onClick={() =>
-                setCountryAndCertification({
-                  ...countryAndCertification,
-                  country: 'US',
-                })
-              }
-            >
-              US
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() =>
-                setCountryAndCertification({
-                  ...countryAndCertification,
-                  country: 'UK',
-                })
-              }
-            >
-              UK
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() =>
-                setCountryAndCertification({
-                  ...countryAndCertification,
-                  country: 'AU',
-                })
-              }
-            >
-              AU
-            </a>
-          </li>
+          {countries.map((country, key) => (
+            <li key={key}>
+              <a
+                onClick={() =>
+                  setCountryAndCertification({
+                    country,
+                    rating: 'Rating',
+                  })
+                }
+              >
+                {country}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
       <div className="dropdown">
@@ -73,42 +73,21 @@ export default function CountryAndCertificationFilter() {
           tabIndex={0}
           className="dropdown-content menu bg-base-100 rounded-box z-[1] w-auto p-2 shadow"
         >
-          <li>
-            <a
-              onClick={() =>
-                setCountryAndCertification({
-                  ...countryAndCertification,
-                  rating: 'R',
-                })
-              }
-            >
-              R
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() =>
-                setCountryAndCertification({
-                  ...countryAndCertification,
-                  rating: 'PG-13',
-                })
-              }
-            >
-              PG{'-'}13
-            </a>
-          </li>
-          <li>
-            <a
-              onClick={() =>
-                setCountryAndCertification({
-                  ...countryAndCertification,
-                  rating: 'PG',
-                })
-              }
-            >
-              PG
-            </a>
-          </li>
+          {ratings &&
+            ratings.map((rating: { certification: string }, key: number) => (
+              <li key={key}>
+                <a
+                  onClick={() =>
+                    setCountryAndCertification({
+                      ...countryAndCertification,
+                      rating: rating.certification,
+                    })
+                  }
+                >
+                  {rating.certification}
+                </a>
+              </li>
+            ))}
         </ul>
       </div>
       <button onClick={() => resetFilter()} className="btn m-1">

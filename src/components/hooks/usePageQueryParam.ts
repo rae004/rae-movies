@@ -6,12 +6,8 @@ import {
   withDefault,
 } from 'use-query-params';
 import { useMoviesQueryNew } from '@/lib/queries';
-import { SortOrderState } from '@/lib/types';
-
-export type Sort = {
-  order: string;
-  by: string;
-};
+import { CountryAndRating, Sort, SortOrderState } from '@/lib/types';
+import { defaultCountryAndCertificationProps } from '@/components/header/filters/CountryAndCertificationFilter';
 
 const defaultSortOrderParams = {
   order: 'Desc',
@@ -48,6 +44,11 @@ export default function usePageQueryParam(slug?: string) {
     sortBy: sort.by,
   });
   const { sortBy, sortOrder } = getQuerySortByValues(sort as SortOrderState);
+  const [countryAndCertification, setCountryAndCertification] = useQueryParam(
+    'countryAndRating',
+    withDefault(ObjectParam, defaultCountryAndCertificationProps),
+  );
+  const { country, rating } = countryAndCertification as CountryAndRating;
 
   const { data, isLoading, isError } = useMoviesQueryNew({
     searchString: searchString || '',
@@ -57,6 +58,8 @@ export default function usePageQueryParam(slug?: string) {
     sortBy,
     sortOrder,
     movieId: slug,
+    country,
+    rating,
   });
   const moviesProps = {
     data,
@@ -77,6 +80,8 @@ export default function usePageQueryParam(slug?: string) {
     resetSortOrderFilter,
     sort: sort as Sort,
     setSort,
+    countryAndCertification: countryAndCertification as CountryAndRating,
+    setCountryAndCertification,
   };
 
   return {

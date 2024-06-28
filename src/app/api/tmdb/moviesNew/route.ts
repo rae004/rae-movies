@@ -57,6 +57,7 @@ export async function GET(request: Request) {
       const includeVideo = clientParams.get('includeVideo');
       fetchUrl.searchParams.append('include_video', includeVideo || 'false');
     }
+
     if (clientParams.has('sortBy')) {
       const sortBy = clientParams.get('sortBy');
       if (sortBy) {
@@ -67,6 +68,16 @@ export async function GET(request: Request) {
       }
     }
 
+    if (clientParams.has('certification_country')) {
+      const country = clientParams.get('certification_country');
+      fetchUrl.searchParams.append('certification_country', country || '');
+    }
+
+    if (clientParams.has('certification')) {
+      const rating = clientParams.get('certification');
+      fetchUrl.searchParams.append('certification', rating || '');
+    }
+
     console.log('our final url:', fetchUrl.href);
 
     const results = await fetch(fetchUrl.href, options);
@@ -75,7 +86,7 @@ export async function GET(request: Request) {
     return Response.json(data);
   } catch (error) {
     console.error(error);
-    Response.error();
+    return Response.error();
   }
 }
 export const dynamic = 'force-dynamic';
