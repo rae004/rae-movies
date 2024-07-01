@@ -32,6 +32,11 @@ export default function CountryAndCertificationFilter({
   if (isError) return <div>Error...</div>;
 
   const countries = Object.keys(data.certifications);
+  countries.sort((a, b) => {
+    if (a === 'US') return -1;
+    if (b === 'US') return 1;
+    return a.localeCompare(b);
+  });
   const { country, rating } = countryAndCertification;
   const ratings = data.certifications[country];
 
@@ -43,7 +48,7 @@ export default function CountryAndCertificationFilter({
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content menu bg-base-100 overflow-y-scroll z-[1]"
+          className="dropdown-content menu bg-base-100 overflow-y-scroll h-[40rem] w-[14rem] z-[1]"
         >
           {countries.map((country, key) => (
             <li key={key}>

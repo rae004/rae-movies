@@ -4,8 +4,8 @@ import CountryAndCertificationFilter from '@/components/header/filters/CountryAn
 import { FiltersProps } from '@/lib/types';
 
 export default function Filters({
-  isNsfw,
-  setIsNsfw,
+  // isNsfw,
+  // setIsNsfw,
   includeVideo,
   setIncludeVideo,
   resetSortOrderFilter,
@@ -16,12 +16,12 @@ export default function Filters({
 }: FiltersProps) {
   return (
     <div className={'flex justify-around w-full p-4 pb-0'}>
-      <ToggleFilter
-        key={1}
-        state={isNsfw}
-        setState={setIsNsfw}
-        title={'Include Adult'}
-      />
+      {/*<ToggleFilter*/}
+      {/*  key={1}*/}
+      {/*  state={isNsfw}*/}
+      {/*  setState={setIsNsfw}*/}
+      {/*  title={'Include Adult'}*/}
+      {/*/>*/}
       <ToggleFilter
         key={2}
         state={includeVideo}
