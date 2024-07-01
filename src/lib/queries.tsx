@@ -18,14 +18,12 @@ const getQueryKey = ({ ...props }: MoviesQueryProps) => {
       key += `sortBy/${props.sortBy}.${props.sortOrder}/`;
     }
 
-    if (
-      props.country &&
-      props.country !== 'Country' &&
-      props.rating &&
-      props.rating !== 'Rating'
-    ) {
+    if (props.rating && props.rating !== 'Rating') {
       key += `country/${props.country}/rating/${props.rating}/`;
+    } else {
+      key.replace('^*country/*/rating/*/', '');
     }
+    console.log('our query key after country rating check: ', key);
 
     return key + str;
   };

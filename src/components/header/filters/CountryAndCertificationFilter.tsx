@@ -37,13 +37,13 @@ export default function CountryAndCertificationFilter({
 
   return (
     <div className={'flex items-center'}>
-      <div className="dropdown">
+      <div className="dropdown h-full">
         <div tabIndex={0} role="button" className="btn m-1 min-w-[89.16px]">
           {country}
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-auto p-2 shadow"
+          className="dropdown-content menu bg-base-100 overflow-y-scroll z-[1]"
         >
           {countries.map((country, key) => (
             <li key={key}>
