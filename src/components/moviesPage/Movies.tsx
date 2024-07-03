@@ -12,7 +12,9 @@ export default function Movies({
   isLoading: boolean;
   isError: boolean;
 }) {
-  if (isLoading) return <MoviesLoading />;
+  const noMovies = data?.results?.length === 0;
+  if (isLoading || data?.results?.length === 0)
+    return <MoviesLoading noMovies={noMovies} />;
   if (isError) return <div>Sorry There was an Error</div>;
 
   return (
