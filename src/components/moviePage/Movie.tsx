@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import path from 'path';
 import Image from 'next/image';
 import Title from '@/components/moviePage/Title';
 import Overview from '@/components/moviePage/Overview';
@@ -42,11 +41,7 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
       <div>
         {!error && (
           <Image
-            src={path.join(
-              'https://image.tmdb.org/t/p',
-              'w780',
-              data.poster_path || '',
-            )}
+            src={`https://image.tmdb.org/t/p/w780/${data.poster_path}`}
             alt={`${data.title} Poster`}
             title={data.title}
             width={780}
