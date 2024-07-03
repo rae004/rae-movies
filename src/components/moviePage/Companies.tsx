@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import * as path from 'path';
 
 type Company = {
   id: number;
@@ -33,11 +32,7 @@ export default function Companies({ production_companies }: CompaniesProps) {
             <li key={key} className={'flex flex-col px-4'}>
               {company.logo_path ? (
                 <Image
-                  src={path.join(
-                    'https://image.tmdb.org/t/p',
-                    'w92',
-                    company.logo_path,
-                  )}
+                  src={`https://image.tmdb.org/t/p/w92/${company.logo_path}`}
                   className={'w-auto h-auto'}
                   alt={`${company.name} Logo`}
                   title={`${company.name}`}

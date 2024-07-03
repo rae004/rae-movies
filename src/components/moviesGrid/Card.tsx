@@ -1,16 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import * as path from 'path';
 import { Suspense, useState } from 'react';
 import ImageLoading from '@/components/loading/ImageLoading';
 import { CardProps } from '@/lib/types';
 
 const Card = ({ title, image, href }: CardProps) => {
-  const imagePath = path.join(
-    'https://image.tmdb.org/t/p',
-    'w342',
-    image || '',
-  );
+  const imagePath = `https://image.tmdb.org/t/p/w342/${image}`;
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 
