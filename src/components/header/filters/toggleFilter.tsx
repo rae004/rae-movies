@@ -1,3 +1,5 @@
+import { useSearchParams } from 'next/navigation';
+
 export default function ToggleFilter({
   title,
   state,
@@ -10,6 +12,10 @@ export default function ToggleFilter({
   const handleStateChange = (prev: boolean) => {
     setState(prev ? 'true' : 'false');
   };
+
+  if (useSearchParams().has('searchString')) {
+    return null;
+  }
 
   return (
     <div className="form-control">

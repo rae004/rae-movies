@@ -1,8 +1,16 @@
 import MoviesGrid from '@/components/moviesGrid/MoviesGrid';
 import ImageLoading from '@/components/loading/ImageLoading';
 
-const MoviesLoading = ({}) => {
-  return (
+const MoviesLoading = ({ noMovies }: { noMovies: boolean }) => {
+  return noMovies ? (
+    <div
+      className={
+        'flex flex-col items-center justify-center w-[1080px] h-[500px]'
+      }
+    >
+      <h1>No Movies found :(</h1>
+    </div>
+  ) : (
     <MoviesGrid>
       {[...Array(20)].map((_, key) => (
         <div
