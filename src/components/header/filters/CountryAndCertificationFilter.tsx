@@ -1,6 +1,7 @@
 import ReloadIcon from '@/components/icons/ReloadIcon';
 import { CountryAndRatingFilterProps } from '@/lib/types';
 import { useQuery } from '@tanstack/react-query';
+import { useSearchParams } from 'next/navigation';
 
 export const defaultCountryAndCertificationProps = {
   country: 'Country',
@@ -27,6 +28,10 @@ export default function CountryAndCertificationFilter({
       return await results.json();
     },
   });
+
+  if (useSearchParams().has('searchString')) {
+    return null;
+  }
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
