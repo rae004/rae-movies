@@ -14,8 +14,6 @@ import MovieLoading from '@/components/loading/MovieLoading';
 import Finances from '@/components/moviePage/Finances';
 import Credits from '@/components/moviePage/Credits';
 
-const tmdbImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
-
 export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [error, setError] = useState(false);
@@ -44,7 +42,11 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
       <div>
         {!error && (
           <Image
-            src={path.join(tmdbImageUrl || '', 'w780', data.poster_path || '')}
+            src={path.join(
+              'https://image.tmdb.org/t/p',
+              'w780',
+              data.poster_path || '',
+            )}
             alt={`${data.title} Poster`}
             title={data.title}
             width={780}
