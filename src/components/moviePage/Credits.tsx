@@ -1,5 +1,6 @@
 import { ReactNode, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 type CastProps = {
   adult: boolean;
@@ -56,36 +57,40 @@ const TableRow = ({
   name,
   character,
   department,
+  talentId,
 }: {
   imgSrc: string;
   name: string;
   character: string;
   department: string;
+  talentId?: number;
 }) => {
   const [avatarError, setAvatarError] = useState(false);
 
   return (
     <tr>
       <td>
-        <div className="flex items-center gap-3">
-          <div className="avatar">
-            <div className="mask mask-circle h-12 w-12">
-              {!avatarError && (
-                <Image
-                  src={imgSrc}
-                  alt={`${name} Avatar`}
-                  height={48}
-                  width={48}
-                  onError={() => setAvatarError(true)}
-                />
-              )}
-              {avatarError && <NoAvatarPlaceHolder name={name} />}
+        <Link href={`/talent/${talentId}`} target={'_blank'}>
+          <div className="flex items-center gap-3">
+            <div className="avatar">
+              <div className="mask mask-circle h-12 w-12">
+                {!avatarError && (
+                  <Image
+                    src={imgSrc}
+                    alt={`${name} Avatar`}
+                    height={48}
+                    width={48}
+                    onError={() => setAvatarError(true)}
+                  />
+                )}
+                {avatarError && <NoAvatarPlaceHolder name={name} />}
+              </div>
+            </div>
+            <div>
+              <div className="font-bold">{name}</div>
             </div>
           </div>
-          <div>
-            <div className="font-bold">{name}</div>
-          </div>
-        </div>
+        </Link>
       </td>
       <td>{character}</td>
       <td>{department}</td>
@@ -131,6 +136,7 @@ export default function Credits({
                 name={person.name}
                 character={person.character}
                 department={person.known_for_department}
+                talentId={person.id}
               />
             ))}
           </CreditsTable>
@@ -148,6 +154,7 @@ export default function Credits({
                 name={person.name}
                 character={person.job}
                 department={person.department}
+                talentId={person.id}
               />
             ))}
           </CreditsTable>
