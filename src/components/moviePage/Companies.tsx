@@ -12,8 +12,6 @@ type CompaniesProps = {
   production_companies: Company[];
 };
 
-const tmdbImageUrl = process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL;
-
 export default function Companies({ production_companies }: CompaniesProps) {
   if (!production_companies || production_companies.length === 0) return null;
 
@@ -35,7 +33,11 @@ export default function Companies({ production_companies }: CompaniesProps) {
             <li key={key} className={'flex flex-col px-4'}>
               {company.logo_path ? (
                 <Image
-                  src={path.join(tmdbImageUrl || '', 'w92', company.logo_path)}
+                  src={path.join(
+                    'https://image.tmdb.org/t/p',
+                    'w92',
+                    company.logo_path,
+                  )}
                   className={'w-auto h-auto'}
                   alt={`${company.name} Logo`}
                   title={`${company.name}`}

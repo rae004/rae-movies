@@ -7,7 +7,7 @@ import { CardProps } from '@/lib/types';
 
 const Card = ({ title, image, href }: CardProps) => {
   const imagePath = path.join(
-    process.env.NEXT_PUBLIC_TMDB_IMAGE_BASE_URL || '',
+    'https://image.tmdb.org/t/p',
     'w342',
     image || '',
   );
