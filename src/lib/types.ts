@@ -70,3 +70,7 @@ export type HeaderProps = {
   countryAndCertification?: CountryAndRating;
   setCountryAndCertification?: (arg0: CountryAndRating) => void;
 };
+
+export type ImageSkeletonProps = {
+  size: 'smallPoster' | 'largePoster' | 'smallRoundedPoster';
+};

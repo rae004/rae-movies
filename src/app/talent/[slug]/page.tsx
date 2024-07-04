@@ -1,7 +1,7 @@
 'use client';
 
 import { useTalentQuery } from '@/lib/queries';
-import Talent from '@/components/talentPage/talent';
+import Talent from '@/components/talentPage/Talent';
 import Header from '@/components/header/Header';
 
 export default function Page({ params }: { params: { slug: string } }) {

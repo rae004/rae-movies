@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { MovieProps } from '@/lib/types';
-import ImageLoading from '@/components/loading/ImageLoading';
+import ImageSkeleton from '@/components/common/ImageSkeleton';
 import Name from '@/components/talentPage/pageComponents/Name';
 import { Biography } from '@/components/talentPage/pageComponents/Biography';
 import LifeEvents from '@/components/talentPage/pageComponents/LifeEvents';
@@ -43,7 +43,7 @@ export default function Talent({ data, isLoading, isError, slug }: MovieProps) {
             priority
           />
         )}
-        {!imageLoaded && <ImageLoading size={'smallRoundedPoster'} />}
+        {!imageLoaded && <ImageSkeleton size={'smallRoundedPoster'} />}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Suspense, useState } from 'react';
-import ImageLoading from '@/components/loading/ImageLoading';
+import ImageSkeleton from '@/components/common/ImageSkeleton';
 import { CardProps } from '@/lib/types';
 
 const Card = ({ title, image, href }: CardProps) => {
@@ -20,7 +20,7 @@ const Card = ({ title, image, href }: CardProps) => {
         </h2>
       </div>
       <figure>
-        <Suspense fallback={<ImageLoading size={'smallPoster'} />}>
+        <Suspense fallback={<ImageSkeleton size={'smallPoster'} />}>
           {!error && (
             <Image
               src={imagePath}
@@ -34,7 +34,7 @@ const Card = ({ title, image, href }: CardProps) => {
               priority
             />
           )}
-          {!loaded && <ImageLoading size={'smallPoster'} />}
+          {!loaded && <ImageSkeleton size={'smallPoster'} />}
         </Suspense>
       </figure>
     </Link>

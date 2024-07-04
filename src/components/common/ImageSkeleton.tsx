@@ -1,8 +1,6 @@
-export default function ImageLoading({
-  size,
-}: {
-  size: 'smallPoster' | 'largePoster' | 'smallRoundedPoster';
-}) {
+import { ImageSkeletonProps } from '@/lib/types';
+
+export default function ImageSkeleton({ size }: ImageSkeletonProps) {
   if (size === 'smallPoster') {
     return <div className={`skeleton w-[256px] h-[384px]`}></div>;
   }

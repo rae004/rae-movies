@@ -1,4 +1,4 @@
-import ReloadIcon from '@/components/icons/ReloadIcon';
+import ReloadIcon from '@/components/common/ReloadIcon';
 import { CountryAndRatingFilterProps } from '@/lib/types';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';

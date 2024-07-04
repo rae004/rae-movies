@@ -1,6 +1,6 @@
-import Card from '@/components/moviesGrid/Card';
-import MoviesLoading from '@/components/loading/MoviesLoading';
-import MoviesGrid from '@/components/moviesGrid/MoviesGrid';
+import Card from '@/components/moviesPage/pageComponents/Card';
+import MoviesSkeleton from '@/components/moviesPage/pageComponents/Skeleton';
+import MoviesGrid from '@/components/moviesPage/pageComponents/MoviesGrid';
 import { Movie } from '@/lib/types';
 
 export default function Movies({
@@ -14,7 +14,7 @@ export default function Movies({
 }) {
   const noMovies = data?.results?.length === 0;
   if (isLoading || data?.results?.length === 0)
-    return <MoviesLoading noMovies={noMovies} />;
+    return <MoviesSkeleton noMovies={noMovies} />;
   if (isError) return <div>Sorry There was an Error</div>;
 
   return (
