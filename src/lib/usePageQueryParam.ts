@@ -5,9 +5,9 @@ import {
   useQueryParam,
   withDefault,
 } from 'use-query-params';
-import { useMoviesQuery } from '@/lib/queries';
 import { CountryAndRating, Sort, SortOrderState } from '@/lib/types';
 import { defaultCountryAndCertificationProps } from '@/components/header/filters/CountryAndCertificationFilter';
+import { useMoviesQuery } from '@/lib/queries/moviesQuery';
 
 const defaultSortOrderParams = {
   order: 'Desc',

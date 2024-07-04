@@ -15,24 +15,17 @@ export async function GET(request: Request) {
   }
 
   try {
+    let searchOrDiscoverUrl = process.env.TMDB_BASE_URL;
     const clientUrl = new URL(request.url);
-    console.log('our client url:', clientUrl.href);
-    let tmdbPopularMoviesUrl = process.env.TMDB_BASE_URL;
     const clientParams = clientUrl.searchParams;
 
     if (clientParams.has('searchString')) {
-      tmdbPopularMoviesUrl = path.join(tmdbPopularMoviesUrl, 'search', 'movie');
-    } else if (clientParams.has('movieId')) {
-      tmdbPopularMoviesUrl = path.join(
-        tmdbPopularMoviesUrl,
-        'movie',
-        clientParams.get('movieId') || '',
-      );
+      searchOrDiscoverUrl = path.join(searchOrDiscoverUrl, 'search', 'movie');
     } else {
-      tmdbPopularMoviesUrl = tmdbPopularMoviesUrl + '/discover/movie';
+      searchOrDiscoverUrl = path.join(searchOrDiscoverUrl, 'discover', 'movie');
     }
 
-    const fetchUrl = new URL(tmdbPopularMoviesUrl);
+    const fetchUrl = new URL(searchOrDiscoverUrl);
 
     if (clientParams.has('page')) {
       const page = clientParams.get('page');
@@ -47,10 +40,6 @@ export async function GET(request: Request) {
     if (clientParams.has('isNsfw')) {
       const isNsfw = clientParams.get('isNsfw');
       fetchUrl.searchParams.append('include_adult', isNsfw || '0');
-    }
-
-    if (clientParams.has('movieId')) {
-      fetchUrl.searchParams.append('append_to_response', 'credits');
     }
 
     if (clientParams.has('includeVideo')) {
@@ -77,8 +66,6 @@ export async function GET(request: Request) {
       const rating = clientParams.get('certification');
       fetchUrl.searchParams.append('certification', rating || '');
     }
-
-    console.log('our final url:', fetchUrl.href);
 
     const results = await fetch(fetchUrl.href, options);
     const data = await results.json();

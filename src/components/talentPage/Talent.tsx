@@ -19,7 +19,9 @@ export default function Talent({ data, isLoading, isError, slug }: MovieProps) {
 
   return (
     <div className={'flex flex-row justify-center h-full py-10 gap-8'}>
-      <div className={'flex flex-col gap-4 max-w-xl justify-center'}>
+      <div
+        className={'flex flex-col gap-4 max-w-xl justify-center min-w-[574px]'}
+      >
         <Name name={data.name} />
         <Biography biography={data.biography} />
         <LifeEvents

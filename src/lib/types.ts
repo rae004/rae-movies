@@ -74,3 +74,13 @@ export type HeaderProps = {
 export type ImageSkeletonProps = {
   size: 'smallPoster' | 'largePoster' | 'smallRoundedPoster';
 };
+
+export type useTalentQueryProps = {
+  talentId: string;
+  talentUrl?: string;
+};
+
+export type useMovieQueryProps = {
+  movieId: string;
+  movieUrl?: string;
+};
