@@ -56,17 +56,17 @@ export type FiltersProps = {
 };
 
 export type HeaderProps = {
-  totalPages: number;
+  totalPages?: number;
   setPage?: (page: string) => void;
   page?: string;
   searchString?: string;
-  isNsfw: string;
-  setIsNsfw: (prev: string) => void;
-  includeVideo: string;
-  setIncludeVideo: (prev: string) => void;
-  resetSortOrderFilter: () => void;
-  sort: SortOrderState;
-  setSort: (sort: SortOrderState) => void;
-  countryAndCertification: CountryAndRating;
-  setCountryAndCertification: (arg0: CountryAndRating) => void;
+  isNsfw?: string;
+  setIsNsfw?: (prev: string) => void;
+  includeVideo?: string;
+  setIncludeVideo?: (prev: string) => void;
+  resetSortOrderFilter?: () => void;
+  sort?: SortOrderState;
+  setSort?: (sort: SortOrderState) => void;
+  countryAndCertification?: CountryAndRating;
+  setCountryAndCertification?: (arg0: CountryAndRating) => void;
 };

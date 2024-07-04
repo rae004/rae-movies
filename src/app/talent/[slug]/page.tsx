@@ -1,23 +1,25 @@
 'use client';
 
 import { useTalentQuery } from '@/lib/queries';
-import MovieLoading from '@/components/loading/MovieLoading';
+import Talent from '@/components/talentPage/talent';
+import Header from '@/components/header/Header';
 
 export default function Page({ params }: { params: { slug: string } }) {
   const { data, isLoading, isError } = useTalentQuery({
     talentId: params.slug,
   });
 
-  if (isLoading) return <MovieLoading />;
-  if (isError) return <div>Sorry There was an Error</div>;
-  if (data && 'success' in data && !data.success) {
-    return <div>Sorry, No Movie Found for ID: {params.slug}</div>;
-  }
+  const talentProps = {
+    data,
+    isLoading,
+    isError,
+    slug: params.slug,
+  };
 
   return (
     <>
-      {/*<Header {...headerProps} />*/}
-      <h1>IAM A PERSON!!!! {params.slug}</h1>
+      <Header />
+      <Talent {...talentProps} />
     </>
   );
 }

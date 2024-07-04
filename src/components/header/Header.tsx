@@ -69,16 +69,19 @@ export default function Header({
   countryAndCertification,
   setCountryAndCertification,
 }: HeaderProps) {
+  const noFilterPaths = ['/movie/', '/talent/'];
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const defaultSearchString =
     searchString || searchParams.get('searchString') || '';
   const [searchStr, setSearchStr] = useState<string>(defaultSearchString);
-  const isMoviePath = pathname.indexOf('/movie/') === 0;
+  const isNoFilterPath = noFilterPaths.some(
+    (path) => pathname.indexOf(path) === 0,
+  );
 
   return (
-    <header className="navbar flex flex-col sticky top-0 bg-base-100 z-50 px-0">
+    <header className="navbar flex flex-col sticky top-0 bg-base-100 z-50 px-0 w-full">
       <div className={'flex justify-between w-full'}>
         <Link
           className="btn btn-ghost text-xl "
@@ -93,14 +96,14 @@ export default function Header({
           nextRouter={router}
           searchParams={searchParams}
         />
-        {!isMoviePath && page && setPage && (
+        {!isNoFilterPath && page && setPage && totalPages && (
           <Suspense>
             <Pagination setPage={setPage} page={page} totalPages={totalPages} />
           </Suspense>
         )}
         <ThemePicker />
       </div>
-      {!isMoviePath && (
+      {!isNoFilterPath && (
         <Filters
           isNsfw={isNsfw}
           setIsNsfw={setIsNsfw}
