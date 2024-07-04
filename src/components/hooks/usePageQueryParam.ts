@@ -5,7 +5,7 @@ import {
   useQueryParam,
   withDefault,
 } from 'use-query-params';
-import { useMoviesQueryNew } from '@/lib/queries';
+import { useMoviesQuery } from '@/lib/queries';
 import { CountryAndRating, Sort, SortOrderState } from '@/lib/types';
 import { defaultCountryAndCertificationProps } from '@/components/header/filters/CountryAndCertificationFilter';
 
@@ -50,7 +50,7 @@ export default function usePageQueryParam(slug?: string) {
   );
   const { country, rating } = countryAndCertification as CountryAndRating;
 
-  const { data, isLoading, isError } = useMoviesQueryNew({
+  const { data, isLoading, isError } = useMoviesQuery({
     searchString: searchString || '',
     pageNumber: page || '1',
     isNsfw,

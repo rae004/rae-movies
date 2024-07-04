@@ -1,3 +1,5 @@
+import * as path from 'path';
+
 export async function GET() {
   const options = {
     method: 'GET',
@@ -13,11 +15,12 @@ export async function GET() {
   }
 
   try {
-    const fetchUrl = new URL(
-      process.env.TMDB_BASE_URL + '/certification/movie/list',
+    const fetchUrl = path.join(
+      process.env.TMDB_BASE_URL,
+      '/certification/movie/list',
     );
 
-    const results = await fetch(fetchUrl.href, options);
+    const results = await fetch(fetchUrl, options);
     const data = await results.json();
 
     return Response.json(data);

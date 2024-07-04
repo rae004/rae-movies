@@ -45,7 +45,7 @@ const getSortByKey = (sortBy: string, sortOrder: string) => {
   return '';
 };
 
-export function useMoviesQueryNew({ ...props }: MoviesQueryProps) {
+export function useMoviesQuery({ ...props }: MoviesQueryProps) {
   const searchParams = new URLSearchParams();
   searchParams.append('page', props.pageNumber);
   props.isNsfw && searchParams.append('isNsfw', props.isNsfw);
@@ -62,5 +62,26 @@ export function useMoviesQueryNew({ ...props }: MoviesQueryProps) {
   return useQuery({
     queryFn: async () => await getMoviesNew(searchParams),
     queryKey: [queryKeyString, props.pageNumber],
+  });
+}
+
+type useTalentQueryProps = {
+  talentId: string;
+  talentUrl?: string;
+};
+
+async function getTalent({ ...props }: useTalentQueryProps) {
+  const url = `${props.talentUrl}/?talentId=${props.talentId}`;
+  const results = await fetch(url);
+  return results.json();
+}
+
+export function useTalentQuery({
+  talentUrl = '/api/tmdb/talent',
+  ...props
+}: useTalentQueryProps) {
+  return useQuery({
+    queryFn: async () => await getTalent({ ...props, talentUrl }),
+    queryKey: ['talent', props.talentId],
   });
 }
