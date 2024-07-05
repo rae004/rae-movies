@@ -1,15 +1,12 @@
-import ReloadIcon from '@/components/icons/ReloadIcon';
-import { CountryAndRatingFilterProps } from '@/lib/types';
-import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'next/navigation';
+import { CountryAndRatingFilterProps } from '@/lib/types';
+import ReloadIcon from '@/components/common/ReloadIcon';
+import useCertificationCountriesQuery from '@/lib/queries/certificationCountriesQuery';
 
 export const defaultCountryAndCertificationProps = {
   country: 'Country',
   rating: 'Rating',
 };
-
-const theMovieDbCertificationCountriesUrl =
-  '/api/tmdb/countryAndCertifications';
 
 export default function CountryAndCertificationFilter({
   countryAndCertification,
@@ -19,15 +16,7 @@ export default function CountryAndCertificationFilter({
     setCountryAndCertification(defaultCountryAndCertificationProps);
   };
 
-  const { data, isLoading, isError } = useQuery({
-    queryKey: ['countryAndCertification'],
-    queryFn: async () => {
-      const results = await fetch(theMovieDbCertificationCountriesUrl, {
-        method: 'GET',
-      });
-      return await results.json();
-    },
-  });
+  const { data, isLoading, isError } = useCertificationCountriesQuery();
 
   if (useSearchParams().has('searchString')) {
     return null;

@@ -1,6 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
-import getMoviesNew from '@/app/api/getMoviesNew';
 import { MoviesQueryProps } from '@/lib/types';
+import { useQuery } from '@tanstack/react-query';
 
 const getQueryKey = ({ ...props }: MoviesQueryProps) => {
   const constructKey = (str: string) => {
@@ -45,13 +44,27 @@ const getSortByKey = (sortBy: string, sortOrder: string) => {
   return '';
 };
 
-export function useMoviesQueryNew({ ...props }: MoviesQueryProps) {
-  const searchParams = new URLSearchParams();
-  searchParams.append('page', props.pageNumber);
+async function getMovies(searchParams: URLSearchParams) {
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+    },
+  };
+
+  try {
+    const apiPathWithSearchParams = `/api/tmdb/moviesNew?${searchParams.toString()}`;
+    const results = await fetch(apiPathWithSearchParams, options);
+
+    return await results.json();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export function useMoviesQuery({ ...props }: MoviesQueryProps) {
+  const searchParams = new URLSearchParams(props.searchParams);
   props.isNsfw && searchParams.append('isNsfw', props.isNsfw);
-  props.searchString && searchParams.append('searchString', props.searchString);
-  props.movieId && searchParams.append('movieId', props.movieId);
-  props.includeVideo && searchParams.append('includeVideo', props.includeVideo);
   props.sortBy &&
     props.sortOrder &&
     searchParams.append('sortBy', getSortByKey(props.sortBy, props.sortOrder));
@@ -60,7 +73,7 @@ export function useMoviesQueryNew({ ...props }: MoviesQueryProps) {
 
   const queryKeyString = getQueryKey(props);
   return useQuery({
-    queryFn: async () => await getMoviesNew(searchParams),
+    queryFn: async () => await getMovies(searchParams),
     queryKey: [queryKeyString, props.pageNumber],
   });
 }

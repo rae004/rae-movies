@@ -1,5 +1,5 @@
 import { useSearchParams } from 'next/navigation';
-import ReloadIcon from '@/components/icons/ReloadIcon';
+import ReloadIcon from '@/components/common/ReloadIcon';
 import { SortOrderState } from '@/lib/types';
 
 export default function SortByFilter({

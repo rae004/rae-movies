@@ -15,47 +15,26 @@ export async function GET(request: Request) {
   }
 
   try {
+    let searchOrDiscoverUrl = process.env.TMDB_BASE_URL;
     const clientUrl = new URL(request.url);
-    console.log('our client url:', clientUrl.href);
-    let tmdbPopularMoviesUrl = process.env.TMDB_BASE_URL;
     const clientParams = clientUrl.searchParams;
 
-    if (clientParams.has('searchString')) {
-      tmdbPopularMoviesUrl = path.join(tmdbPopularMoviesUrl, 'search', 'movie');
-    } else if (clientParams.has('movieId')) {
-      tmdbPopularMoviesUrl = path.join(
-        tmdbPopularMoviesUrl,
-        'movie',
-        clientParams.get('movieId') || '',
-      );
+    if (clientParams.has('query')) {
+      searchOrDiscoverUrl = path.join(searchOrDiscoverUrl, 'search', 'movie');
     } else {
-      tmdbPopularMoviesUrl = tmdbPopularMoviesUrl + '/discover/movie';
+      searchOrDiscoverUrl = path.join(searchOrDiscoverUrl, 'discover', 'movie');
     }
 
-    const fetchUrl = new URL(tmdbPopularMoviesUrl);
+    const fetchUrl = new URL(searchOrDiscoverUrl);
+    console.log('our client search params: ', clientParams);
 
-    if (clientParams.has('page')) {
-      const page = clientParams.get('page');
-      fetchUrl.searchParams.append('page', page || '1');
-    }
-
-    if (clientParams.has('searchString')) {
-      const searchString = clientParams.get('searchString');
-      fetchUrl.searchParams.append('query', searchString || '');
-    }
+    clientUrl.searchParams.forEach((value, key) => {
+      fetchUrl.searchParams.append(key, value);
+    });
 
     if (clientParams.has('isNsfw')) {
       const isNsfw = clientParams.get('isNsfw');
       fetchUrl.searchParams.append('include_adult', isNsfw || '0');
-    }
-
-    if (clientParams.has('movieId')) {
-      fetchUrl.searchParams.append('append_to_response', 'credits');
-    }
-
-    if (clientParams.has('includeVideo')) {
-      const includeVideo = clientParams.get('includeVideo');
-      fetchUrl.searchParams.append('include_video', includeVideo || 'false');
     }
 
     if (clientParams.has('sortBy')) {
@@ -67,18 +46,6 @@ export async function GET(request: Request) {
         );
       }
     }
-
-    if (clientParams.has('certification_country')) {
-      const country = clientParams.get('certification_country');
-      fetchUrl.searchParams.append('certification_country', country || '');
-    }
-
-    if (clientParams.has('certification')) {
-      const rating = clientParams.get('certification');
-      fetchUrl.searchParams.append('certification', rating || '');
-    }
-
-    console.log('our final url:', fetchUrl.href);
 
     const results = await fetch(fetchUrl.href, options);
     const data = await results.json();

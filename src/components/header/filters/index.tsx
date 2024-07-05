@@ -13,7 +13,7 @@ export default function Filters({
   setSort,
   countryAndCertification,
   setCountryAndCertification,
-}: FiltersProps) {
+}: Partial<FiltersProps>) {
   return (
     <div className={'flex justify-around w-full p-4 pb-0'}>
       {/*<ToggleFilter*/}
@@ -22,21 +22,29 @@ export default function Filters({
       {/*  setState={setIsNsfw}*/}
       {/*  title={'Include Adult'}*/}
       {/*/>*/}
-      <ToggleFilter
-        key={2}
-        state={includeVideo}
-        setState={setIncludeVideo}
-        title={'Include Video'}
-      />
-      <CountryAndCertificationFilter
-        countryAndCertification={countryAndCertification}
-        setCountryAndCertification={setCountryAndCertification}
-      />
-      <SortByFilter
-        resetSortOrderFilter={resetSortOrderFilter}
-        sort={sort}
-        setSort={setSort}
-      />
+      {includeVideo && setIncludeVideo && (
+        <ToggleFilter
+          key={2}
+          state={includeVideo}
+          setState={setIncludeVideo}
+          title={'Include Video'}
+        />
+      )}
+
+      {countryAndCertification && setCountryAndCertification && (
+        <CountryAndCertificationFilter
+          countryAndCertification={countryAndCertification}
+          setCountryAndCertification={setCountryAndCertification}
+        />
+      )}
+
+      {resetSortOrderFilter && sort && setSort && (
+        <SortByFilter
+          sort={sort}
+          setSort={setSort}
+          resetSortOrderFilter={resetSortOrderFilter}
+        />
+      )}
     </div>
   );
 }

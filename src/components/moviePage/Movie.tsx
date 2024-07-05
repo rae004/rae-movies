@@ -1,23 +1,23 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import Title from '@/components/moviePage/Title';
-import Overview from '@/components/moviePage/Overview';
-import ReleaseDate from '@/components/moviePage/ReleaseDate';
-import Collection from '@/components/moviePage/Collection';
-import Languages from '@/components/moviePage/Languages';
-import Genres from '@/components/moviePage/Genres';
-import Companies from '@/components/moviePage/Companies';
-import ImageLoading from '@/components/loading/ImageLoading';
+import Title from '@/components/moviePage/pageComponents/Title';
+import Overview from '@/components/moviePage/pageComponents/Overview';
+import ReleaseDate from '@/components/moviePage/pageComponents/ReleaseDate';
+import Collection from '@/components/moviePage/pageComponents/Collection';
+import Languages from '@/components/moviePage/pageComponents/Languages';
+import Genres from '@/components/moviePage/pageComponents/Genres';
+import Companies from '@/components/moviePage/pageComponents/Companies';
+import ImageSkeleton from '@/components/common/ImageSkeleton';
 import { MovieProps } from '@/lib/types';
-import MovieLoading from '@/components/loading/MovieLoading';
-import Finances from '@/components/moviePage/Finances';
-import Credits from '@/components/moviePage/Credits';
+import MovieSkeleton from '@/components/moviePage/pageComponents/Skeleton';
+import Finances from '@/components/moviePage/pageComponents/Finances';
+import Credits from '@/components/moviePage/pageComponents/Credits';
 
 export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [error, setError] = useState(false);
 
-  if (isLoading) return <MovieLoading />;
+  if (isLoading) return <MovieSkeleton />;
   if (isError) return <div>Sorry There was an Error</div>;
   if (data && 'success' in data && !data.success) {
     return <div>Sorry, No Movie Found for ID: {slug}</div>;
@@ -51,9 +51,10 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
             onLoad={() => setImageLoaded(true)}
             onError={() => setError(true)}
             priority
+            unoptimized
           />
         )}
-        {!imageLoaded && <ImageLoading size={'largePoster'} />}
+        {!imageLoaded && <ImageSkeleton size={'largePoster'} />}
       </div>
     </div>
   );

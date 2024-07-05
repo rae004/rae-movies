@@ -1,7 +1,7 @@
-import MoviesGrid from '@/components/moviesGrid/MoviesGrid';
-import ImageLoading from '@/components/loading/ImageLoading';
+import MoviesGrid from '@/components/moviesPage/pageComponents/MoviesGrid';
+import ImageSkeleton from '@/components/common/ImageSkeleton';
 
-const MoviesLoading = ({ noMovies }: { noMovies: boolean }) => {
+const MoviesSkeleton = ({ noMovies }: { noMovies: boolean }) => {
   return noMovies ? (
     <div
       className={
@@ -22,7 +22,7 @@ const MoviesLoading = ({ noMovies }: { noMovies: boolean }) => {
             <div className="skeleton h-4 w-[196px]"></div>
           </div>
           <figure>
-            <ImageLoading size={'smallPoster'} />
+            <ImageSkeleton size={'smallPoster'} />
           </figure>
         </div>
       ))}
@@ -30,4 +30,4 @@ const MoviesLoading = ({ noMovies }: { noMovies: boolean }) => {
   );
 };
 
-export default MoviesLoading;
+export default MoviesSkeleton;

@@ -5,31 +5,31 @@ import {
   useQueryParam,
   withDefault,
 } from 'use-query-params';
-import { useMoviesQueryNew } from '@/lib/queries';
 import { CountryAndRating, Sort, SortOrderState } from '@/lib/types';
 import { defaultCountryAndCertificationProps } from '@/components/header/filters/CountryAndCertificationFilter';
+import { useMoviesQuery } from '@/lib/queries/moviesQuery';
 
 const defaultSortOrderParams = {
   order: 'Desc',
   by: 'Popularity',
 };
 
-export default function usePageQueryParam(slug?: string) {
+export default function usePageQueryParam() {
   const searchParams = useSearchParams();
   const [page, setPage] = useQueryParam(
     'page',
     withDefault(StringParam, searchParams.get('page')),
   );
   const [searchString, _] = useQueryParam(
-    'searchString',
-    withDefault(StringParam, searchParams.get('searchString')),
+    'query',
+    withDefault(StringParam, searchParams.get('query')),
   );
   const [isNsfw, setIsNsfw] = useQueryParam(
     'isNsfw',
     withDefault(StringParam, 'false'),
   );
   const [includeVideo, setIncludeVideo] = useQueryParam(
-    'includeVideo',
+    'include_video',
     withDefault(StringParam, 'false'),
   );
   const [sort, setSort] = useQueryParam(
@@ -50,16 +50,16 @@ export default function usePageQueryParam(slug?: string) {
   );
   const { country, rating } = countryAndCertification as CountryAndRating;
 
-  const { data, isLoading, isError } = useMoviesQueryNew({
+  const { data, isLoading, isError } = useMoviesQuery({
     searchString: searchString || '',
     pageNumber: page || '1',
     isNsfw,
     includeVideo,
     sortBy,
     sortOrder,
-    movieId: slug,
     country,
     rating,
+    searchParams,
   });
   const moviesProps = {
     data,

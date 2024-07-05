@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <NextQueryParamsProvider>
         <ReactQueryProvider>
           <Suspense>
-            <body className={`${inter.className} max-w-screen-xl`}>
+            <body className={`${inter.className} max-w-screen-xl w-full`}>
               <main>{children}</main>
             </body>
           </Suspense>

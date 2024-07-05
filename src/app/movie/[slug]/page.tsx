@@ -2,15 +2,21 @@
 
 import Header from '@/components/header/Header';
 import Movie from '@/components/moviePage/Movie';
-import usePageQueryParam from '@/components/hooks/usePageQueryParam';
+import useMovieQuery from '@/lib/queries/movieQuery';
 
 export default function Page({ params }: { params: { slug: string } }) {
-  const { headerProps, moviesProps } = usePageQueryParam(params.slug);
+  const { data, isLoading, isError } = useMovieQuery({ movieId: params.slug });
+  const moviesProps = {
+    data,
+    isLoading,
+    isError,
+    slug: params.slug,
+  };
 
   return (
     <>
-      <Header {...headerProps} />
-      <Movie {...{ ...moviesProps, slug: params.slug }} />
+      <Header />
+      <Movie {...moviesProps} />
     </>
   );
 }
