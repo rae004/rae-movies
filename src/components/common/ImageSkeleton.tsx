@@ -2,7 +2,7 @@ import { ImageSkeletonProps } from '@/lib/types';
 
 export default function ImageSkeleton({ size }: ImageSkeletonProps) {
   if (size === 'smallPoster') {
-    return <div className={`skeleton w-[256px] h-[384px]`}></div>;
+    return <div className={`skeleton w-[280px] h-[420px]`}></div>;
   }
 
   if (size === 'smallRoundedPoster') {
