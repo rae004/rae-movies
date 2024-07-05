@@ -51,6 +51,7 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
             onLoad={() => setImageLoaded(true)}
             onError={() => setError(true)}
             priority
+            unoptimized
           />
         )}
         {!imageLoaded && <ImageSkeleton size={'largePoster'} />}
