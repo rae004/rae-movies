@@ -81,6 +81,7 @@ const TableRow = ({
                     height={48}
                     width={48}
                     onError={() => setAvatarError(true)}
+                    unoptimized
                   />
                 )}
                 {avatarError && <NoAvatarPlaceHolder name={name} />}

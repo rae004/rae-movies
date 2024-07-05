@@ -43,6 +43,7 @@ export default function Talent({ data, isLoading, isError, slug }: MovieProps) {
             onLoad={() => setImageLoaded(true)}
             onError={() => setError(true)}
             priority
+            unoptimized
           />
         )}
         {!imageLoaded && <ImageSkeleton size={'smallRoundedPoster'} />}
