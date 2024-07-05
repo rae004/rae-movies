@@ -32,6 +32,7 @@ const Card = ({ title, image, href }: CardProps) => {
               onLoad={() => setLoaded(true)}
               onError={() => setError(true)}
               priority
+              unoptimized
             />
           )}
           {!loaded && <ImageSkeleton size={'smallPoster'} />}
