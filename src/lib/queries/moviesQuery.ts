@@ -63,12 +63,8 @@ async function getMovies(searchParams: URLSearchParams) {
 }
 
 export function useMoviesQuery({ ...props }: MoviesQueryProps) {
-  const searchParams = new URLSearchParams();
-  searchParams.append('page', props.pageNumber);
+  const searchParams = new URLSearchParams(props.searchParams);
   props.isNsfw && searchParams.append('isNsfw', props.isNsfw);
-  props.searchString && searchParams.append('searchString', props.searchString);
-  props.movieId && searchParams.append('movieId', props.movieId);
-  props.includeVideo && searchParams.append('includeVideo', props.includeVideo);
   props.sortBy &&
     props.sortOrder &&
     searchParams.append('sortBy', getSortByKey(props.sortBy, props.sortOrder));

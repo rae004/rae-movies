@@ -14,6 +14,7 @@ export type MoviesQueryProps = {
   rating: string;
   searchString?: string;
   movieId?: string;
+  searchParams: URLSearchParams;
 };
 
 export type MovieProps = {

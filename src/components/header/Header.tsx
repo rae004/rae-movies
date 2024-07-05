@@ -4,55 +4,8 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import Pagination from '@/components/header/Pagination';
 import ThemePicker from '@/components/header/ThemePicker';
 import Filters from '@/components/header/filters';
-import { HeaderProps, SortOrderState } from '@/lib/types';
-
-const SearchField = ({
-  searchString,
-  nextRouter,
-  setSearchString,
-  searchParams,
-}: {
-  searchString: string;
-  setSearchString: (str: string) => void;
-  nextRouter: any;
-  searchParams: URLSearchParams;
-}) => {
-  const includeAdult = searchParams.get('isNsfw');
-  const includeVideo = searchParams.get('includeVideo');
-  const pageNumber = searchParams.get('page');
-  const pushParams = new URLSearchParams();
-  if (pageNumber) {
-    pushParams.append('page', pageNumber);
-  }
-  if (includeAdult) {
-    pushParams.append('isNsfw', includeAdult);
-  }
-  if (includeVideo) {
-    pushParams.append('includeVideo', includeVideo);
-  }
-
-  return (
-    <div className="form-control">
-      <input
-        type="text"
-        placeholder="Search Movie"
-        className="input input-bordered w-24 md:w-auto text-accent-contentsf placeholder-accent"
-        value={searchString}
-        onChange={(e) => setSearchString(e.currentTarget.value)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            const search = e.currentTarget.value;
-            if (search) {
-              nextRouter.push(`/?${pushParams}&searchString=${search}`);
-            } else {
-              nextRouter.push(`/?${pushParams}`);
-            }
-          }
-        }}
-      />
-    </div>
-  );
-};
+import { HeaderProps } from '@/lib/types';
+import SearchField from '@/components/header/SearchField';
 
 export default function Header({
   setPage,
@@ -76,7 +29,7 @@ export default function Header({
   const defaultSearchString =
     searchString || searchParams.get('searchString') || '';
   const [searchStr, setSearchStr] = useState<string>(defaultSearchString);
-  const isNoFilterPath = noFilterPaths.some(
+  const noFilterAndPagination = noFilterPaths.some(
     (path) => pathname.indexOf(path) === 0,
   );
 
@@ -96,14 +49,14 @@ export default function Header({
           nextRouter={router}
           searchParams={searchParams}
         />
-        {!isNoFilterPath && page && setPage && totalPages && (
+        {!noFilterAndPagination && page && setPage && totalPages && (
           <Suspense>
             <Pagination setPage={setPage} page={page} totalPages={totalPages} />
           </Suspense>
         )}
         <ThemePicker />
       </div>
-      {!isNoFilterPath && (
+      {!noFilterAndPagination && !searchParams.has('query') && (
         <Filters
           isNsfw={isNsfw}
           setIsNsfw={setIsNsfw}

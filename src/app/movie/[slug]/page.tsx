@@ -2,7 +2,6 @@
 
 import Header from '@/components/header/Header';
 import Movie from '@/components/moviePage/Movie';
-import usePageQueryParam from '@/lib/usePageQueryParam';
 import useMovieQuery from '@/lib/queries/movieQuery';
 
 export default function Page({ params }: { params: { slug: string } }) {

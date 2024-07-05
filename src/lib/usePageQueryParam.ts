@@ -14,22 +14,22 @@ const defaultSortOrderParams = {
   by: 'Popularity',
 };
 
-export default function usePageQueryParam(slug?: string) {
+export default function usePageQueryParam() {
   const searchParams = useSearchParams();
   const [page, setPage] = useQueryParam(
     'page',
     withDefault(StringParam, searchParams.get('page')),
   );
   const [searchString, _] = useQueryParam(
-    'searchString',
-    withDefault(StringParam, searchParams.get('searchString')),
+    'query',
+    withDefault(StringParam, searchParams.get('query')),
   );
   const [isNsfw, setIsNsfw] = useQueryParam(
     'isNsfw',
     withDefault(StringParam, 'false'),
   );
   const [includeVideo, setIncludeVideo] = useQueryParam(
-    'includeVideo',
+    'include_video',
     withDefault(StringParam, 'false'),
   );
   const [sort, setSort] = useQueryParam(
@@ -57,9 +57,9 @@ export default function usePageQueryParam(slug?: string) {
     includeVideo,
     sortBy,
     sortOrder,
-    movieId: slug,
     country,
     rating,
+    searchParams,
   });
   const moviesProps = {
     data,
