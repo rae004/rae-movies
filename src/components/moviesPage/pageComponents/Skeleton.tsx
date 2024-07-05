@@ -17,7 +17,7 @@ const MoviesSkeleton = ({ noMovies }: { noMovies: boolean }) => {
           key={key}
           className="card bg-base-100 p-1 pb-4 group hover:bg-accent focus:bg-accent duration-500"
         >
-          <div className="card-body px-4 h-[105px]">
+          <div className="card-body pl-0 pr-4 h-[105px]">
             <div className="skeleton h-4 w-[248px]"></div>
             <div className="skeleton h-4 w-[196px]"></div>
           </div>
