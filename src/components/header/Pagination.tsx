@@ -53,6 +53,11 @@ export default function Pagination({
   const [localPageNumber, setLocalPageNumber] = useState('1');
   const lastPage = totalPages < 500 ? totalPages.toString() : '500';
 
+  const setPageFunction = (page: string) => {
+    setPage(validatePageNumber(page));
+    window && window.scrollTo(0, 0);
+  };
+
   useEffect(() => {
     setLocalPageNumber(page);
   }, [page]);
@@ -62,7 +67,7 @@ export default function Pagination({
       <button
         type={'button'}
         className="join-item btn"
-        onClick={(e) => setPage('1')}
+        onClick={(e) => setPageFunction('1')}
       >
         1
       </button>
@@ -70,7 +75,7 @@ export default function Pagination({
         type={'button'}
         className="join-item btn"
         onClick={() =>
-          setPage(page !== '1' ? (parseInt(page) - 1).toString() : '1')
+          setPageFunction(page !== '1' ? (parseInt(page) - 1).toString() : '1')
         }
       >
         {svgArrowLeft}
@@ -95,9 +100,7 @@ export default function Pagination({
         type={'button'}
         className="join-item btn"
         onClick={() => {
-          const pageInt = parseInt(page) + 1;
-          const pageStr = validatePageNumber(pageInt.toString());
-          setPage(pageStr);
+          setPageFunction(`${parseInt(page) + 1}`);
         }}
       >
         {svgArrowRight}
@@ -105,7 +108,7 @@ export default function Pagination({
       <button
         type={'button'}
         className="join-item btn"
-        onClick={() => setPage(lastPage)}
+        onClick={() => setPageFunction(lastPage)}
       >
         {lastPage}
       </button>
