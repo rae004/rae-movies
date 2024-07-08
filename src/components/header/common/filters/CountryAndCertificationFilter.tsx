@@ -35,7 +35,7 @@ export default function CountryAndCertificationFilter({
   const ratings = data.certifications[country];
 
   return (
-    <div className={'flex items-center'}>
+    <div className={'flex items-center self-center'}>
       <div className="dropdown h-full">
         <div tabIndex={0} role="button" className="btn m-1 min-w-[89.16px]">
           {country}

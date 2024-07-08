@@ -19,7 +19,7 @@ export default function SortByFilter({
   const sortOrderOptions = ['Asc', 'Desc'];
 
   return (
-    <div className={'flex items-center'}>
+    <div className={'flex items-center self-center'}>
       <div className="dropdown dropdown-bottom">
         <div tabIndex={0} role="button" className="btn m-1 min-w-[127.4px]">
           {sort.by.length > 0 ? sort.by : 'Sort By'}

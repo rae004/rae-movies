@@ -21,7 +21,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ReactQueryProvider>
           <GoogleAnalytics />
           <Suspense>
-            <body className={`${inter.className} max-w-screen-xl w-full`}>
+            <body
+              className={`${inter.className} max-w-96 md:max-w-screen-xl w-full`}
+            >
               <main>{children}</main>
             </body>
           </Suspense>

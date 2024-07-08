@@ -24,20 +24,11 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
   }
 
   return (
-    <div className={'flex flex-row justify-between h-full py-10 gap-2'}>
-      <div className={'flex flex-col w-[30.625rem] justify-start gap-4'}>
-        <Title title={data.title} />
-        <Overview overview={data.overview} />
-        <ReleaseDate release_date={data.release_date} />
-        {data.belongs_to_collection && (
-          <Collection collectionName={data.belongs_to_collection.name} />
-        )}
-        <Languages spoken_languages={data.spoken_languages} />
-        <Genres genres={data.genres} />
-        <Companies production_companies={data.production_companies} />
-        <Finances revenue={data.revenue} budget={data.budget} />
-        <Credits cast={data.credits.cast} crew={data.credits.crew} />
-      </div>
+    <div
+      className={
+        'flex flex-col md:flex-row-reverse justify-between h-full m-1 md:py-10 gap-4'
+      }
+    >
       <div>
         {!error && (
           <Image
@@ -55,6 +46,21 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
           />
         )}
         {!imageLoaded && <ImageSkeleton size={'largePoster'} />}
+      </div>
+      <div
+        className={'flex flex-col w-full justify-start gap-4 md:w-[30.625rem]'}
+      >
+        <Title title={data.title} />
+        <Overview overview={data.overview} />
+        <ReleaseDate release_date={data.release_date} />
+        {data.belongs_to_collection && (
+          <Collection collectionName={data.belongs_to_collection.name} />
+        )}
+        <Languages spoken_languages={data.spoken_languages} />
+        <Genres genres={data.genres} />
+        <Companies production_companies={data.production_companies} />
+        <Finances revenue={data.revenue} budget={data.budget} />
+        <Credits cast={data.credits.cast} crew={data.credits.crew} />
       </div>
     </div>
   );

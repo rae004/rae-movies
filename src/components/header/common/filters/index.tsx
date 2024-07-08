@@ -1,6 +1,6 @@
 import ToggleFilter from './toggleFilter';
-import SortByFilter from '@/components/header/filters/SortByFilter';
-import CountryAndCertificationFilter from '@/components/header/filters/CountryAndCertificationFilter';
+import SortByFilter from '@/components/header/common/filters/SortByFilter';
+import CountryAndCertificationFilter from '@/components/header/common/filters/CountryAndCertificationFilter';
 import { FiltersProps } from '@/lib/types';
 
 export default function Filters({
@@ -15,7 +15,7 @@ export default function Filters({
   setCountryAndCertification,
 }: Partial<FiltersProps>) {
   return (
-    <div className={'flex justify-around w-full p-4 pb-0'}>
+    <div className={'hidden md:flex justify-around w-full p-4 pb-0'}>
       {/*<ToggleFilter*/}
       {/*  key={1}*/}
       {/*  state={isNsfw}*/}

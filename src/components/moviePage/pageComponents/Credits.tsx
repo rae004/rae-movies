@@ -43,7 +43,12 @@ const CreditsTable = ({
       <thead>
         <tr>
           {tableHeaders.map((header, key) => (
-            <th key={key}>{header}</th>
+            <th
+              className={header === 'Department' ? 'hidden md:block' : ''}
+              key={key}
+            >
+              {header}
+            </th>
           ))}
         </tr>
       </thead>
@@ -94,7 +99,7 @@ const TableRow = ({
         </Link>
       </td>
       <td>{character}</td>
-      <td>{department}</td>
+      <td className={'hidden md:block'}>{department}</td>
     </tr>
   );
 };

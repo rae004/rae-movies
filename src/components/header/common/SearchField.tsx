@@ -28,7 +28,7 @@ export default function SearchField({
       <input
         type="text"
         placeholder="Search Movie"
-        className="input input-bordered w-24 md:w-auto text-accent-contentsf placeholder-accent"
+        className="input input-bordered w-full md:w-auto text-accent-contentsf placeholder-accent"
         value={searchString}
         onChange={(e) => setSearchString(e.currentTarget.value)}
         onKeyDown={(e) => {
