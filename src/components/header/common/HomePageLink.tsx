@@ -9,7 +9,7 @@ export default function HomePageLink({
 }) {
   return (
     <Link
-      className={`btn btn-ghost text-xl ${padding}`}
+      className={`btn btn-ghost text-md min-[196px]:text-xl ${padding}`}
       href={'/?page=1'}
       onClick={() => setSearchStr('')}
     >

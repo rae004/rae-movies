@@ -4,7 +4,7 @@ export default function ImageSkeleton({ size }: ImageSkeletonProps) {
   if (size === 'smallPoster') {
     return (
       <div
-        className={`skeleton w-[184spx] h-[276px] md:w-[280px] md:h-[420px]`}
+        className={`skeleton w-[184px] h-[265px] md:w-[280px] md:h-[420px]`}
       ></div>
     );
   }

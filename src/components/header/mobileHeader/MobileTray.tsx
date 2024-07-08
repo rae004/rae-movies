@@ -17,7 +17,7 @@ export default function MobileTray({
       <div className="drawer-content">
         <label
           htmlFor={`${trayElementId}`}
-          className="drawer-button btn btn-primary mx-1"
+          className="drawer-button btn btn-sm min-[196px]:btn-md btn-primary mx-1"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
