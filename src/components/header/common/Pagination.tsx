@@ -63,7 +63,7 @@ export default function Pagination({
   }, [page]);
 
   return (
-    <div className="join">
+    <div className="join self-center">
       <button
         type={'button'}
         className="join-item btn"

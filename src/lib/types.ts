@@ -1,3 +1,5 @@
+import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+
 export type Movie = {
   id: number;
   title: string;
@@ -57,19 +59,23 @@ export type FiltersProps = {
 };
 
 export type HeaderProps = {
-  totalPages?: number;
-  setPage?: (page: string) => void;
+  sort?: Sort;
   page?: string;
-  searchString?: string;
   isNsfw?: string;
-  setIsNsfw?: (prev: string) => void;
+  searchStr: string;
+  totalPages?: number;
   includeVideo?: string;
-  setIncludeVideo?: (prev: string) => void;
+  router: AppRouterInstance;
+  searchParams: URLSearchParams;
+  noFilterAndPagination: boolean;
+  setSort?: (sort: Sort) => void;
+  setPage?: (page: string) => void;
   resetSortOrderFilter?: () => void;
-  sort?: SortOrderState;
-  setSort?: (sort: SortOrderState) => void;
+  setIsNsfw?: (prev: string) => void;
+  setSearchStr: (str: string) => void;
+  setIncludeVideo?: (vid: string) => void;
   countryAndCertification?: CountryAndRating;
-  setCountryAndCertification?: (arg0: CountryAndRating) => void;
+  setCountryAndCertification?: (a: CountryAndRating) => void;
 };
 
 export type ImageSkeletonProps = {

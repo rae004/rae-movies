@@ -18,19 +18,12 @@ export default function Talent({ data, isLoading, isError, slug }: MovieProps) {
   }
 
   return (
-    <div className={'flex flex-row justify-center h-full py-10 gap-8'}>
-      <div
-        className={'flex flex-col gap-4 max-w-xl justify-center min-w-[574px]'}
-      >
-        <Name name={data.name} />
-        <Biography biography={data.biography} />
-        <LifeEvents
-          birthDate={data.birthday}
-          deathDate={data.deathday}
-          birthPlace={data.place_of_birth}
-        />
-      </div>
-      <div className={'flex flex-col justify-center'}>
+    <div
+      className={
+        'flex flex-col md:flex-row-reverse justify-center h-full py-10 gap-8'
+      }
+    >
+      <div className={'flex flex-col items-center md:justify-center'}>
         {!error && (
           <Image
             src={`https://image.tmdb.org/t/p/w300/${data.profile_path}`}
@@ -47,6 +40,19 @@ export default function Talent({ data, isLoading, isError, slug }: MovieProps) {
           />
         )}
         {!imageLoaded && <ImageSkeleton size={'smallRoundedPoster'} />}
+      </div>
+      <div
+        className={
+          'flex flex-col gap-4 mx-1 max-w-xl justify-center md:min-w-[574px]'
+        }
+      >
+        <Name name={data.name} />
+        <Biography biography={data.biography} />
+        <LifeEvents
+          birthDate={data.birthday}
+          deathDate={data.deathday}
+          birthPlace={data.place_of_birth}
+        />
       </div>
     </div>
   );

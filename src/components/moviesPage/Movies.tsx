@@ -13,8 +13,9 @@ export default function Movies({
   isError: boolean;
 }) {
   const noMovies = data?.results?.length === 0;
-  if (isLoading || data?.results?.length === 0)
+  if (isLoading || data?.results?.length === 0) {
     return <MoviesSkeleton noMovies={noMovies} />;
+  }
   if (isError) return <div>Sorry There was an Error</div>;
 
   return (
