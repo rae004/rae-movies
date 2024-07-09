@@ -22,7 +22,7 @@ const Card = ({ title, image, href }: CardProps) => {
           {title}
         </h2>
       </div>
-      <figure>
+      <figure className={'min-h-[276px] md:min-h-[420px]'}>
         <Suspense fallback={<ImageSkeleton size={'smallPoster'} />}>
           {!error && (
             <Image

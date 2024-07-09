@@ -11,7 +11,7 @@ export default function Genres({ genres }: { genres: Genre[] }) {
       </div>
       <div className="collapse-content">
         {genres && (
-          <ul className={'flex flex-row gap-4'}>
+          <ul className={'flex flex-row flex-wrap gap-4'}>
             {genres.map((genre: Genre, key: number) => (
               <li key={key}>{genre.name}</li>
             ))}
