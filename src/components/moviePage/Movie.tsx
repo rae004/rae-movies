@@ -26,7 +26,7 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
   return (
     <div
       className={
-        'flex flex-col md:flex-row-reverse justify-between h-full m-1 md:py-10 gap-4'
+        'flex flex-col justify-between gap-4 h-full m-1 pb-20 md:flex-row-reverse md:py-10'
       }
     >
       <div>
