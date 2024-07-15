@@ -99,7 +99,7 @@ const TableRow = ({
         </Link>
       </td>
       <td>{character}</td>
-      <td className={'hidden md:block'}>{department}</td>
+      <td className={'hidden md:table-cell'}>{department}</td>
     </tr>
   );
 };
