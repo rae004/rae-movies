@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
 import ThemesList from '@/components/header/common/theme/ThemesList';
+import { useEffect, useState } from 'react';
 
 export default function ThemePicker() {
   const [theme, setTheme] = useState('');
@@ -27,11 +27,14 @@ export default function ThemePicker() {
 
       setTheme(theme);
     }
-  }, [setTheme, dataTheme]);
+  }, [dataTheme]);
 
   return (
     <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn">
+      <div
+        tabIndex={0}
+        role="button"
+        className="btn">
         {theme.length === 0
           ? 'Theme'
           : theme.charAt(0).toUpperCase() + theme.slice(1)}
@@ -40,12 +43,15 @@ export default function ThemePicker() {
           height="12px"
           className="h-2 w-2 fill-current opacity-60 inline-block"
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 2048 2048"
-        >
-          <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z"></path>
+          viewBox="0 0 2048 2048">
+          <path d="M1799 349l242 241-1017 1017L7 590l242-241 775 775 775-775z" />
+          <title>Theme Picker Chevron</title>
         </svg>
       </div>
-      <ThemesList setTheme={updateTheme} dataTheme={dataTheme || 'default'} />
+      <ThemesList
+        setTheme={updateTheme}
+        dataTheme={dataTheme || 'default'}
+      />
     </div>
   );
 }

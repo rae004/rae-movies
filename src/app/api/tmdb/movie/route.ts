@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 
 export async function GET(request: Request) {
   const options = {
@@ -21,14 +21,11 @@ export async function GET(request: Request) {
   try {
     const movieId = clientUrl.searchParams.get('movieId');
     if (movieId) {
-      tmdbPopularMoviesUrl =
-        path.join(tmdbPopularMoviesUrl, movieId) +
-        '?append_to_response=credits';
+      tmdbPopularMoviesUrl = `${path.join(tmdbPopularMoviesUrl, movieId)}?append_to_response=credits`;
     } else {
       console.error('No movieId provided...');
       return Response.error();
     }
-    console.log('our movie url:', tmdbPopularMoviesUrl);
 
     const results = await fetch(tmdbPopularMoviesUrl, options);
     const data = await results.json();

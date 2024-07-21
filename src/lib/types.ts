@@ -1,4 +1,4 @@
-import { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
 
 export type Movie = {
   id: number;
@@ -25,12 +25,16 @@ export type MoviesQueryProps = {
   searchParams: URLSearchParams;
 };
 
-export type MovieProps = {
+export type QueryReturnProps = {
+  // biome-ignore lint/suspicious/noExplicitAny: we don't know what the data will be when it's queried
   data: any;
   isLoading: boolean;
   isError: boolean;
-  slug: string;
 };
+
+export type MovieProps = {
+  slug: string;
+} & QueryReturnProps;
 
 export type CardProps = {
   title: string;

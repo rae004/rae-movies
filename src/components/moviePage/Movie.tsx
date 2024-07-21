@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import Title from '@/components/moviePage/pageComponents/Title';
+import ImageSkeleton from '@/components/common/ImageSkeleton';
+import Collection from '@/components/moviePage/pageComponents/Collection';
+import Companies from '@/components/moviePage/pageComponents/Companies';
+import Credits from '@/components/moviePage/pageComponents/Credits';
+import Finances from '@/components/moviePage/pageComponents/Finances';
+import Genres from '@/components/moviePage/pageComponents/Genres';
+import Languages from '@/components/moviePage/pageComponents/Languages';
 import Overview from '@/components/moviePage/pageComponents/Overview';
 import ReleaseDate from '@/components/moviePage/pageComponents/ReleaseDate';
-import Collection from '@/components/moviePage/pageComponents/Collection';
-import Languages from '@/components/moviePage/pageComponents/Languages';
-import Genres from '@/components/moviePage/pageComponents/Genres';
-import Companies from '@/components/moviePage/pageComponents/Companies';
-import ImageSkeleton from '@/components/common/ImageSkeleton';
-import { MovieProps } from '@/lib/types';
 import MovieSkeleton from '@/components/moviePage/pageComponents/Skeleton';
-import Finances from '@/components/moviePage/pageComponents/Finances';
-import Credits from '@/components/moviePage/pageComponents/Credits';
+import Title from '@/components/moviePage/pageComponents/Title';
+import type { MovieProps } from '@/lib/types';
+import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -27,8 +27,7 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
     <div
       className={
         'flex flex-col justify-between gap-4 h-full m-1 pb-20 md:flex-row-reverse md:py-10 md:m-0'
-      }
-    >
+      }>
       <div>
         {!error && (
           <Image
@@ -48,8 +47,7 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
         {!imageLoaded && <ImageSkeleton size={'largePoster'} />}
       </div>
       <div
-        className={'flex flex-col w-full justify-start gap-4 md:w-[30.625rem]'}
-      >
+        className={'flex flex-col w-full justify-start gap-4 md:w-[30.625rem]'}>
         <Title title={data.title} />
         <Overview overview={data.overview} />
         <ReleaseDate release_date={data.release_date} />
@@ -59,8 +57,14 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
         <Languages spoken_languages={data.spoken_languages} />
         <Genres genres={data.genres} />
         <Companies production_companies={data.production_companies} />
-        <Finances revenue={data.revenue} budget={data.budget} />
-        <Credits cast={data.credits.cast} crew={data.credits.crew} />
+        <Finances
+          revenue={data.revenue}
+          budget={data.budget}
+        />
+        <Credits
+          cast={data.credits.cast}
+          crew={data.credits.crew}
+        />
       </div>
     </div>
   );

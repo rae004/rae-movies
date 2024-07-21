@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 
 export async function GET(request: Request) {
   const options = {
@@ -26,7 +26,6 @@ export async function GET(request: Request) {
     }
 
     const fetchUrl = new URL(searchOrDiscoverUrl);
-    console.log('our client search params: ', clientParams);
 
     clientUrl.searchParams.forEach((value, key) => {
       fetchUrl.searchParams.append(key, value);

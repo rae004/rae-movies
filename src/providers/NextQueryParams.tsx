@@ -1,8 +1,8 @@
 'use client';
 
-import { QueryParamProvider } from 'use-query-params';
 import NextAdapterApp from 'next-query-params/app';
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
+import { QueryParamProvider } from 'use-query-params';
 
 const NextQueryParamsProvider = ({ children }: { children: ReactNode }) => {
   return (

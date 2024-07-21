@@ -1,9 +1,9 @@
-import { useSearchParams } from 'next/navigation';
-import { CountryAndRatingFilterProps, Rating } from '@/lib/types';
 import ReloadIcon from '@/components/common/ReloadIcon';
-import useCertificationCountriesQuery from '@/lib/queries/certificationCountriesQuery';
-import Ratings from '@/components/header/common/filters/countryAndRatings/RatingsElement';
 import CountriesElement from '@/components/header/common/filters/countryAndRatings/CountriesElement';
+import Ratings from '@/components/header/common/filters/countryAndRatings/RatingsElement';
+import useCertificationCountriesQuery from '@/lib/queries/certificationCountriesQuery';
+import type { CountryAndRatingFilterProps, Rating } from '@/lib/types';
+import { useSearchParams } from 'next/navigation';
 
 export const defaultCountryAndCertificationProps = {
   country: 'Country',
@@ -35,7 +35,7 @@ export default function CountryAndCertificationFilter({
   });
   const { country } = countryAndCertification;
   const ratings: Rating[] = data.certifications[country];
-  ratings && ratings.sort((a, b) => a.order - b.order);
+  ratings?.sort((a, b) => a.order - b.order);
 
   return (
     <div className={'flex items-center self-center'}>
@@ -50,7 +50,11 @@ export default function CountryAndCertificationFilter({
         countryLabel={country}
         ratings={ratings}
       />
-      <button onClick={() => resetFilter()} className="btn m-1">
+      <button
+        aria-checked={false}
+        type={'reset'}
+        onClick={() => resetFilter()}
+        className="btn m-1">
         <ReloadIcon />
       </button>
     </div>

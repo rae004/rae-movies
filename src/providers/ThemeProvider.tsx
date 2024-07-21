@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect, useState } from 'react';
+import { type ReactNode, useEffect, useState } from 'react';
 
 const ThemeProvider = ({ children }: { children: ReactNode }) => {
   const [selectedTheme, setSelectedTheme] = useState('default');
@@ -11,14 +11,13 @@ const ThemeProvider = ({ children }: { children: ReactNode }) => {
     if (theme) {
       setSelectedTheme(theme);
     }
-  }, [setSelectedTheme]);
+  }, []);
 
   return (
     <html
       lang="en"
       className={'flex flex-col items-center overflow-x-hidden'}
-      data-theme={selectedTheme}
-    >
+      data-theme={selectedTheme}>
       {children}
     </html>
   );
