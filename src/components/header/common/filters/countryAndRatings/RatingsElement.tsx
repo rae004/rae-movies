@@ -12,7 +12,10 @@ export default function Ratings({
   countryLabel: string;
   ratings: Rating[];
 }) {
-  const [selectedRatings, setSelectedRatings] = useState<string>('');
+  console.log('our countryAndCertification: ', countryAndCertification);
+  const [selectedRatings, setSelectedRatings] = useState<string>(
+    countryAndCertification.rating,
+  );
   const handleLocalState = (newCertification: string) => {
     setSelectedRatings((prev) => {
       if (prev.includes('|' + newCertification)) {
@@ -53,7 +56,9 @@ export default function Ratings({
             return (
               <li
                 key={key}
-                className={isSelected ? 'bg-primary text-secondary' : ''}
+                className={
+                  isSelected ? 'bg-primary text-secondary-content' : ''
+                }
               >
                 <a onClick={() => handleLocalState(rating.certification)}>
                   {rating.certification}

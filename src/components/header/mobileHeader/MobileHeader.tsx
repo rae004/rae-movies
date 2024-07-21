@@ -4,7 +4,7 @@ import SearchField from '@/components/header/common/SearchField';
 import Pagination from '@/components/header/common/Pagination';
 import ThemePicker from '@/components/header/common/theme/ThemePicker';
 import SortByFilter from '@/components/header/common/filters/SortByFilter';
-import CountryAndCertificationFilter from '@/components/header/common/filters/CountryAndCertificationFilter';
+import CountryAndCertificationFilter from '@/components/header/common/filters/countryAndRatings/CountryAndCertificationFilter';
 import ToggleFilter from '@/components/header/common/filters/toggleFilter';
 import MobileTrayClose from '@/components/header/mobileHeader/MobileTrayClose';
 import { HeaderProps } from '@/lib/types';

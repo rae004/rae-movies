@@ -1,6 +1,6 @@
 import ToggleFilter from './toggleFilter';
 import SortByFilter from '@/components/header/common/filters/SortByFilter';
-import CountryAndCertificationFilter from '@/components/header/common/filters/CountryAndCertificationFilter';
+import CountryAndCertificationFilter from '@/components/header/common/filters/countryAndRatings/CountryAndCertificationFilter';
 import { FiltersProps } from '@/lib/types';
 
 export default function Filters({
