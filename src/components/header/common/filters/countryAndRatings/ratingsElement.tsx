@@ -51,7 +51,10 @@ export default function Ratings({
             const selections = selectedRatings.split('|');
             const isSelected = selections.includes(rating.certification);
             return (
-              <li key={key} className={isSelected ? 'bg-primary' : ''}>
+              <li
+                key={key}
+                className={isSelected ? 'bg-primary text-secondary' : ''}
+              >
                 <a onClick={() => handleLocalState(rating.certification)}>
                   {rating.certification}
                 </a>
