@@ -1,6 +1,6 @@
-import { ReactNode, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { type ReactNode, useState } from 'react';
 
 type CastProps = {
   adult: boolean;
@@ -42,11 +42,10 @@ const CreditsTable = ({
     <table className="table">
       <thead>
         <tr>
-          {tableHeaders.map((header, key) => (
+          {tableHeaders.map((header) => (
             <th
               className={header === 'Department' ? 'hidden md:block' : ''}
-              key={key}
-            >
+              key={header}>
               {header}
             </th>
           ))}
@@ -75,7 +74,9 @@ const TableRow = ({
   return (
     <tr>
       <td>
-        <Link href={`/talent/${talentId}`} target={'_blank'}>
+        <Link
+          href={`/talent/${talentId}`}
+          target={'_blank'}>
           <div className="flex items-center gap-3">
             <div className="avatar">
               <div className="mask mask-squircle h-12 w-12">
@@ -135,9 +136,9 @@ export default function Credits({
         <summary className="collapse-title text-xl font-medium">Cast</summary>
         <div className="collapse-content">
           <CreditsTable tableHeaders={castHeaders}>
-            {cast.map((person, key) => (
+            {cast.map((person) => (
               <TableRow
-                key={key}
+                key={`${person.name}${person.character}`}
                 imgSrc={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
                 name={person.name}
                 character={person.character}
@@ -153,9 +154,9 @@ export default function Credits({
         <summary className="collapse-title text-xl font-medium">Crew</summary>
         <div className="collapse-content">
           <CreditsTable tableHeaders={crewHeaders}>
-            {crew.map((person, key) => (
+            {crew.map((person) => (
               <TableRow
-                key={key}
+                key={`${person.name}${person.job}`}
                 imgSrc={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
                 name={person.name}
                 character={person.job}

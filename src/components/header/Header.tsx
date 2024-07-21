@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { HeaderProps } from '@/lib/types';
-import MobileHeader from '@/components/header/mobileHeader/MobileHeader';
 import DesktopHeader from '@/components/header/DesktopHeader';
+import MobileHeader from '@/components/header/mobileHeader/MobileHeader';
+import type { HeaderProps } from '@/lib/types';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Header({
   sort,

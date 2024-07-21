@@ -1,5 +1,5 @@
+import type { useTalentQueryProps } from '@/lib/types';
 import { useQuery } from '@tanstack/react-query';
-import { useTalentQueryProps } from '@/lib/types';
 
 async function getTalent({ ...props }: useTalentQueryProps) {
   const url = `${props.talentUrl}/?talentId=${props.talentId}`;

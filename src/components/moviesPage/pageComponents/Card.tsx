@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Suspense, useState } from 'react';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
-import { CardProps } from '@/lib/types';
+import type { CardProps } from '@/lib/types';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Suspense, useState } from 'react';
 
 const Card = ({ title, image, href }: CardProps) => {
   const imagePath = `https://image.tmdb.org/t/p/w342/${image}`;
@@ -12,13 +12,11 @@ const Card = ({ title, image, href }: CardProps) => {
   return (
     <Link
       href={href}
-      className="card bg-base-100 p-1 pb-4 group hover:bg-accent focus:bg-accent duration-500 xl:w-[288px] xl:h-[544px]"
-    >
+      className="card bg-base-100 p-1 pb-4 group hover:bg-accent focus:bg-accent duration-500 xl:w-[288px] xl:h-[544px]">
       <div className="card-body pl-0 pr-4 pb-4">
         <h2
           className="text-xl line-clamp-2 group-hover:text-accent-content"
-          title={title}
-        >
+          title={title}>
           {title}
         </h2>
       </div>

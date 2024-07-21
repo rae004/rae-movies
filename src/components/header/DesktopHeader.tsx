@@ -1,10 +1,10 @@
-import { Suspense } from 'react';
-import { HeaderProps } from '@/lib/types';
 import HomePageLink from '@/components/header/common/HomePageLink';
-import SearchField from '@/components/header/common/SearchField';
 import Pagination from '@/components/header/common/Pagination';
-import ThemePicker from '@/components/header/common/theme/ThemePicker';
+import SearchField from '@/components/header/common/SearchField';
 import Filters from '@/components/header/common/filters';
+import ThemePicker from '@/components/header/common/theme/ThemePicker';
+import type { HeaderProps } from '@/lib/types';
+import { Suspense } from 'react';
 
 export default function DesktopHeader({ ...props }: HeaderProps) {
   return (

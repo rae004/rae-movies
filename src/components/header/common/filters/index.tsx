@@ -1,7 +1,7 @@
-import ToggleFilter from './toggleFilter';
 import SortByFilter from '@/components/header/common/filters/SortByFilter';
-import CountryAndCertificationFilter from '@/components/header/common/filters/CountryAndCertificationFilter';
-import { FiltersProps } from '@/lib/types';
+import CountryAndCertificationFilter from '@/components/header/common/filters/countryAndRatings/CountryAndCertificationFilter';
+import type { FiltersProps } from '@/lib/types';
+import ToggleFilter from './toggleFilter';
 
 export default function Filters({
   // isNsfw,

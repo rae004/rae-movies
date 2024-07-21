@@ -11,8 +11,7 @@ export default function HomePageLink({
     <Link
       className={`btn btn-ghost text-md min-[196px]:text-xl ${padding}`}
       href={'/?page=1'}
-      onClick={() => setSearchStr('')}
-    >
+      onClick={() => setSearchStr('')}>
       RAE Movies
     </Link>
   );

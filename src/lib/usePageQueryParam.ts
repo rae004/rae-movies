@@ -1,3 +1,6 @@
+import { defaultCountryAndCertificationProps } from '@/components/header/common/filters/countryAndRatings/CountryAndCertificationFilter';
+import { useMoviesQuery } from '@/lib/queries/moviesQuery';
+import type { CountryAndRating, Sort, SortOrderState } from '@/lib/types';
 import { useSearchParams } from 'next/navigation';
 import {
   ObjectParam,
@@ -5,9 +8,6 @@ import {
   useQueryParam,
   withDefault,
 } from 'use-query-params';
-import { CountryAndRating, Sort, SortOrderState } from '@/lib/types';
-import { defaultCountryAndCertificationProps } from '@/components/header/common/filters/CountryAndCertificationFilter';
-import { useMoviesQuery } from '@/lib/queries/moviesQuery';
 
 const defaultSortOrderParams = {
   order: 'Desc',

@@ -12,6 +12,7 @@ export default function GoogleAnalytics() {
       <Script
         id="g-analytics-base"
         strategy="afterInteractive"
+        // biome-ignore lint/security/noDangerouslySetInnerHtml: we must set Google Analytics script using noDangerouslySetInnerHtml
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];

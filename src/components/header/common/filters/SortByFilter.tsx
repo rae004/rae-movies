@@ -1,6 +1,6 @@
-import { useSearchParams } from 'next/navigation';
 import ReloadIcon from '@/components/common/ReloadIcon';
-import { SortOrderState } from '@/lib/types';
+import type { SortOrderState } from '@/lib/types';
+import { useSearchParams } from 'next/navigation';
 
 export default function SortByFilter({
   resetSortOrderFilter,
@@ -21,36 +21,47 @@ export default function SortByFilter({
   return (
     <div className={'flex items-center self-center'}>
       <div className="dropdown dropdown-bottom">
-        <div tabIndex={0} role="button" className="btn m-1 min-w-[127.4px]">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn m-1 min-w-[127.4px]">
           {sort.by.length > 0 ? sort.by : 'Sort By'}
         </div>
-        <ul
-          tabIndex={0}
-          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
-        >
+        <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
           {sortByOptions.map((by) => (
             <li key={by}>
-              <a onClick={() => setSort({ ...sort, by })}>{by}</a>
+              <button
+                type={'button'}
+                onClick={() => setSort({ ...sort, by })}>
+                {by}
+              </button>
             </li>
           ))}
         </ul>
       </div>
       <div className="dropdown dropdown-bottom">
-        <div tabIndex={0} role="button" className="btn m-1 min-w-[68.22px]">
+        <div
+          tabIndex={0}
+          role="button"
+          className="btn m-1 min-w-[68.22px]">
           {sort.order.length > 0 ? sort.order : 'Order'}
         </div>
-        <ul
-          tabIndex={0}
-          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
-        >
+        <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
           {sortOrderOptions.map((order) => (
             <li key={order}>
-              <a onClick={() => setSort({ ...sort, order })}>{order}</a>
+              <button
+                type={'button'}
+                onClick={() => setSort({ ...sort, order })}>
+                {order}
+              </button>
             </li>
           ))}
         </ul>
       </div>
-      <button onClick={() => resetSortOrderFilter()} className="btn m-1">
+      <button
+        type={'reset'}
+        onClick={() => resetSortOrderFilter()}
+        className="btn m-1">
         <ReloadIcon />
       </button>
     </div>

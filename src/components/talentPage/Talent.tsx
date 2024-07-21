@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import { MovieProps } from '@/lib/types';
 import ImageSkeleton from '@/components/common/ImageSkeleton';
-import Name from '@/components/talentPage/pageComponents/Name';
 import { Biography } from '@/components/talentPage/pageComponents/Biography';
 import LifeEvents from '@/components/talentPage/pageComponents/LifeEvents';
+import Name from '@/components/talentPage/pageComponents/Name';
 import TalentSkeleton from '@/components/talentPage/pageComponents/Skeleton';
+import type { MovieProps } from '@/lib/types';
+import Image from 'next/image';
+import { useState } from 'react';
 
 export default function Talent({ data, isLoading, isError, slug }: MovieProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
@@ -21,8 +21,7 @@ export default function Talent({ data, isLoading, isError, slug }: MovieProps) {
     <div
       className={
         'flex flex-col md:flex-row-reverse justify-center h-full py-10 gap-8'
-      }
-    >
+      }>
       <div className={'flex flex-col items-center md:justify-center'}>
         {!error && (
           <Image
@@ -44,8 +43,7 @@ export default function Talent({ data, isLoading, isError, slug }: MovieProps) {
       <div
         className={
           'flex flex-col gap-4 mx-1 max-w-xl justify-center md:min-w-[574px]'
-        }
-      >
+        }>
         <Name name={data.name} />
         <Biography biography={data.biography} />
         <LifeEvents

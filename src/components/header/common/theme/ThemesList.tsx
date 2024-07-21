@@ -21,12 +21,9 @@ export default function ThemesList({
   dataTheme: string;
 }) {
   return (
-    <ul
-      tabIndex={0}
-      className="dropdown-content z-[1] right-0 p-2 shadow-2xl bg-base-300 rounded-box w-fit"
-    >
-      {themes.map((theme, key) => (
-        <li key={key}>
+    <ul className="dropdown-content z-[1] right-0 p-2 shadow-2xl bg-base-300 rounded-box w-fit">
+      {themes.map((theme) => (
+        <li key={theme}>
           <input
             type="radio"
             name="theme-dropdown"

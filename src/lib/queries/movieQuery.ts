@@ -1,5 +1,5 @@
+import type { useMovieQueryProps } from '@/lib/types';
 import { useQuery } from '@tanstack/react-query';
-import { useMovieQueryProps } from '@/lib/types';
 
 async function getMovie({ ...props }: useMovieQueryProps) {
   const url = `${props.movieUrl}/?movieId=${props.movieId}`;

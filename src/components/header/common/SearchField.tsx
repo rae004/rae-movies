@@ -1,3 +1,5 @@
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context.shared-runtime';
+
 export default function SearchField({
   searchString,
   nextRouter,
@@ -6,7 +8,7 @@ export default function SearchField({
 }: {
   searchString: string;
   setSearchString: (str: string) => void;
-  nextRouter: any;
+  nextRouter: AppRouterInstance;
   searchParams: URLSearchParams;
 }) {
   const includeAdult = searchParams.get('isNsfw');

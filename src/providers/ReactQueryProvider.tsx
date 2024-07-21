@@ -1,7 +1,7 @@
 'use client';
 
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { ReactNode, useState } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { type ReactNode, useState } from 'react';
 
 const ReactQueryProvider = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(
@@ -9,7 +9,7 @@ const ReactQueryProvider = ({ children }: { children: ReactNode }) => {
       new QueryClient({
         defaultOptions: {
           queries: {
-            staleTime: Infinity,
+            staleTime: Number.POSITIVE_INFINITY,
           },
         },
       }),

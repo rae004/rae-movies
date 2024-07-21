@@ -1,11 +1,11 @@
 import './globals.css';
-import { ReactNode, Suspense } from 'react';
+import GoogleAnalytics from '@/providers/GoogleAnalytics';
+import NextQueryParamsProvider from '@/providers/NextQueryParams';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
+import ThemeProvider from '@/providers/ThemeProvider';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import ReactQueryProvider from '@/providers/ReactQueryProvider';
-import NextQueryParamsProvider from '@/providers/NextQueryParams';
-import ThemeProvider from '@/providers/ThemeProvider';
-import GoogleAnalytics from '@/providers/GoogleAnalytics';
+import { type ReactNode, Suspense } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,8 +22,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <GoogleAnalytics />
           <Suspense>
             <body
-              className={`${inter.className} max-w-96 md:max-w-screen-xl w-full`}
-            >
+              className={`${inter.className} max-w-96 md:max-w-screen-xl w-full`}>
               <main>{children}</main>
             </body>
           </Suspense>

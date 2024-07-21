@@ -1,4 +1,4 @@
-import { MoviesQueryProps } from '@/lib/types';
+import type { MoviesQueryProps } from '@/lib/types';
 import { useQuery } from '@tanstack/react-query';
 
 const getQueryKey = ({ ...props }: MoviesQueryProps) => {
@@ -22,7 +22,6 @@ const getQueryKey = ({ ...props }: MoviesQueryProps) => {
     } else {
       key.replace('^*country/*/rating/*/', '');
     }
-    console.log('our query key after country rating check: ', key);
 
     return key + str;
   };
