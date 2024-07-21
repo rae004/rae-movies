@@ -1,7 +1,8 @@
 import { useSearchParams } from 'next/navigation';
-import { CountryAndRatingFilterProps } from '@/lib/types';
+import { CountryAndRatingFilterProps, Rating } from '@/lib/types';
 import ReloadIcon from '@/components/common/ReloadIcon';
 import useCertificationCountriesQuery from '@/lib/queries/certificationCountriesQuery';
+import Ratings from '@/components/header/common/filters/countryAndRatings/ratingsElement';
 
 export const defaultCountryAndCertificationProps = {
   country: 'Country',
@@ -31,8 +32,9 @@ export default function CountryAndCertificationFilter({
     if (b === 'US') return 1;
     return a.localeCompare(b);
   });
-  const { country, rating } = countryAndCertification;
-  const ratings = data.certifications[country];
+  const { country } = countryAndCertification;
+  const ratings: Rating[] = data.certifications[country];
+  ratings && ratings.sort((a, b) => a.order - b.order);
 
   return (
     <div className={'flex items-center self-center'}>
@@ -60,35 +62,12 @@ export default function CountryAndCertificationFilter({
           ))}
         </ul>
       </div>
-      <div className="dropdown">
-        <div
-          tabIndex={0}
-          role="button"
-          className={`btn m-1 min-w-[89.16px] ${country === 'Country' && 'btn-disabled'}`}
-        >
-          {rating}
-        </div>
-        <ul
-          tabIndex={0}
-          className="dropdown-content menu bg-base-100 rounded-box z-[1] w-auto p-2 shadow"
-        >
-          {ratings &&
-            ratings.map((rating: { certification: string }, key: number) => (
-              <li key={key}>
-                <a
-                  onClick={() =>
-                    setCountryAndCertification({
-                      ...countryAndCertification,
-                      rating: rating.certification,
-                    })
-                  }
-                >
-                  {rating.certification}
-                </a>
-              </li>
-            ))}
-        </ul>
-      </div>
+      <Ratings
+        setCountryAndCertification={setCountryAndCertification}
+        countryAndCertification={countryAndCertification}
+        countryLabel={country}
+        ratings={ratings}
+      />
       <button onClick={() => resetFilter()} className="btn m-1">
         <ReloadIcon />
       </button>
