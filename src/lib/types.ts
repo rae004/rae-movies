@@ -6,6 +6,12 @@ export type Movie = {
   poster_path: string;
 };
 
+export type Rating = {
+  certification: string;
+  meaning: string;
+  order: number;
+};
+
 export type MoviesQueryProps = {
   isNsfw: string;
   includeVideo: string;
