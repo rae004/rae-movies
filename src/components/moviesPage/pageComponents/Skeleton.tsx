@@ -1,15 +1,8 @@
 import ImageSkeleton from '@/components/common/ImageSkeleton';
 import MoviesGrid from '@/components/moviesPage/pageComponents/MoviesGrid';
 
-const MoviesSkeleton = ({ noMovies }: { noMovies: boolean }) => {
-  return noMovies ? (
-    <div
-      className={
-        'flex flex-col items-center justify-center w-[1080px] h-[500px]'
-      }>
-      <h1>No Movies found :(</h1>
-    </div>
-  ) : (
+const MoviesSkeleton = () => {
+  return (
     <MoviesGrid>
       {[...Array(20)].map((_, key) => (
         <div
