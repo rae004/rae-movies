@@ -30,11 +30,19 @@ export default function SortByFilter({
         <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
           {sortByOptions.map((by) => (
             <li key={by}>
-              <button
-                type={'button'}
-                onClick={() => setSort({ ...sort, by })}>
+              <div
+                tabIndex={0}
+                role="button"
+                onClick={() => {
+                  setSort({ ...sort, by });
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    setSort({ ...sort, by });
+                  }
+                }}>
                 {by}
-              </button>
+              </div>
             </li>
           ))}
         </ul>
@@ -49,11 +57,17 @@ export default function SortByFilter({
         <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
           {sortOrderOptions.map((order) => (
             <li key={order}>
-              <button
-                type={'button'}
-                onClick={() => setSort({ ...sort, order })}>
+              <div
+                tabIndex={0}
+                role="button"
+                onClick={() => setSort({ ...sort, order })}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    setSort({ ...sort, order });
+                  }
+                }}>
                 {order}
-              </button>
+              </div>
             </li>
           ))}
         </ul>

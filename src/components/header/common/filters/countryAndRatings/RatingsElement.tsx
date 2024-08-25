@@ -51,21 +51,33 @@ export default function Ratings({
             <li
               key={rating.certification}
               className={isSelected ? 'bg-primary text-secondary-content' : ''}>
-              <button
-                type={'button'}
-                onClick={() => handleLocalState(rating.certification)}>
+              <div
+                tabIndex={0}
+                role="button"
+                onClick={() => handleLocalState(rating.certification)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleLocalState(rating.certification);
+                  }
+                }}>
                 {rating.certification}
-              </button>
+              </div>
             </li>
           );
         })}
         <li>
-          <button
-            type={'submit'}
+          <div
+            tabIndex={0}
+            role="button"
             className={'btn btn-sm mt-4'}
-            onClick={handleSubmit}>
+            onClick={handleSubmit}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleSubmit();
+              }
+            }}>
             Submit
-          </button>
+          </div>
         </li>
       </ul>
     </div>
