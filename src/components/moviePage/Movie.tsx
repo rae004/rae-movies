@@ -31,7 +31,7 @@ export default function Movie({ data, isError, isLoading, slug }: MovieProps) {
       <div>
         {!error && (
           <Image
-            src={`https://image.tmdb.org/t/p/w780/${data.poster_path}`}
+            src={`https://image.tmdb.org/t/p/w780${data.poster_path}`}
             alt={`${data.title} Poster`}
             title={data.title}
             width={780}
