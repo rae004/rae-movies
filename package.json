@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "yarn biome check && next build",
     "start": "next start",
-    "lint": "yarn biome check"
+    "lint": "yarn biome check",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.40.1",
