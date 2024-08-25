@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Suspense, useState } from 'react';
 
 const Card = ({ title, image, href }: CardProps) => {
-  const imagePath = `https://image.tmdb.org/t/p/w342/${image}`;
+  const imagePath = `https://image.tmdb.org/t/p/w342${image}`;
   const [loaded, setLoaded] = useState(false);
   const [error, setError] = useState(false);
 

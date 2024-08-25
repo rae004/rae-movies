@@ -24,14 +24,19 @@ export default function ThemesList({
     <ul className="dropdown-content z-[1] right-0 p-2 shadow-2xl bg-base-300 rounded-box w-fit">
       {themes.map((theme) => (
         <li key={theme}>
-          <input
-            type="radio"
-            name="theme-dropdown"
+          <div
+            tabIndex={0}
+            role="button"
             className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
             aria-label={theme.charAt(0).toUpperCase() + theme.slice(1)}
-            value={theme}
             onClick={() => setTheme(theme, dataTheme)}
-          />
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                setTheme(theme, dataTheme);
+              }
+            }}>
+            {theme}
+          </div>
         </li>
       ))}
     </ul>

@@ -20,16 +20,25 @@ export default function CountriesElement({
       <ul className="dropdown-content menu bg-base-100 overflow-y-scroll h-[40rem] w-[14rem] z-[1]">
         {countries.map((country) => (
           <li key={`${country}`}>
-            <button
-              type={'button'}
+            <div
+              tabIndex={0}
+              role="button"
               onClick={() =>
                 setCountryAndCertification({
                   country,
                   rating: 'Rating',
                 })
-              }>
+              }
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  setCountryAndCertification({
+                    country,
+                    rating: 'Rating',
+                  });
+                }
+              }}>
               {country}
-            </button>
+            </div>
           </li>
         ))}
       </ul>
