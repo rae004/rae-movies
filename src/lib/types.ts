@@ -37,7 +37,7 @@ export type QueryReturnProps = {
 
 export type MovieProps = {
   slug: string;
-} & QueryReturnProps;
+} & Partial<QueryReturnProps>;
 
 export type CardProps = {
   title: string;
