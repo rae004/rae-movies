@@ -65,6 +65,9 @@ export default function usePageQueryParam() {
     data,
     isLoading,
     isError,
+    setPage,
+    page: page || '1',
+    totalPages: data?.total_pages || 500,
   };
   const headerProps = {
     setPage,

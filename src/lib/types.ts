@@ -30,11 +30,14 @@ export type QueryReturnProps = {
   data: any;
   isLoading: boolean;
   isError: boolean;
+  setPage: (page: string) => void;
+  page: string;
+  totalPages: number;
 };
 
 export type MovieProps = {
   slug: string;
-} & QueryReturnProps;
+} & Partial<QueryReturnProps>;
 
 export type CardProps = {
   title: string;
